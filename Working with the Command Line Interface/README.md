@@ -1,4 +1,4 @@
-## Working with the command line Interface
+## Working with the Command Line Interface
 
 Before we jump on to creating and sharing custom sheets with the Oracle Solaris Analytics dashboard, we would like to discuss a few basics of managing Oracle Solaris with the command line.
 
