@@ -9,3 +9,9 @@ Before we jump on to creating and sharing custom sheets with the Oracle Solaris 
 - [Viewing, Capturing and Exporting statistics from the StatsStore](https://alm.oraclecorp.com/sandbox/#projects/oraclesolarisdiscover1/scm/solarisdiscover.git/blob/Working%20with%20the%20Command%20Line%20Interface/capturestats.md?revision=master)
 
   
+
+
+
+
+
+Click [here](https://alm.oraclecorp.com/sandbox/#projects/oraclesolarisdiscover1/scm/solarisdiscover.git/tree/?revision=master) to go back to the Oracle Solaris Discover Home repository.
