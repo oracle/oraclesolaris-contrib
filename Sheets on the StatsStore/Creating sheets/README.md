@@ -5,5 +5,5 @@ The Oracle Solaris Analytics dashboard enables users to create custom sheets for
 <img src="Workflow1.png">
 
 
-![](Images/Image2.png)
+![](Images\Image2.png)
 
