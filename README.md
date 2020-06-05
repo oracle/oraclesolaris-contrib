@@ -33,4 +33,4 @@ Stay updated with Oracle Solaris by following the Oracle Solaris [Blog](https://
 
 ## Copyright
 
-Copyright (c) 2010, 2019, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2010, 2020, Oracle and/or its affiliates. All rights reserved.
