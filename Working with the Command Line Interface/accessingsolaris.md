@@ -19,7 +19,7 @@ Before we start discussing building custom templates for sheets, a quick detour 
 
    
 
-2. Syntax for time-stamps
+ 2. Syntax for time-stamps
 
    Time stamps in Oracle Solaris are based off the  `date` utility. It writes the date and time to standard output or attempts to set the system date and time. By default, the current date and time is written.
 
@@ -35,7 +35,7 @@ Before we start discussing building custom templates for sheets, a quick detour 
 
    
 
-3. Accessing the StatsStore to understand the list of available stats
+ 3. Accessing the StatsStore to understand the list of available stats
 
    Once an user logs in to the system, the steps to access the StatsStore are as follows:
 
@@ -49,7 +49,7 @@ Before we start discussing building custom templates for sheets, a quick detour 
 
    
 
-4. Commands to capture and export data
+ 4. Commands to capture and export data
 
    Oracle Solaris 11.4 consists or 2 main commands : `capture` and `export`. Users can only perform analysis on the data that has been captured across a specific timeframe. 
 
