@@ -1,4 +1,4 @@
-# Oracle Solaris Discover
+# Oracle Solaris Contributions
 
 ## Summary:
 
