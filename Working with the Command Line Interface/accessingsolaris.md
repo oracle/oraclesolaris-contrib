@@ -2,7 +2,7 @@
 
 Before we start discussing building custom templates for sheets, a quick detour to cover the basics:
 
-1. Logging into Oracle Solaris 11.4 using CLI
+### 1) Logging into Oracle Solaris 11.4 using CLI
 
 Using command line interfaces (Terminal for MacOS and Putty for Windows), you can remotely login to Oracle Solaris via SSH. Once in the CLI, you must have a username and password to start a new session on Oracle Solaris.
 
@@ -19,7 +19,7 @@ root@<username>:
 
 
 
- 2. Syntax for time-stamps
+### 2) Syntax for time-stamps
 
 Time stamps in Oracle Solaris are based off the  `date` utility. It writes the date and time to standard output or attempts to set the system date and time. By default, the current date and time is written.
 
@@ -35,7 +35,7 @@ For more information on date and time in Oracle Solaris 11.4, click [here](https
 
 
 
- 3. Accessing the StatsStore to understand the list of available stats
+### 3) Accessing the StatsStore to understand the list of available stats
 
 Once an user logs in to the system, the steps to access the StatsStore are as follows:
 
@@ -49,7 +49,7 @@ For more information on the list of statistics available on the StatsStore, clic
 
 
 
- 4. Commands to capture and export data
+### 4) Commands to capture and export data
 
 Oracle Solaris 11.4 consists or 2 main commands : `capture` and `export`. Users can only perform analysis on the data that has been captured across a specific timeframe. 
 
@@ -57,9 +57,3 @@ Oracle Solaris 11.4 consists or 2 main commands : `capture` and `export`. Users 
 
 For more information; click [here](https://docs.oracle.com/cd/E37838_01/html/E56520/adminanalytics.html)
 
-<<<<<<< HEAD
-=======
-   For more information; click [here](https://docs.oracle.com/cd/E37838_01/html/E56520/adminanalytics.html)
-   
-   
->>>>>>> c010dd5f4ef9b83d4618dd047e758e1bf83dd90b
