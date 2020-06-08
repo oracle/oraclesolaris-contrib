@@ -71,3 +71,5 @@ root@:/usr/lib/webui/analytics/sheets/site# svcs -a | grep webui
 ```
 
 Once the above service has been restarted successfully, you can login to the we interface to view the sheet on your personal dashboard.
+
+Find a sample sheet [here](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/StatsStore/Sharing%20sheets/solaris-contrib.json?revision=master).
