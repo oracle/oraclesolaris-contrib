@@ -1,0 +1,285 @@
+{
+  "$schema": "file:///analytics-import.schema.json",
+  "v1": {
+    "groups": [
+      {
+        "uniqueName": "Data Link Broadcast and Multicast",
+        "visualizations": [
+          "Data Link Broadcast",
+          "Physical Link Multicast  1 "
+        ]
+      },
+      {
+        "uniqueName": "Server Scale and Current Workload",
+        "visualizations": [
+          "Namespace Size and Number of Unique Stats Captured",
+          "Active Threads by Type"
+        ]
+      },
+      {
+        "uniqueName": "Audit Group",
+        "visualizations": [
+          "Audit events by class for file access",
+          "Audit events by class for other categories",
+          "Audit events by class for system admin and access"
+        ]
+      },
+      {
+        "uniqueName": "Physical Link Broadcast and Multicast",
+        "visualizations": [
+          "Physical Link Broadcast",
+          "Physical Link Multicast"
+        ]
+      },
+      {
+        "uniqueName": "Physical Link Errors",
+        "visualizations": [
+          "Physical Link Errors"
+        ]
+      },
+      {
+        "uniqueName": "Client Queries",
+        "visualizations": [
+          "Bytes Served",
+          "Requests Served",
+          "Cache Hits"
+        ]
+      },
+      {
+        "uniqueName": "Physical Link Bandwidth",
+        "visualizations": [
+          "Physical Link Utilization",
+          "Physical Link Traffic"
+        ]
+      },
+      {
+        "uniqueName": "Overview of CPU and Memory and Disk Usage",
+        "visualizations": [
+          "Statistics Store CPU time and Memory consumption",
+          "Repository Utilization",
+          "Repository Growth"
+        ]
+      },
+      {
+        "uniqueName": "Data Link Bandwith and Errors",
+        "visualizations": [
+          "Data Link Traffic",
+          "Data Link Errors"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "groups": [
+          "Overview of CPU and Memory and Disk Usage"
+        ],
+        "uniqueName": "Statistics Store Resource Consumption"
+      },
+      {
+        "groups": [
+          "Data Link Bandwith and Errors",
+          "Data Link Broadcast and Multicast"
+        ],
+        "uniqueName": "Data Links"
+      },
+      {
+        "groups": [
+          "Audit Group"
+        ],
+        "uniqueName": "Audit Section"
+      },
+      {
+        "groups": [
+          "Server Scale and Current Workload",
+          "Client Queries"
+        ],
+        "uniqueName": "Statistics Store Introspective Information"
+      },
+      {
+        "groups": [
+          "Physical Link Bandwidth",
+          "Physical Link Errors",
+          "Physical Link Broadcast and Multicast"
+        ],
+        "uniqueName": "Network Links"
+      }
+    ],
+    "sheets": [
+      {
+        "sections": [
+          "Audit Section",
+          "Statistics Store Resource Consumption",
+          "Statistics Store Introspective Information",
+          "Network Links",
+          "Data Links"
+        ],
+        "timeRangeEndTime": -1,
+        "uniqueName": "solaris-contrib"
+      }
+    ],
+    "visualizations": [
+      {
+        "ssids": [
+          "//:class.proc//:res.sstored/*//:stat.cpu-percentage",
+          "//:class.proc//:res.sstored/*//:stat.memory-percentage"
+        ],
+        "style": "time-series",
+        "uniqueName": "Statistics Store CPU time and Memory consumption"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/audit/class//:stat.events//:part.long-classname(file-close,file-attr-access,file-create,file-delete,file-attr-modify,file-read)//:op.rate"
+        ],
+        "style": "time-series-stacked",
+        "uniqueName": "Audit events by class for file access"
+      },
+      {
+        "ssids": [
+          "//:class.link/phys//:stat.in-mcast-packets//:op.rate",
+          "//:class.link/phys//:stat.out-mcast-packets//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Physical Link Multicast"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.data-returned//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Bytes Served"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.repo-size//:op.util"
+        ],
+        "style": "time-series",
+        "uniqueName": "Repository Utilization"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.//:s.[door-threads-created,door-threads-deleted]//:op.difference",
+          "//:class.app/solaris/sstore//:stat.//:s.[worker-threads-created,worker-threads-deleted]//:op.difference"
+        ],
+        "style": "time-series",
+        "uniqueName": "Active Threads by Type"
+      },
+      {
+        "ssids": [
+          "//:class.link/phys//:stat.in-bytes//:op.rate//:op.util",
+          "//:class.link/phys//:stat.out-bytes//:op.rate//:op.util"
+        ],
+        "style": "time-series-stacked",
+        "uniqueName": "Physical Link Utilization"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/audit/class//:stat.events//:part.long-classname(sys-admin,login-logout,priv-exec,chg-sys-state,user-admin,x-srv-access)//:op.rate"
+        ],
+        "style": "time-series-stacked",
+        "uniqueName": "Audit events by class for system admin and access"
+      },
+      {
+        "ssids": [
+          "//:class.link//:stat.in-drops//:op.rate",
+          "//:class.link//:stat.out-drops//:op.rate",
+          "//:class.link//:stat.out-errors//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Data Link Errors"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.door-calls-made//:op.rate"
+        ],
+        "style": "time-series-stacked",
+        "uniqueName": "Requests Served"
+      },
+      {
+        "ssids": [
+          "//:class.link//:stat.in-bcast-packets//:op.rate",
+          "//:class.link//:stat.out-bcast-packets//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Data Link Broadcast"
+      },
+      {
+        "ssids": [
+          "//:class.link//:stat.in-bytes//:op.rate",
+          "//:class.link//:stat.out-bytes//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Data Link Traffic"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.//:s.[dynamic-enabled,dynamic-disabled]//:op.difference",
+          "//:class.app/solaris/sstore//:stat.//:s.[persistent-enabled,persistent-disabled]//:op.difference",
+          "//:class.app/solaris/sstore//:stat.//:s.[namespace-size,stats-removed]//:op.difference"
+        ],
+        "style": "time-comparison",
+        "uniqueName": "Namespace Size and Number of Unique Stats Captured"
+      },
+      {
+        "ssids": [
+          "//:class.link/phys//:stat.in-drops//:op.rate",
+          "//:class.link/phys//:stat.in-errors//:op.rate",
+          "//:class.link/phys//:stat.in-discards//:op.rate",
+          "//:class.link/phys//:stat.in-unknown-protos//:op.rate",
+          "//:class.link/phys//:stat.out-collisions//:op.rate",
+          "//:class.link/phys//:stat.out-discards//:op.rate",
+          "//:class.link/phys//:stat.out-drops//:op.rate",
+          "//:class.link/phys//:stat.out-errors//:op.rate",
+          "//:class.link/phys//:stat.out-overflows//:op.rate",
+          "//:class.link/phys//:stat.out-underflows//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Physical Link Errors"
+      },
+      {
+        "ssids": [
+          "//:class.link/phys//:stat.in-mcast-packets//:op.rate",
+          "//:class.link/phys//:stat.out-mcast-packets//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Physical Link Multicast  1 "
+      },
+      {
+        "ssids": [
+          "//:class.link/phys//:stat.in-bytes//:op.rate",
+          "//:class.link/phys//:stat.out-bytes//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Physical Link Traffic"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.repo-size//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Repository Growth"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/audit/class//:stat.events//:part.long-classname(proc-modify,proc-start-stop,ioctl,ipc,network,application)//:op.rate"
+        ],
+        "style": "time-series-stacked",
+        "uniqueName": "Audit events by class for other categories"
+      },
+      {
+        "ssids": [
+          "//:class.app/solaris/sstore//:stat.response-cache-hits//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Cache Hits"
+      },
+      {
+        "ssids": [
+          "//:class.link/phys//:stat.in-bcast-packets//:op.rate",
+          "//:class.link/phys//:stat.out-bcast-packets//:op.rate"
+        ],
+        "style": "time-series",
+        "uniqueName": "Physical Link Broadcast"
+      }
+    ]
+  }
+}
