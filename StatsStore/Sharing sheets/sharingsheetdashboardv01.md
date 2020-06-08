@@ -31,7 +31,7 @@ Once the file has been located,
 use the following command to add your file to route your file to the IP address of your system.
 
 ```
-rsync -avu 'SolarisDiscover.json' root@xx.xxx.xx.xx\
+rsync -avu 'SolarisDiscover.json' root@xx.xxx.xx.xx:.
 ```
 
 Once the file has been routed, you can then proceed to adding the sheet to your custom dashboard.
