@@ -13,7 +13,7 @@ This repository aims to provide users with examples and steps on the following:
 - [Working with the Command Line Interface](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/CommandLineInterface?revision=master)
 - [Creating and Sharing Sheets](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/StatsStore?revision=master)
 - [Managing Oracle Solaris through REST](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/REST?revision=master)
-- Using data from Solaris with 3rd party applications (Elasticsearch, Grafana)
+
 
 ## Examples
 
