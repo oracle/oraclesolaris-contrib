@@ -19,8 +19,6 @@ This repository aims to provide users with examples and steps on the following:
 
 Here is where you can see Oracle Solaris 11.4 in action:
 
-
-
 ## Documentation
 
 Documentation related to Oracle Solaris 11.4 can be found here, [link](https://docs.oracle.com/en/operating-systems/solaris.html).
@@ -29,8 +27,11 @@ For a quick overview on Oracle Solaris 11.4, please refer to this [datasheet](ht
 
 Stay updated with Oracle Solaris by following the Oracle Solaris [Blog](https://blogs.oracle.com/solaris/oracle-solaris-11-2).
 
+## Contributing
 
+Oracle Solaris Contrib is an open source project.  See CONTRIBUTING for details.
 
-## Copyright
+## License
 
-Copyright (c) 2010, 2020, Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2020 Oracle and/or its affiliates and released under the [Universal Permissive License (UPL)](https://oss.oracle.com/licenses/upl/), Version 1.0
+
