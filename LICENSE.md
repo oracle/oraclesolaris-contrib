@@ -1,4 +1,8 @@
 ```
+# oraclesolaris-contrib
+
+Copyright (c) 2020 Oracle and/or its affiliates.
+
 The Universal Permissive License (UPL), Version 1.0
 
 Subject to the condition set forth below, permission is hereby granted to any
