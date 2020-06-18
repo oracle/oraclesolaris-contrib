@@ -1,0 +1,12 @@
+{
+    "server_name": "t8ldom3.us.oracle.com",
+    "server_port": "6788",
+    "cert_loaction": "certs/hostca_10.134.74.33.crt",
+    "config_json": {
+        "username": "root", 
+        "password": "my_password", 
+        "scheme": "pam", 
+        "preserve": true, 
+        "timeout": -1
+    }
+}
