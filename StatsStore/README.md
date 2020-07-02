@@ -6,3 +6,8 @@ The Oracle Solaris Analytics dashboard enables users to create custom sheets for
 - [Sharing sheets on the dashboard](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/StatsStore/Sharing%20sheets?revision=master)
 
 
+
+
+
+Copyright (c) 2020, Oracle and/or its affiliates.
+ Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/
