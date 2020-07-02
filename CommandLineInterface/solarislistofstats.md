@@ -31,3 +31,5 @@ For more information regarding classes and statistics available with Oracle Sola
 - [Statistics Store Identifiers](https://docs.oracle.com/cd/E37838_01/html/E56520/ssids.html#SSTORssidstructure)
 - [Using the Command Line Interface](https://docs.oracle.com/cd/E37838_01/html/E56520/sstorconsume.html#scrolltoc)
 
+Copyright (c) 2020, Oracle and/or its affiliates.
+ Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.

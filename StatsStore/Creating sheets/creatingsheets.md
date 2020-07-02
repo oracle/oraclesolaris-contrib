@@ -79,3 +79,10 @@ A user may choose to add an existing Statistic/Event from another sheet or a con
 Following the above steps, we can eventually create our own custom sheet with most frequently used statistic. Such level of customization, enables users to quickly adapt to change as well as design for scale.
 
 ![Output](/Images/img12.png)
+
+
+
+
+
+Copyright (c) 2020, Oracle and/or its affiliates.
+ Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.

@@ -211,3 +211,12 @@ You see the same result.
 ## More Documentation
 
 So now you know how to connect, the next question that tends to rise is where to find an explanation of the full RAD/REST API. There are of course the online [docs on the RAD interface](https://docs.oracle.com/cd/E37838_01/html/E68270/index.html) which also has a [section on REST in it](https://docs.oracle.com/cd/E37838_01/html/E68270/gpzxz.html#scrolltoc). But this is by no means a complete description of the API. Plus the API is also dynamic, as we add RAD modules there are more endpoints to talk to. To solve for this we've included a documentation package in Oracle Solaris 11.4 called `webui-docs`, that when added to the system with give an extra *Application* in the Oracle Solaris WebUI. Once installed you'll see "**Solaris Documentation**" as an option below "**Solaris Analytics**" and "**Solaris Dashboard**" in the "**Applications**" pull-down menu. Once selected you'll see a link to "**Solaris APIs**", and clicking this will bring you to the full REST API description of all the RAD modules on that system.
+
+
+
+
+
+
+
+Copyright (c) 2020, Oracle and/or its affiliates.
+ Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.

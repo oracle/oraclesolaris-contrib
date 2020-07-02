@@ -15,3 +15,8 @@ Before we jump on to creating and sharing custom sheets with the Oracle Solaris 
 
 
 Click [here](https://alm.oraclecorp.com/sandbox/#projects/oraclesolarisdiscover1/scm/solarisdiscover.git/tree/?revision=master) to go back to the Oracle Solaris Discover Home repository.
+
+
+
+Copyright (c) 2020, Oracle and/or its affiliates.
+ Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.

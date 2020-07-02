@@ -57,3 +57,5 @@ Oracle Solaris 11.4 consists or 2 main commands : `capture` and `export`. Users 
 
 For more information; click [here](https://docs.oracle.com/cd/E37838_01/html/E56520/adminanalytics.html)
 
+Copyright (c) 2020, Oracle and/or its affiliates.
+ Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.
