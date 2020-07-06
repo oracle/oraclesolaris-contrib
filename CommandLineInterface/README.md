@@ -14,7 +14,7 @@ Before we jump on to creating and sharing custom sheets with the Oracle Solaris 
 
 
 
-Click [here](https://alm.oraclecorp.com/sandbox/#projects/oraclesolarisdiscover1/scm/solarisdiscover.git/tree/?revision=master) to go back to the Oracle Solaris Discover Home repository.
+Click [here](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/?revision=master) to go back to the Oracle Solaris Discover Home repository.
 
 
 
