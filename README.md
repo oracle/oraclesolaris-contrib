@@ -27,6 +27,10 @@ For a quick overview on Oracle Solaris 11.4, please refer to this [datasheet](ht
 
 Stay updated with Oracle Solaris by following the Oracle Solaris [Blog](https://blogs.oracle.com/solaris/oracle-solaris-11-2).
 
+## [Security](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/SECURITY.md?revision=master)
+
+See [SECURITY](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/SECURITY.md?revision=master) for details.
+
 ## [Contributing](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/CONTRIBUTING.md?revision=master)
 
 Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/CONTRIBUTING.md?revision=master) for details.
