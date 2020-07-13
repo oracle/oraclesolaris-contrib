@@ -2,7 +2,7 @@
 
 ## Capturing the timestamp across which to capture data
 
-Time stamps in Oracle Solaris are based off the  `date` utility. It writes the date and time to standard output or attempts to set the system date and time. By default, the current date and time is written.
+Time stamps in Oracle Solaris are based off the [`date(1)`](https://docs.oracle.com/cd/E88353_01/html/E37839/date-1.html) utility. It writes the date and time to standard output or attempts to set the system date and time. By default, the current date and time is written.
 
 ```
 date +%y-%m-%d:%H:%M
@@ -23,7 +23,7 @@ If the start time and end time of the period is known/planned, you can jump dire
 If interacting directly with the StatsStore, you can type in the following command to jump directly to capturing the data across the appropriate timestamps:
 
 ```
-root@:~/solarisdemobox# sstore capture //:class.cpu//:stat.fpu-usage
+~/solarisdemobox$ sstore capture //:class.cpu//:stat.fpu-usage
 ```
 
 The output of using the above command is:
@@ -63,7 +63,7 @@ As an example, we are building this document using:
 The standard command template to export data is as follows:
 
 ```
-root@:~/solarisdemobox# sstore export -t <Start Timestamp> -e <End Timestamp> -i <Step Count>//:class.<Place your class title here>//:stat.<Place the stat name here>
+~/solarisdemobox$ sstore export -t <Start Timestamp> -e <End Timestamp> -i <Step Count> //:class.<Place your class title here>//:stat.<Place the stat name here>
 ```
 
 ##### a*) Creating a file*
@@ -71,7 +71,7 @@ root@:~/solarisdemobox# sstore export -t <Start Timestamp> -e <End Timestamp> -i
 In order to create a file first:
 
 ```
-root@:~/solarisdemobox# cat>myfpu-util
+~/solarisdemobox$ touch myfpu-util
 ```
 
 ##### *b) Exporting the data to a file*
@@ -79,10 +79,10 @@ root@:~/solarisdemobox# cat>myfpu-util
 In order to export data to this file in the directory:
 
 ```
-root@:~/solarisdemobox# sstore export -t 2020-05-13T14:47:20 -e 2020-05-13T14:47:25 -i 1  //:class.cpu//:stat.fpu-usage> myfpu-util
+~/solarisdemobox$ sstore export -t 2020-05-13T14:47:20 -e 2020-05-13T14:47:25 -i 1  //:class.cpu//:stat.fpu-usage > myfpu-util
 ```
 
-Output:
+The contents of myfpu-util:
 
 ```
 TIME                VALUE IDENTIFIER
@@ -101,22 +101,22 @@ TIME                VALUE IDENTIFIER
 The standard command template to export data is as follows:
 
 ```
-root@:~/solarisdemobox# sstore export -F csv -t <Start Timestamp> -e <End Timestamp> -i <Step Count>//:class.<Place your class title here>//:stat.<Place the stat name here> 
+~/solarisdemobox$ sstore export -F csv -t <Start Timestamp> -e <End Timestamp> -i <Step Count> //:class.<Place your class title here>//:stat.<Place the stat name here> 
 ```
 
 ##### a) Creating a file
 
 ```
-root@:~/solarisdemobox# cat>myfpu-util.csv
+~/solarisdemobox$ touch myfpu-util.csv
 ```
 
 ##### b) Exporting the data to a file
 
 ```
-root@:~/solarisdemobox# sstore export -t 2020-05-13T14:47:20 -e 2020-05-13T14:47:25 -i 1  //:class.cpu//:stat.fpu-usage> myfpu-util.csv
+~/solarisdemobox$ sstore export -t 2020-05-13T14:47:20 -e 2020-05-13T14:47:25 -i 1  //:class.cpu//:stat.fpu-usage > myfpu-util.csv
 ```
 
-Output:
+The contents of `myfpu-util.csv`:
 
 ```
 time,//:class.cpu//:stat.fpu-usage
@@ -127,9 +127,6 @@ time,//:class.cpu//:stat.fpu-usage
 1589406444000000,61228463341.000000
 1589406445000000,61228503642.000000
 ```
-
-
-
 
 
 Copyright (c) 2020, Oracle and/or its affiliates.
