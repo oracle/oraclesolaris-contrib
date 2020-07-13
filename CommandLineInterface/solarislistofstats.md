@@ -16,15 +16,17 @@ To further understand the types of statistics available , we have classified the
 
 | Class Name | Description                | Corresponding Stats                                          |
 | ---------- | -------------------------- | ------------------------------------------------------------ |
-| app        | Application                | class.app/oracle/rdbms<br />class.app/solaris/apacheclass.app/solaris/audit/class <br />class.app/solaris/compliance/rule<br />class.app/solaris/nscd<br />class.app/solaris/sstore<br />class.app/solaris/sysstat/sysconf |
-| cpu        | Processor                  | class.chip<br />class.collection<br />class.core<br />class.cpu<br />class.dax |
-| dev        | Devices                    | class.dev<br />class.devices<br />class.disk<br />class.disk-controller<br />class.fs<br/>class.fsflush<br />class.fstype<br />class.lgroup |
-| io         | Networking                 | class.link<br />class.link/phys<br />class.net/flow<br />class.net/ip<br />class.net/tcp<br />class.net/udp<br />class.nfs/client<br />class.nfs/server<br />class.ib/hca<br />class.ib/hca-phys<br />class.ib/ulp<br />class.nfs/client<br />class.nfs/server |
+| app        | Application                | class.app/oracle/rdbms<br />class.app/solaris/apache<br />class.app/solaris/audit/class <br />class.app/solaris/compliance/assessment<br />class.app/solaris/compliance/rule<br />class.app/solaris/install/auto-install<br />class.app/solaris/nscd<br />class.app/solaris/sstore<br />class.app/solaris/sysstat/sysconf |
+| collection | StatsStore Collections     | class.collection |
+| cpu        | Processor                  | class.chip<br />class.core<br />class.cpu<br />class.dax<br />class.lgroup<br />class.pset<br />class.scheduler |
+| dev        | Devices                    | class.dev<br />class.devices |
+| ib         | Infiniband IO              | class.ib/hca<br />class.ib/hca-phys<br />class.ib/ulp |
+| networking | Network IO                 | class.link<br />class.link/phys<br />class.net/flow<br />class.net/ip<br />class.net/tcp<br />class.net/udp |
 | pg         | Processor Group Statistics | class.pg/CPU-PM-Active-Power-Domain<br />class.pg/CPU-PM-Idle-Power-Domain<br />class.pg/Cache<br />class.pg/Data-Pipe-to-memory<br />class.pg/Floating-Point-Unit<br />class.pg/Integer-Pipeline<br />class.pg/L2-Cache<br />class.pg/L3-Cache<br />class.pg/Socket<br /> |
-| pset       | Processor Set Statistics   | class.pset<br />class.scheduler<br />class.proc              |
-| svc        | Service                    | class.svc<br />class.event                                   |
+| process    | Per Process Statistics     | class.proc                                                   |
+| storage    | Storage                    | class.disk<br />class.disk-controller<br />class.fs<br/>class.fsflush<br />class.fstype<br />class.nfs/client<br />class.nfs/server<br />class.pageout<br />class.zpool |
+| svc        | Services and Events        | class.svc<br />class.event                                   |
 | system     | System                     | class.system                                                 |
-| zone       | Zone                       | class.zpool                                                  |
 
 For more information regarding classes and statistics available with Oracle Solaris 11.4, please refer to the link below:
 
