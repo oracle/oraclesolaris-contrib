@@ -1,13 +1,13 @@
 # List of available stats from the StatsStore
 
-The StatsStore (`sstore`) contains a list of important statistics and parameters which can help you understand system performance, event specific data points , resource allocations as well as key information regarding zones .
+The StatsStore (`sstore`) contains a list of important statistics and parameters which can help you understand system performance, event specific data points, resource allocations as well as key information regarding zones.
 
 The stats from Oracle Solaris 11.4 are classified as per [Classes](https://docs.oracle.com/cd/E37838_01/html/E56520/ssids.html#SSTORssidstructure).
 
 To understand all the types of classes and statistics available in Oracle Solaris 11.4, use the following command in CLI:
 
 ```
-~/solarisdiscover# sstore
+~/solarisdiscover$ sstore
 Interactive mode. Type help to see list of commands.
 //: > ls
 ```
