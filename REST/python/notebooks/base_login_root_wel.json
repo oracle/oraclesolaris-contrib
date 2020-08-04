@@ -1,12 +1,12 @@
 {
-    "server_name": "t8ldom3.us.oracle.com",
-    "server_port": "6788",
-    "cert_location": "certs/hostca_10.134.74.33.crt",
+    "server_name": "<ip address>",
+    "server_port": "<RAD Remote port>",
+    "cert_location": "<path_to_cert>",
     "config_json": {
-        "username": "root", 
-        "password": "Welcome1", 
-        "scheme": "pam", 
-        "preserve": true, 
+        "username": "<username>",
+        "password": "<password>",
+        "scheme": "pam",
+        "preserve": true,
         "timeout": -1
     }
 }
