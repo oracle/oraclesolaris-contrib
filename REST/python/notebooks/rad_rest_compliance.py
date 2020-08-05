@@ -79,7 +79,7 @@ if config_filename:
     with open(config_filename, 'r') as f:
         server_connection_info = json.load(f)
         
-server_connection_info
+server_connection_info['server_name']
 
 
 # ---
