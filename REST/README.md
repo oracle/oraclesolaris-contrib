@@ -14,7 +14,7 @@ Once you have the certificates created, copied and the SMF service started you c
 
 ## Setting Up the RAD/REST Service
 
-This blog will assume you're using Oracle Solaris 11.4, if you're using Oracle Solaris 11.3 you'll need to create/configure your the `rad:remote` service first, for more details [read the RAD Developer's Guide](https://docs.oracle.com/cd/E53394_01/html/E54825/gpztv.html#scrolltoc).
+The README file assume you're using Oracle Solaris 11.4, if you're using Oracle Solaris 11.3 you'll need to create/configure your the `rad:remote` service first, for more details [read the RAD Developer's Guide](https://docs.oracle.com/cd/E53394_01/html/E54825/gpztv.html#scrolltoc).
 
 ### Enabling `rad:remote`
 
