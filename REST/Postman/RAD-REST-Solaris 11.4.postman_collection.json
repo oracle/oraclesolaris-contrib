@@ -41,41 +41,6 @@
 					"response": []
 				},
 				{
-					"name": "Post username/password v1.0 - t8-virt01.us.oracle.com",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"username\": \"root\",\n  \"password\": \"Welcome1\",\n  \"scheme\": \"pam\",\n  \"preserve\": true,\n  \"timeout\": -1\n}"
-						},
-						"url": {
-							"raw": "https://t8-virt01.us.oracle.com:6788/api/authentication/1.0/Session/",
-							"protocol": "https",
-							"host": [
-								"t8-virt01",
-								"us",
-								"oracle",
-								"com"
-							],
-							"port": "6788",
-							"path": [
-								"api",
-								"authentication",
-								"1.0",
-								"Session",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Post username/password v1.0 - {{global-zone}}",
 					"request": {
 						"method": "POST",
@@ -1782,14 +1747,14 @@
 		{
 			"id": "1627c880-f0be-46e6-b951-7c06ccc39132",
 			"key": "zonename",
-			"value": "",
+			"value": "my_zone",
 			"type": "string",
 			"disabled": true
 		},
 		{
 			"id": "5852dbdc-21f9-4861-aff5-554f9a14b1ee",
 			"key": "global-zone",
-			"value": "",
+			"value": "xxx.xxx.xxx.xxx",
 			"type": "string",
 			"disabled": true
 		}
