@@ -16,4 +16,5 @@ The Compliance RAD/REST module allows you to connect to the Compliance Framework
   - List available benchmarks, and their profiles and tailorings
   - Get info on individual benchmark rules and what they test 
 
-This Jupyter notebook will show how to do all of these steps.
+This [Jupyter notebook](rad_rest_compliance.ipynb) will show how to do all of these steps.
+
