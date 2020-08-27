@@ -8,9 +8,9 @@ One of the benefits of using Python and Jupyter notebooks is that the behavior o
 
 Note that every Oracle Solaris Zone and Logical Domain has its own RAD/REST interface which can be independently turned on and accessed. 
 
-[How to turn remote connection on]
+[How to turn remote connection on](Settinguptheconnection.md)
 
-[How to install Jupyter] 
+[How to install Jupyter](https://jupyter.org/install)
 
 ## Using the Solaris Compliance REST API Notebook
 
