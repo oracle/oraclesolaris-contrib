@@ -2,7 +2,7 @@
 
 Before we jump on to creating and sharing custom sheets with the Oracle Solaris Analytics dashboard, we would like to discuss a few basics of managing Oracle Solaris with the command line.
 
-- [Accessing the StatsStore](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/CommandLineInterface/accessingsolaris.md?revision=master)
+- [Accessing the StatsStore](accessingsolaris.md)
 
 - [List of available stats on the StatsStore](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/CommandLineInterface/solarislistofstats.md?revision=master)
 
