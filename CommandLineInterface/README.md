@@ -14,7 +14,7 @@ Before we jump on to creating and sharing custom sheets with the Oracle Solaris 
 
 
 
-Click [here](oraclesolaris-contrib) to go back to the Oracle Solaris Discover Home repository.
+Click [here](https://github.com/oracle/oraclesolaris-contrib) to go back to the Oracle Solaris Discover Home repository.
 
 
 
