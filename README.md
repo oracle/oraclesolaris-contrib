@@ -10,14 +10,14 @@ In addition to markdowns specific to creating custom templates, this repo also c
 
 This repository aims to provide users with examples and steps on the following: 
 
-- [Working with the Command Line Interface](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/CommandLineInterface?revision=master)
-- [Creating and Sharing Sheets](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/StatsStore?revision=master)
-- [Managing Oracle Solaris through REST](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/REST?revision=master) 
+- [Working with the Command Line Interface](/CommandLineInterface)
+- [Creating and Sharing Sheets](/StatsStore)
+- [Managing Oracle Solaris through REST](/REST) 
 
 
 ## Examples
 
-Here is where you can see Oracle Solaris 11.4 in action: [Dashboard](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/StatsStore/Sharing%20sheets/solaris-contrib.json?revision=master)
+Here is where you can see Oracle Solaris 11.4 in action: [Dashboard](/StatsStore/Sharing%20sheets/solaris-contrib.json)
 
 ## Documentation
 
