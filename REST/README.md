@@ -12,7 +12,10 @@ Also note that if you've created your own certificate you'll need to make sure t
 
 Once you have the certificates created, copied and the SMF service started you can use your favorite client tool — Curl, Python, Postman — and start connecting with the server.
 
+Here is where you can start working with Jupyter Notebooks:
 
+- [Jupyter Notebooks](/python/notebooks)
+- [Postman](/Postman)
 
 ## More Documentation
 
