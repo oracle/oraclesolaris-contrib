@@ -14,8 +14,8 @@ Once you have the certificates created, copied and the SMF service started you c
 
 Here is where you can start working with Jupyter Notebooks:
 
-- [Jupyter Notebooks](/python/notebooks)
-- [Postman](/Postman)
+- [Jupyter Notebooks](/REST/python/notebooks)
+- [Postman](/REST/Postman)
 
 ## More Documentation
 
