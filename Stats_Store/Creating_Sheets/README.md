@@ -2,7 +2,7 @@
 
 The Oracle Solaris Analytics dashboard enables users to create custom sheets for monitoring and analyzing parameters ranging from performance as well as key StatsStore metrics.
 
-- [Creating custom sheets on the Oracle Solaris Analytics Dashboard](creatingsheets.md)
+- [Creating custom sheets on the Oracle Solaris Analytics Dashboard](creating_sheets.md)
 
 
 
