@@ -11,5 +11,5 @@ Note that every Oracle Solaris Zone and Logical Domain has its own RAD/REST inte
 Some resources to get started:
 
 - [How to install Jupyter](https://jupyter.org/install)
-- [How to turn remote connection on](Settinguptheconnection.md)
+- [How to turn remote connection on](setting_up_the_connection.md)
 

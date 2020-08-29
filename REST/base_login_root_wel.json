@@ -1,0 +1,12 @@
+{
+    "server_name": "tanmay.us.oracle.com",
+    "server_port": "6787",
+    "cert_location": "certs/hostca_10.134.74.55.crt",
+    "config_json": {
+        "username": "root",
+        "password": "Welcome1",
+        "scheme": "pam",
+        "preserve": true,
+        "timeout": -1
+    }
+}
