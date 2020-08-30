@@ -2,11 +2,11 @@
 
 Before we jump on to creating and sharing custom sheets with the Oracle Solaris Analytics dashboard, we would like to discuss a few basics of managing Oracle Solaris with the command line.
 
-- [Accessing the StatsStore](accessingsolaris.md)
+- [Accessing the StatsStore](accessing_solaris.md)
 
-- [List of available stats on the StatsStore](solarislistofstats.md)
+- [List of available stats on the StatsStore](solaris_list_of_stats.md)
 
-- [Viewing, Capturing and Exporting statistics from the StatsStore](capturestats.md)
+- [Viewing, Capturing and Exporting statistics from the StatsStore](capture_stats.md)
 
   
 
