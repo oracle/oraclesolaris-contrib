@@ -2,8 +2,8 @@
 
 The Oracle Solaris Analytics dashboard enables users to create custom sheets for monitoring and analyzing parameters ranging from performance as well as key StatsStore stats. Such custom sheets can be easily downloaded and shared amongst other users owing to the files being in a .json format. In order to share sheets here is the workflow, users can follow:
 
-- [Creating a custom sheet/template](Creating%20sheets)
-- [Sharing sheets on the dashboard](Sharing%20sheets)
+- [Creating a custom sheet/template](Creating_Sheets)
+- [Sharing sheets on the dashboard](Sharing_Sheets)
 
 
 
