@@ -11,7 +11,7 @@ In addition to markdowns specific to creating custom templates, this repo also c
 This repository aims to provide users with examples and steps on the following: 
 
 - [Working with the Command Line Interface](Command_Line_Interface)
-- [Creating and Sharing Sheets](Stats_Store)
+- [Creating and Sharing Sheets](StatsStore)
 - [Managing Oracle Solaris through REST](REST) 
 
 
