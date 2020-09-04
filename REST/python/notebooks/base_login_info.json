@@ -1,0 +1,12 @@
+{
+    "server_name": "<ip address>",
+    "server_port": "<RAD Remote port>",
+    "cert_location": "<path_to_cert>",
+    "config_json": {
+        "username": "<username>",
+        "password": "<password>",
+        "scheme": "pam",
+        "preserve": true,
+        "timeout": -1
+    }
+}
