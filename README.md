@@ -17,7 +17,7 @@ This repository aims to provide users with examples and steps on the following:
 
 ## Examples
 
-Here is where you can see Oracle Solaris 11.4 in action: [Dashboard](/Stats_Store/Sharing_Sheets/solaris-contrib.json)
+Here is where you can see Oracle Solaris 11.4 in action: [Dashboard](/StatsStore/Sharing_Sheets/solaris-contrib.json)
 
 ## Documentation
 
