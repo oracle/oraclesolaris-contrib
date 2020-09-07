@@ -84,7 +84,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"username\":\"oracle\", \"preserve\": true}"
+							"raw": "{\"username\":\"{{username}}\", \"preserve\": true}"
 						},
 						"url": {
 							"raw": "https://{{server}}:6788/api/authentication/2.0/Session/",
