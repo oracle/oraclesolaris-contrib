@@ -18,4 +18,4 @@ Resources on getting started:
 - [How to install Jupyter](https://jupyter.org/install) and for those that want to run it on Oracle Solaris [how to install Jupyter on Oracle Solaris](installing_jupyter_on_oracle_solaris.md), also showing how to remotely connect to a running notebook server.
 - [How to turn remote connection on](../../setting_up_the_connection.md)
 
-Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.

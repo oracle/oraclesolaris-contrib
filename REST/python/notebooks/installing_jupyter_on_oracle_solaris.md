@@ -255,4 +255,4 @@ jupyter kernelspec install --user --name=<my_name>
 
 This should then give you an extra kernel option to switch to within the running notebook.
 
-Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.

@@ -95,4 +95,4 @@ Which in turn returns:
 
 So look carefully what the URL looks like and if you need to replace the `_rad_reference` number.
 
-Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.
