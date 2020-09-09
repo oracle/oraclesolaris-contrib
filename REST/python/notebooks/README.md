@@ -12,8 +12,9 @@ One of the benefits of using Python and Jupyter notebooks is that every step of 
 
 Note that every Oracle Solaris Zone and Logical Domain has its own RAD/REST interface which can be independently turned on and accessed. 
 
-Some resources to get started:
+Resources on getting started:
 
+- [Jupyter notebook for accessing the Compliance Framefork](Compliance_Framework/rad_rest_compliance.ipynb).
 - [How to install Jupyter](https://jupyter.org/install) and for those that want to run it on Oracle Solaris [how to install Jupyter on Oracle Solaris](installing_jupyter_on_oracle_solaris.md), also showing how to remotely connect to a running notebook server.
 - [How to turn remote connection on](../../setting_up_the_connection.md)
 
