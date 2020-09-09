@@ -31,12 +31,12 @@ Now it's running, you can connect to the system remotely.
 In case where you're system is using a certificate issued by the host CA — like in my case — you'll need to copy that across to your client system first:
 
 ```shell
--bash-4.4$ scp testuser@test_server.example.com:/etc/certs/localhost/host.crt .
+-bash-4.4$ scp testuser@test_server.example.com:/etc/certs/localhost/host-ca/hostca.crt .
 Password: 
-host.crt                                                           100% 1147   666.9KB/s   00:00   
+hostca.crt                                                           100% 1147   666.9KB/s   00:00   
 ```
 
-Now we can use the `host.crt` in all our REST conversations that connect to this server.
+Now we can use the `hostca.crt` in all our REST conversations that connect to this server.
 
 ## Testing the Connection
 
@@ -54,7 +54,7 @@ Before we'll connect to the server, I need to make a short detour to talk about 
 
 And this authentication method can be found at `/api/authentication/1.0/Session/`.
 
-The second method was introduced in Oracle Solaris 11.4 and is a two step process where you first send the username, and once this is met with success, you send the password. The two JSON data files would something like this:
+The second additional method was introduced in Oracle Solaris 11.4 and is a two step process where you first send the username, and once this is met with success, you send the password. The two JSON data files would something like this:
 
 ```json
 {
@@ -76,14 +76,14 @@ and:
 
 This second authentication method can be found at `/api/authentication/2.0/Session/`.
 
-This second method was added to allow for more advanced authentication methods like two-factor authentication for javascript based apps like the Oracle Solaris WebUI. For our purposes the first one works fine. I've put the JSON data in a file called `login.json` and will refer to it in the coming examples.
+This second method was added to allow for more advanced authentication methods like two-factor authentication for javascript based apps like the Oracle Solaris WebUI. For our purposes the first one works fine. I've put the JSON data in a file called `login.json` and will refer to it in the coming examples. Both will work on Oracle Solaris 11.4.
 
 ### Using Curl
 
 On the client, from the directory I put the certificate in I can run:
 
 ```shell
--bash-4.4$ curl -c cookie.txt -X POST --cacert host.crt --header 'Content-Type:application/json' --data '@login.json' https://test_server.example.com:6788/api/authentication/1.0/Session/
+-bash-4.4$ curl -c cookie.txt -X POST --cacert hostca.crt --header 'Content-Type:application/json' --data '@login.json' https://test_server.example.com:6788/api/authentication/1.0/Session/
 {
         "status": "success",
         "payload": {
@@ -97,7 +97,7 @@ Note, I'm using a `cookie.txt` file to save the session cookies. And the respons
 I can now for example ask the SMF RAD module to list the RAD services it has:
 
 ```shell
--bash-4.4$ curl -b cookie.txt --cacert host.crt -H 'Content-Type:application/json' -X GET https://test_server.example.com:6788/api/com.oracle.solaris.rad.smf/1.0/Service/system%2Frad/instances
+-bash-4.4$ curl -b cookie.txt --cacert hostca.crt -H 'Content-Type:application/json' -X GET https://test_server.example.com:6788/api/com.oracle.solaris.rad.smf/1.0/Service/system%2Frad/instances
 {
         "status": "success",
         "payload": [
@@ -123,7 +123,7 @@ And the service is online, not a surprise I guess.
 
 ### Using Python
 
-To illustrate how to the same using Python I have a short example script. Note this is a very basic script with hardly any error handling and pretty ugly code, the point is to illustrate the way to connect. Here's my code:
+There's much more information on how to do this in the [Jupyter notebooks section](python/notebooks), but to illustrate how to the do the same using Python, here's a short example script. Note this is a very basic script with hardly any error handling and pretty ugly code, the point is to illustrate the way to connect:
 
 ```python
 import requests                                                                 
@@ -143,7 +143,7 @@ with requests.Session() as s:
     #Login to server
     login_url = "https://test_server.example.com:6788/api/authentication/1.0/Session"
     print("logging in to the Server")
-    r = s.post(login_url, json=config_json, verify='host.crt')
+    r = s.post(login_url, json=config_json, verify='hostca.crt')
     print("The status code is: " + str(r.status_code))
     print("The return text is: " + r.text)
 
