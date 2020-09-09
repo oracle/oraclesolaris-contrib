@@ -47,7 +47,7 @@ Once Step 3, is complete we need to remotely login to the server to copy the fil
 The sheets being displayed on the Oracle Solaris Analytics dashboard are stored in 
 
 ```
-cd /usr/lib/webui/analytics/sheets 
+cd /usr/lib/webui/analytics/sheets/site 
 ```
 
 The new sheet (.json) file which was routed to the server needs to be moved to a location under the above directory.
@@ -72,7 +72,9 @@ root@:/usr/lib/webui/analytics/sheets/site# svcs -a | grep webui
 
 Once the above service has been restarted successfully, you can login to the we interface to view the sheet on your personal dashboard.
 
-Find a sample sheet [here](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/StatsStore/Sharing%20sheets/solaris-contrib.json?revision=master).
+Find a sample sheet [here](/StatsStore/Sharing_Sheets/sample-sheet.json).
+
+For a more in detailed sheet covering major statistics from the StatsStore, [click here](/StatsStore/Sharing_Sheets/solaris-contrib.json).
 
 
 
