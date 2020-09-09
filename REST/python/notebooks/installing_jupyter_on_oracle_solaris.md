@@ -235,7 +235,7 @@ c.NotebookApp.keyfile = '/export/home/demo/.jupyter/host.key'
 
 Of course if these certificates aren't signed by a *managed CA* the browser will probably complain and you'll have to accept this or use the key file. For more info on managed CA's see the [README on certificates](certs/README.md).
 
- Once you've made these changes you can start Jupyter as described above.
+ Once you've made these changes you can start Jupyter as described above and you can now remotely access Jupyter over HTTPS, and you'll be asked for the password you set up.
 
 ## Adding the New Python Kernel to Jupyter
 
@@ -254,3 +254,5 @@ jupyter kernelspec install --user --name=<my_name>
 ```
 
 This should then give you an extra kernel option to switch to within the running notebook.
+
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.

@@ -19,6 +19,8 @@ In order to remotely connect to the Oracle Solaris instance over the RAD/REST in
 
 Note that in Oracle Solaris 11.3 you could also connect over REST but [you needed to configure a custom SMF service](https://docs.oracle.com/cd/E53394_01/html/E54825/gpztv.html#scrolltoc) before you could enable it. With the release of Oracle Solaris 11.4 there is the prebuilt `rad:remote` SMF service that you only need to enable. In the Oracle Solaris 11.3 case you will need to also choose your own service parameters, like port number.
 
+For a more in-depth description see the [How-to article on setting up the connection](setting_up_the_connection.md).
+
 ## Using Certificates
 
 To be able to connect over RAD/REST we require you use the secure *https* transport and in order for this to the system you're connecting to must have a valid SSL certificate in place for the client to know it can be trusted. 
