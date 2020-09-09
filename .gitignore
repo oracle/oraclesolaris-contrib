@@ -1,2 +1,3 @@
-REST/python/notebooks/assessments/*
+REST/python/notebooks/Compliance_Framework/assessments/*
 REST/python/notebooks/certs/*.crt
+**/.ipynb_checkpoints/
