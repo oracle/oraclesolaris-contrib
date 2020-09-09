@@ -1,0 +1,1763 @@
+{
+	"info": {
+		"_postman_id": "6249816f-a879-4398-ad4b-976d99d44674",
+		"name": "RAD/REST - Solaris 11.4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Post username/password v1.0 - {{server}}",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\",\n  \"scheme\": \"pam\",\n  \"preserve\": true,\n  \"timeout\": -1\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/authentication/1.0/Session/",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"authentication",
+								"1.0",
+								"Session",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post username/password v1.0 - {{global-zone}}",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\",\n  \"scheme\": \"pam\",\n  \"preserve\": true,\n  \"timeout\": -1\n}"
+						},
+						"url": {
+							"raw": "https://{{global-zone}}:6788/api/authentication/1.0/Session/",
+							"protocol": "https",
+							"host": [
+								"{{global-zone}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"authentication",
+								"1.0",
+								"Session",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post username v2.0 - {{server}}",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"{{username}}\", \"preserve\": true}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/authentication/2.0/Session/",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"authentication",
+								"2.0",
+								"Session",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send password v2.0 - {{server}}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"value\": {\"pam\": {\"responses\": [\"{{password}}\"]}, \"generation\": 1 }}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/authentication/2.0/Session/_rad_instance/4352/state",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"authentication",
+								"2.0",
+								"Session",
+								"_rad_instance",
+								"4352",
+								"state"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "query base REST API - get the module list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SMF",
+			"item": [
+				{
+					"name": "Get SMF Services list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Master/instances",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Master",
+								"instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SMF Service State",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/network%2Fip-interface-management,default/ex_state",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"network%2Fip-interface-management,default",
+								"ex_state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  SMF Property Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/application%2Fsecurity%2Fcompliance,default/pgs",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"application%2Fsecurity%2Fcompliance,default",
+								"pgs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SMF Propertiy Values",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pg_names\": [\n        \"scheduled\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/application%2Fsecurity%2Fcompliance,default/_rad_method/readProperties",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"application%2Fsecurity%2Fcompliance,default",
+								"_rad_method",
+								"readProperties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set SMF Properties",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"props\": [\n        {\n            \"name\": \"scheduled/interval\",\n            \"type\": \"ASTRING\",\n            \"values\": [\n                \"hour\"\n            ]\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/application%2Fsecurity%2Fcompliance,default/_rad_method/writeProperties",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"application%2Fsecurity%2Fcompliance,default",
+								"_rad_method",
+								"writeProperties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable SMF Service",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"temporary\": false\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/application%2Fsecurity%2Fcompliance,default/_rad_method/enable",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"application%2Fsecurity%2Fcompliance,default",
+								"_rad_method",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable SMF Service",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"temporary\": false\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/application%2Fsecurity%2Fcompliance,default/_rad_method/disable",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"application%2Fsecurity%2Fcompliance,default",
+								"_rad_method",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Networking (over SMF)",
+			"item": [
+				{
+					"name": "Get SMF Datalink Management Service Property Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/network%2Fdatalink-management,default/pgs",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"network%2Fdatalink-management,default",
+								"pgs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SMF Datalink Mngr Service Property Group Properties",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pg_names\": [\n        \"datalinks/net0\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/network%2Fdatalink-management,default/_rad_method/readProperties",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"network%2Fdatalink-management,default",
+								"_rad_method",
+								"readProperties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SMF Network Interface Service Property Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/network%2Fip-interface-management,default/pgs",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"network%2Fip-interface-management,default",
+								"pgs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SMF IP Network Interface Service Property Group Properties",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pg_names\": [\n        \"general\", \"interfaces/net0\", \"interfaces/net0/v4\", \"static-routes/route-1\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.smf/1.0/Instance/network%2Fip-interface-management,default/_rad_method/readProperties",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.smf",
+								"1.0",
+								"Instance",
+								"network%2Fip-interface-management,default",
+								"_rad_method",
+								"readProperties"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Compliance",
+			"item": [
+				{
+					"name": "Get list of compliance reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.compliance_mgr/1.0/Assessment",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.compliance_mgr",
+								"1.0",
+								"Assessment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get compliance report metadata",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.compliance_mgr/1.0/Assessment/27974e5e-9816-11e9-bdff-d5b83cafc245/metadata",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.compliance_mgr",
+								"1.0",
+								"Assessment",
+								"27974e5e-9816-11e9-bdff-d5b83cafc245",
+								"metadata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get compliance report contents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.compliance_mgr/1.0/Assessment/27974e5e-9816-11e9-bdff-d5b83cafc245/contents",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.compliance_mgr",
+								"1.0",
+								"Assessment",
+								"27974e5e-9816-11e9-bdff-d5b83cafc245",
+								"contents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BE Manager",
+			"item": [
+				{
+					"name": "Get BE list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BootEnv/",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BootEnv",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BE name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BootEnv/be%3A%2F%2Frpool%2Fpre-statcfg_step/name",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BootEnv",
+								"be%3A%2F%2Frpool%2Fpre-statcfg_step",
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BE zpool",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BootEnv/be%3A%2F%2Frpool%2Fpre-statcfg_step/zpool",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BootEnv",
+								"be%3A%2F%2Frpool%2Fpre-statcfg_step",
+								"zpool"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BE zpool datasets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BootEnv/be%3A%2F%2Frpool%2Fpre-statcfg_step/datasets",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BootEnv",
+								"be%3A%2F%2Frpool%2Fpre-statcfg_step",
+								"datasets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BE zpool dataset name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BEDataset/_rad_reference/3585/name",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BEDataset",
+								"_rad_reference",
+								"3585",
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BE zpool dataset creation time",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BEDataset/_rad_reference/3585/creation",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BEDataset",
+								"_rad_reference",
+								"3585",
+								"creation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get get active BE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ }"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BEManager/_rad_method/getActiveBE",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BEManager",
+								"_rad_method",
+								"getActiveBE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get BE name from _rad_reference",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.bemgr/1.0/BootEnv/_rad_reference/3075/name",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.bemgr",
+								"1.0",
+								"BootEnv",
+								"_rad_reference",
+								"3075",
+								"name"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ZFS",
+			"item": [
+				{
+					"name": "Get rpool filesystem list",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ }"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.zfsmgr/1.0/ZfsDataset/rpool/_rad_method/get_filesystems",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zfsmgr",
+								"1.0",
+								"ZfsDataset",
+								"rpool",
+								"_rad_method",
+								"get_filesystems"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get rpool vdevs",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ }"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.zfsmgr/1.0/Zpool/rpool/_rad_method/get_vdevs",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zfsmgr",
+								"1.0",
+								"Zpool",
+								"rpool",
+								"_rad_method",
+								"get_vdevs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StatsStore",
+			"item": [
+				{
+					"name": "Get Namespace from StatsStore",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \n    \"ssids\": [\"//:class.app/solaris/compliance/assessment//:*\"],\n    \"range\": {\n              \"range_type\": \"RANGE_BY_TIME\",\n              \"range_by_time\": {\n                                \"start_ts\": -1,\n                                \"end_ts\": -1,\n                                \"step\": 1\n                               },   \n              \"show_unstable\": true,\n              \"show_unbrowsable\": true \n             }    \n}\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.sstore/1.0/Namespace/_rad_method/read",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.sstore",
+								"1.0",
+								"Namespace",
+								"_rad_method",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Data from StatsStore by Time",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \n    \"ssids\": [\"//:class.app/solaris/compliance/assessment//:stat.results\"],\n    \"range\": {\n              \"range_type\": \"RANGE_BY_TIME\",\n              \"range_by_time\": {\n                                \"start_ts\": -1,\n                                \"end_ts\": -1,\n                                \"step\": 1\n                               },   \n              \"show_unstable\": true,\n              \"show_unbrowsable\": true \n             }    \n}\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.sstore/1.0/Data/_rad_method/read",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.sstore",
+								"1.0",
+								"Data",
+								"_rad_method",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Data from StatsStore by Points",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \n    \"ssids\": [\"//:class.app/solaris/compliance/assessment//:stat.results//:part.benchmark//:part.result\"],\n    \"range\": {\n              \"range_type\": \"RANGE_BY_POINTS\",\n              \"range_by_points\": {\n                                \"start_ts\": 1562132707000000,\n                                \"relative_points\": 100\n                               },   \n              \"show_unstable\": true,\n              \"show_unbrowsable\": true \n             }    \n}\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.sstore/1.0/Data/_rad_method/read",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.sstore",
+								"1.0",
+								"Data",
+								"_rad_method",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Info on Stat",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \n    \"ssids\": [\"//:class.app/solaris/compliance/assessment//:stat.results\"],\n    \"range\": {\n              \"range_type\": \"RANGE_BY_TIME\",\n              \"range_by_time\": {\n                                \"start_ts\": -1,\n                                \"end_ts\": -1,\n                                \"step\": 1\n                               },   \n              \"show_unstable\": true,\n              \"show_unbrowsable\": true \n             }    \n}\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.sstore/1.0/Info/_rad_method/read",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.sstore",
+								"1.0",
+								"Info",
+								"_rad_method",
+								"read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Zones",
+			"item": [
+				{
+					"name": "Query base zonemgr API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{global-zone}}:6788/api/com.oracle.solaris.rad.zonemgr/1.2?_rad_detail",
+							"protocol": "https",
+							"host": [
+								"{{global-zone}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zonemgr",
+								"1.2"
+							],
+							"query": [
+								{
+									"key": "_rad_detail",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query zone details - {{zonename}}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{global-zone}}:6788/api/com.oracle.solaris.rad.zonemgr/1.6/Zone/{{zonename}}?_rad_detail",
+							"protocol": "https",
+							"host": [
+								"{{global-zone}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zonemgr",
+								"1.6",
+								"Zone",
+								"{{zonename}}"
+							],
+							"query": [
+								{
+									"key": "_rad_detail",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query zone exportConfig - {{zonename}}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{global-zone}}:6788/api/com.oracle.solaris.rad.zonemgr/1.6/Zone/{{zonename}}/_rad_method/exportConfig",
+							"protocol": "https",
+							"host": [
+								"{{global-zone}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zonemgr",
+								"1.6",
+								"Zone",
+								"{{zonename}}",
+								"_rad_method",
+								"exportConfig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query zone getResources - no filter - {{zonename}}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{global-zone}}:6788/api/com.oracle.solaris.rad.zonemgr/1.6/Zone/{{zonename}}/_rad_method/getResources",
+							"protocol": "https",
+							"host": [
+								"{{global-zone}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zonemgr",
+								"1.6",
+								"Zone",
+								"{{zonename}}",
+								"_rad_method",
+								"getResources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Boot zone - {{zonename}}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{global-zone}}:6788/api/com.oracle.solaris.rad.zonemgr/1.6/Zone/{{zonename}}/_rad_method/boot",
+							"protocol": "https",
+							"host": [
+								"{{global-zone}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.zonemgr",
+								"1.6",
+								"Zone",
+								"{{zonename}}",
+								"_rad_method",
+								"boot"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "These REST calls allow you to query/manage/monitor Zones"
+		},
+		{
+			"name": "IPS",
+			"item": [
+				{
+					"name": "Get IPS interfaces",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the pkg fmri of  entire",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"list_installed_newest\": true,\n    \"pkg_fmri_patterns\": [\n        \"entire\"\n    ]\n}\n\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgImage/%2F/_rad_method/list_packages/",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgImage",
+								"%2F",
+								"_rad_method",
+								"list_packages",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get IPS fmri details: timestamp",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ }"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgFmri/_rad_reference/2049/_rad_method/get_timestamp",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgFmri",
+								"_rad_reference",
+								"2049",
+								"_rad_method",
+								"get_timestamp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get IPS fmri details: fmri",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{  }"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgFmri/_rad_reference/2049/_rad_method/get_fmri",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgFmri",
+								"_rad_reference",
+								"2049",
+								"_rad_method",
+								"get_fmri"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get IPS fmri details: version",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{  }"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgFmri/_rad_reference/2049/_rad_method/get_version",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgFmri",
+								"_rad_reference",
+								"2049",
+								"_rad_method",
+								"get_version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for package info: entire",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"pkg_fmri_patterns\": [\n        \"entire\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgImage/%2F/_rad_method/info",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgImage",
+								"%2F",
+								"_rad_method",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get package info details: entire",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgInfo/_rad_reference/2305?_rad_detail",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgInfo",
+								"_rad_reference",
+								"2305"
+							],
+							"query": [
+								{
+									"key": "_rad_detail",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get package publishers",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n}\n\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgImage/%2F/_rad_method/publisher",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgImage",
+								"%2F",
+								"_rad_method",
+								"publisher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get package publisher info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgPublisher/_rad_reference/2817/prefix",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgPublisher",
+								"_rad_reference",
+								"2817",
+								"prefix"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for package info: useradm",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"info_remote\": true,\n\t\"pkg_fmri_patterns\": [ \"useradm\" ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgImage/%2F/_rad_method/info",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgImage",
+								"%2F",
+								"_rad_method",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get package info details: useradm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgInfo/_rad_reference/4353?_rad_detail",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgInfo",
+								"_rad_reference",
+								"4353"
+							],
+							"query": [
+								{
+									"key": "_rad_detail",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get full list of packages",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n}\n\n"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgImage/%2F/_rad_method/info",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgImage",
+								"%2F",
+								"_rad_method",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Install new package: useradm",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"pkg_fmri_patterns\": [\n        \"useradm\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.ips/1.0/PkgImage/%2F/_rad_method/install",
+							"protocol": "https",
+							"host": [
+								"{{server}}"
+							],
+							"port": "6788",
+							"path": [
+								"api",
+								"com.oracle.solaris.rad.ips",
+								"1.0",
+								"PkgImage",
+								"%2F",
+								"_rad_method",
+								"install"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get sysmgr maintenance status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ }"
+				},
+				"url": {
+					"raw": "https://{{server}}:6788/api/com.oracle.solaris.rad.sysmgr/1.0/SystemManager/_rad_method/listMaintenance",
+					"protocol": "https",
+					"host": [
+						"{{server}}"
+					],
+					"port": "6788",
+					"path": [
+						"api",
+						"com.oracle.solaris.rad.sysmgr",
+						"1.0",
+						"SystemManager",
+						"_rad_method",
+						"listMaintenance"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c0cab506-34d5-4279-84de-8c0e8fb6dac0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "469f3a55-0f29-4d56-9162-75c03dda4df3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a7156c1c-19fe-4ebd-b474-ae848de9bae1",
+			"key": "server",
+			"value": "xxx.xxx.xxx.xxx",
+			"type": "string"
+		},
+		{
+			"id": "8f4e4441-476c-4393-afb1-8d928881989a",
+			"key": "username",
+			"value": "my_user",
+			"type": "string"
+		},
+		{
+			"id": "11d0ff6a-5563-4906-9cea-f9714f823236",
+			"key": "password",
+			"value": "my_password",
+			"type": "string"
+		},
+		{
+			"id": "1627c880-f0be-46e6-b951-7c06ccc39132",
+			"key": "zonename",
+			"value": "my_zone",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "5852dbdc-21f9-4861-aff5-554f9a14b1ee",
+			"key": "global-zone",
+			"value": "xxx.xxx.xxx.xxx",
+			"type": "string",
+			"disabled": true
+		}
+	],
+	"protocolProfileBehavior": {}
+}
