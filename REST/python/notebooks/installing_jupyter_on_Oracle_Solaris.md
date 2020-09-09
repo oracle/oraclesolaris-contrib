@@ -75,12 +75,6 @@ Now we can go ahead and build 0MQ:
 
 ```bash
 root@demo-jupyter:/opt/zeromq# cd libzmq/
-root@demo-jupyter:/opt/zeromq/libzmq# ls
-acinclude.m4           builds                 configure.ac           Doxygen.cfg            Jenkinsfile            perf                   SECURITY.md            unittests
-appveyor.yml           ci_build.sh            COPYING                external               m4                     README.cygwin.md       src                    version.sh
-AUTHORS                ci_deploy.sh           COPYING.LESSER         include                Makefile.am            README.doxygen.md      SupportedPlatforms.md
-autogen.sh             CMakeLists.txt         doc                    INSTALL                NEWS                   README.md              tests
-branding.bmp           config.sh              Dockerfile             installer.ico          packaging              RELICENSE              tools
 root@demo-jupyter:/opt/zeromq/libzmq# ./autogen.sh && ./configure MAKE="gmake" && gmake && gmake install
 autoreconf: Entering directory `.'
 autoreconf: configure.ac: not using Gettext
@@ -123,7 +117,7 @@ demo@demo-jupyter:~/projects$ export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig
 demo@demo-jupyter:~/projects$ export PATH=$PATH:/opt/developerstudio12.6/bin
 ```
 
-Now we can pull Jupyter and all it's dependencies:
+Now we can activate the `virtualenv` and pull Jupyter and all it's dependencies:
 
 ```bash
 demo@demo-jupyter:~/projects$ source jupyter-env/bin/activate
@@ -148,6 +142,22 @@ Successfully installed MarkupSafe-1.1.1 Send2Trash-1.5.0 argon2-cffi-20.1.0 attr
 ```
 
 At this point Jupyter is fully installed on the system and ready to go if you're going to connect to it locally through the browser in the same system.
+
+You can now start Jupyter:
+
+```bash
+(jupyter-env) demo@demo-jupyter:~/projects$ mkdir notebooks
+(jupyter-env) demo@demo-jupyter:~/projects$ cd notebooks
+(jupyter-env) demo@demo-jupyter:~/projects/notebooks$ jupyter notebook
+[I 08:15:43.583 NotebookApp] JupyterLab extension loaded from /export/home/demo/projects/jupyter-env/lib/python3.7/site-packages/jupyterlab
+[I 08:15:43.583 NotebookApp] JupyterLab application directory is /export/home/demo/projects/jupyter-env/share/jupyter/lab
+[I 08:15:43.589 NotebookApp] Serving notebooks from local directory: /export/home/demo/projects/notebooks
+[I 08:15:43.589 NotebookApp] Jupyter Notebook 6.1.3 is running at:
+[I 08:15:43.589 NotebookApp] https://demo-jupyter:8888/
+[I 08:15:43.589 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+
+...
+```
 
 ## Allowing Remote Connection to Jupyter
 
@@ -224,6 +234,8 @@ c.NotebookApp.keyfile = '/export/home/demo/.jupyter/host.key'
 ```
 
 Of course if these certificates aren't signed by a *managed CA* the browser will probably complain and you'll have to accept this or use the key file. For more info on managed CA's see the [README on certificates](certs/README.md).
+
+ Once you've made these changes you can start Jupyter as described above.
 
 ## Adding the New Python Kernel to Jupyter
 
