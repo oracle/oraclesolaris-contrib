@@ -5,7 +5,7 @@ The Oracle Solaris Analytics dashboard enables users to create custom sheets for
 - [Adding a sheet (.json file) via the Command Line Interface](add_shared_sheet.md)
 - [Sample sheet with key StatsStore parameters](sample-sheet.json)
 
-![Sample Sheet with basic statistics](/master/Images/Sharing_Sheets/sample-sheet.png)
+![Sample Sheet with basic statistics](/Images/Sharing_Sheets/sample-sheet.png)
 
 
 
