@@ -2,9 +2,9 @@
 
 ## Summary:
 
-Oracle Solaris 11.4 brought with it the Solaris Analytics Dashboard, a WebUI interface to provide a visual means to observe data from the StatsStore. This repo contains information on the StatsStore, ways to access it, building custom sheets from the StatsStore data, capturing and retrieving this data for use with 3rd party applications and using the REST interface to interact with Oracle Solaris.
+The Oracle Solaris 11.4 Operating System brought with it the Solaris Analytics Dashboard, a WebUI interface to provide a visual means to observe data from the StatsStore. This repo contains information on the StatsStore, ways to access it, building custom sheets from the StatsStore data, capturing and retrieving this data for use with 3rd party applications and using the REST interface to interact with Oracle Solaris OS.
 
-In addition to markdowns specific to creating custom templates, this repo also contains some important collateral documents, links to blogs as well as a collection of all the resources where you can deep dive into the various feature of Oracle Solaris 11.4 and the analytics dashboard.
+In addition to markdowns specific to creating custom templates, this repo also contains some important collateral documents, links to blogs as well as a collection of all the resources where you can deep dive into the various features of the Oracle Solaris 11.4 OS and the analytics dashboard.
 
 ## What is the repository about?
 
