@@ -4,6 +4,10 @@ Oracle Solaris 11.4 introduced with it the Analytics Dashboard. The Oracle Solar
 
 ![Workflow](/Images/Creating_Sheets/workflow.png)
 
+![WebUI Demo](/Images/Creating_Sheets/webuidemo.gif)
+
+
+
 ## Step (1): Log-In to the Oracle Solaris Analytics Dashboard
 
 ### i) Log-In in with your Username and Password
