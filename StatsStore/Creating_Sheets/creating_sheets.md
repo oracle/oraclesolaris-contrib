@@ -16,7 +16,7 @@ Oracle Solaris 11.4 introduced with it the Analytics Dashboard. The Oracle Solar
 
 ### ii) Oracle Solaris Dashboard with the default layout
 
-![Landing Page](/ImagesCreating_Sheets/solaris_dashboard.png)
+![Landing Page](/Images/Creating_Sheets/solaris_dashboard.png)
 
 
 
