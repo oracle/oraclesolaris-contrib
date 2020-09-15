@@ -27,15 +27,15 @@ For a quick overview on Oracle Solaris 11.4, please refer to this [datasheet](ht
 
 Stay updated with Oracle Solaris by following the Oracle Solaris [Blog](https://blogs.oracle.com/solaris/oracle-solaris-11-2).
 
-## [Security](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/SECURITY.md?revision=master)
+## [Security](/SECURITY.md)
 
-See [SECURITY](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/SECURITY.md?revision=master) for details.
+See [SECURITY](/SECURITY.md) for details.
 
-## [Contributing](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/CONTRIBUTING.md?revision=master)
+## [Contributing](/CONTRIBUTING.md)
 
-Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/CONTRIBUTING.md?revision=master) for details.
+Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](/CONTRIBUTING,md) for details.
 
-## [License](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/blob/LICENSE.md?revision=master)
+## [License](/LICENSE.md)
 
 Copyright (c) 2020 Oracle and/or its affiliates and released under the [Universal Permissive License (UPL)](https://oss.oracle.com/licenses/upl/), Version 1.0
 
