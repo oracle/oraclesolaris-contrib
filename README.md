@@ -33,7 +33,7 @@ See [SECURITY](/SECURITY.md) for details.
 
 ## [Contributing](/CONTRIBUTING.md)
 
-Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](/CONTRIBUTING,md) for details.
+Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](/CONTRIBUTING.md) for details.
 
 ## [License](/LICENSE.md)
 
