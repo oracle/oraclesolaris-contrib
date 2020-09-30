@@ -1,0 +1,26 @@
+# first few lines implement the "run once" framework via SMF
+set name=pkg.fmri value=libzmq-build@1.0
+set name=pkg.summary value="Script that is only run once"
+set name=pkg.description \
+    value="This pkg delivers a service that runs a script only once \
+while executing its start method\
+It builds libzmq in a temp. build directory, all output will \
+appear in the log of this service"
+set name=org.opensolaris.smf.fmri value=svc:/site/libzmq-build \
+    value=svc:/site/libzmq-build:default
+file lib/svc/manifest/site/libzmq-build.xml \
+    path=lib/svc/manifest/site/libzmq-build.xml owner=root group=sys \
+mode=0444 restart_fmri=svc:/system/manifest-import:default
+file lib/svc/method/libzmq-build.sh \
+    path=lib/svc/method/libzmq-build.sh owner=root group=bin \
+    mode=0755
+depend fmri=pkg:/shell/ksh93 type=require
+depend fmri=pkg:/system/core-os@11.4 type=require
+# following lines are dependencies specific to the build of libzmq
+depend fmri=pkg:/developer/build/gnu-make type=require
+depend fmri=pkg:/developer/build/libtool type=require
+depend fmri=pkg:/developer/build/autoconf type=require
+depend fmri=pkg:/developer/build/automake type=require
+depend fmri=pkg:/developer/build/pkg-config type=require
+depend fmri=pkg:/developer/gcc type=require
+depend fmri=pkg:/developer/versioning/git type=require

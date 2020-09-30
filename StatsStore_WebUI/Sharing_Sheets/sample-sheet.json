@@ -1,0 +1,153 @@
+{
+    "$schema": "file:///analytics-import.schema.json",
+    "v1": {
+        "groups": [
+            {
+                "uniqueName": "Basic CPU Stats",
+                "visualizations": [
+                    "CPU Utilization",
+                    "Floating Point Pipeline Utilization",
+                    "Integer Pipeline Utilization",
+                    "System Load Average"
+                ]
+            },
+            {
+                "uniqueName": "Network Stats",
+                "visualizations": [
+                    "DataLink Traffic",
+                    "TCP Traffic"
+                ]
+            },
+            {
+                "uniqueName": "Disk",
+                "visualizations": [
+                    "Disk Utilization",
+                    "Disk I/O Bytes"
+                ]
+            },
+            {
+                "uniqueName": "ZFS Stats",
+                "visualizations": [
+                    "Filesystem Read/Write Bytes",
+                    "Filesystem Read/Write Ops"
+                ]
+            }
+        ],
+        "sections": [
+            {
+                "groups": [
+                    "Network Stats"
+                ],
+                "uniqueName": "Network"
+            },
+            {
+                "groups": [
+                    "Basic CPU Stats"
+                ],
+                "uniqueName": "CPU "
+            },
+            {
+                "groups": [
+                    "Disk",
+                    "ZFS Stats"
+                ],
+                "uniqueName": "Disks and Pools"
+            }
+        ],
+        "sheets": [
+            {
+                "description": "Sheet comprising of some basic CPU, Network and Disk stats.",
+                "sections": [
+                    "CPU ",
+                    "Disks and Pools",
+                    "Network"
+                ],
+                "timeRangeEndTime": -1,
+                "uniqueName": "sample-sheet"
+            }
+        ],
+        "visualizations": [
+            {
+                "ssids": [
+                    "//:class.fs//:stat.//:s.[read-ops,write-ops]//:op.rate"
+                ],
+                "style": "time-series",
+                "uniqueName": "Filesystem Read/Write Ops"
+            },
+            {
+                "ssids": [
+                    "//:class.net/tcp//:stat.in-data-inorder-bytes//:op.rate",
+                    "//:class.net/tcp//:stat.out-data-bytes//:op.rate"
+                ],
+                "style": "time-series",
+                "uniqueName": "TCP Traffic"
+            },
+            {
+                "ssids": [
+                    "//:class.fs//:stat.//:s.[read-bytes,write-bytes]//:op.rate"
+                ],
+                "style": "time-series",
+                "uniqueName": "Filesystem Read/Write Bytes"
+            },
+            {
+                "ssids": [
+                    "//:class.net/ip//:stat.in-bytes//:op.rate",
+                    "//:class.net/ip//:stat.out-bytes//:op.rate",
+                    "//:class.link//:stat.in-bytes//:op.rate",
+                    "//:class.link//:stat.out-bytes//:op.rate"
+                ],
+                "style": "time-series",
+                "uniqueName": "DataLink Traffic"
+            },
+            {
+                "autoHideIfUnavailable": true,
+                "description": "It is common for many systems, including x86 and some types of virtualization, to not show floating point utilization.",
+                "ssids": [
+                    "//:class.cpu//:stat.fpu-usage//:op.rate"
+                ],
+                "style": "time-series",
+                "uniqueName": "Floating Point Pipeline Utilization"
+            },
+            {
+                "description": "CPU utilization is a high-precision measurement of the amount of time the CPUs spent in user, system (the kernel), interrupt, stolen (untracked by the current VM), and idle time. High numbers in this graph may mean important applications are not getting access to enough CPU cycles and should be investigated. This graph can be further partitioned by zone, cpu, and other processor groupings to determine whether one group is using an inordinate amount of CPU.",
+                "ssids": [
+                    "//:class.cpu//:stat.usage//:part.mode(user,kernel,stolen,intr)//:op.rate//:op.util"
+                ],
+                "style": "time-series-stacked",
+                "uniqueName": "CPU Utilization"
+            },
+            {
+                "ssids": [
+                    "//:class.disk//:stat.read-bytes//:op.rate",
+                    "//:class.disk//:stat.write-bytes//:op.rate"
+                ],
+                "style": "time-series-stacked",
+                "uniqueName": "Disk I/O Bytes"
+            },
+            {
+                "ssids": [
+                    "//:class.disk//:stat.run-time//:op.convert(seconds)//:op.rate"
+                ],
+                "style": "time-series",
+                "uniqueName": "Disk Utilization"
+            },
+            {
+                "autoHideIfUnavailable": true,
+                "description": "If the integer pipeline utilization is high, this system might be oversubscribed. Some types of virtualized systems may not be able to display integer pipeline utilization data.",
+                "ssids": [
+                    "//:class.cpu//:stat.integer-pipe-usage//:op.rate//:op.util"
+                ],
+                "style": "time-series",
+                "uniqueName": "Integer Pipeline Utilization"
+            },
+            {
+                "description": "The load average is an exponentially decayed calculation of how many threads are running, or want to run on CPU over the past minute.",
+                "ssids": [
+                    "//:class.system//:stat.load-average"
+                ],
+                "style": "time-series",
+                "uniqueName": "System Load Average"
+            }
+        ]
+    }
+}
