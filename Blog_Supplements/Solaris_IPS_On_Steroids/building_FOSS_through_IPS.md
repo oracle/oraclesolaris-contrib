@@ -32,7 +32,7 @@ $ svcadm enable pkg/server
 
 Browsing to `https://<hostname>:10000` should result in a screen like this:
 
-![IPS Screenshot](/Images/IPS.png)
+![IPS Screenshot](/Blog_Supplements/Images/IPS.png)
 
 ## Building `libzmq` as an Example FOSS
 
