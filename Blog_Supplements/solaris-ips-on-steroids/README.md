@@ -1,3 +1,5 @@
+# Solaris IPS on Steroids: Building FOSS on Demand
+
 The Solaris Image Packaging system ("IPS") is the software distribution and lifecycle framework designed to distribute the Solaris operating system with all its userland and kernel components. It is of course not restricted to just operating system packages, it can be (and is already) used to change system configuration or install 3rd party software.
 
 In this article I do want to walk you through 
