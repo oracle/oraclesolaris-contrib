@@ -1,7 +1,6 @@
 create bigfile tablespace ssb datafile 'ts_ssb' size 100G  autoextend on next 1G;
 grant connect, resource to ssb identified by ssb;
 alter user ssb default tablespace ssb;
-alter user ssb quota unlimited on ssb;
 conn ssb/ssb
 
 drop table lineorder;
