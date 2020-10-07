@@ -2,9 +2,9 @@
 
 Oracle Solaris 11.4 introduced with it the Analytics Dashboard. The Oracle Solaris Analytics dashboard enables users to create custom sheets for monitoring and analyzing parameters ranging from performance as well as key StatsStore stats. Here are the steps to follow:
 
-![Workflow](/Images/Creating_Sheets/workflow.png)
+![Workflow](/StatsStore_WebUI/Images/Creating_Sheets/workflow.png)
 
-![WebUI Demo](/Images/Creating_Sheets/webuidemo.gif)
+![WebUI Demo](/StatsStore_WebUI/Images/Creating_Sheets/webuidemo.gif)
 
 
 
@@ -12,11 +12,11 @@ Oracle Solaris 11.4 introduced with it the Analytics Dashboard. The Oracle Solar
 
 ### i) Log-In in with your Username and Password
 
-![Log-In Page](/Images/Creating_Sheets/solaris_webUI_login.png)
+![Log-In Page](/StatsStore_WebUI/Images/Creating_Sheets/solaris_webUI_login.png)
 
 ### ii) Oracle Solaris Dashboard with the default layout
 
-![Landing Page](/Images/Creating_Sheets/solaris-dashboard.png)
+![Landing Page](/StatsStore_WebUI/Images/Creating_Sheets/solaris-dashboard.png)
 
 
 
@@ -24,15 +24,15 @@ Oracle Solaris 11.4 introduced with it the Analytics Dashboard. The Oracle Solar
 
 ### i) Switch to the Solaris analytics tab to see all the available sheets on the dashboard
 
-![Solaris Analytics](/Images/Creating_Sheets/solaris_analytics_dropdown.png)
+![Solaris Analytics](/StatsStore_WebUI/Images/Creating_Sheets/solaris_analytics_dropdown.png)
 
 ### ii) Add a new sheet
 
-![Add Sheet](/Images/Creating_Sheets/add_new_sheet.png)
+![Add Sheet](/StatsStore_WebUI/Images/Creating_Sheets/add_new_sheet.png)
 
 ### iii) Configure a new sheet
 
-![Sheet Configuration](/Images/Creating_Sheets/add_sheet.png)
+![Sheet Configuration](/StatsStore_WebUI/Images/Creating_Sheets/add_sheet.png)
 
 
 
@@ -40,11 +40,11 @@ Oracle Solaris 11.4 introduced with it the Analytics Dashboard. The Oracle Solar
 
 ### i) Select the newly created sheet
 
-![New Sheet](/Images/Creating_Sheets/configure_new_sheet.png)
+![New Sheet](/StatsStore_WebUI/Images/Creating_Sheets/configure_new_sheet.png)
 
 ### ii) Add a new visualization
 
-![New Visualization](/Images/Creating_Sheets/add_visualization.png)
+![New Visualization](/StatsStore_WebUI/Images/Creating_Sheets/add_visualization.png)
 
 A user can also copy a visualization from an existing sheet.
 
@@ -54,13 +54,13 @@ A user can also copy a visualization from an existing sheet.
 
 ### i) Select the Add Statistic/Event option 
 
-![Add a statistic](/Images/Creating_Sheets/add_statistic_dropdown.png)
+![Add a statistic](/StatsStore_WebUI/Images/Creating_Sheets/add_statistic_dropdown.png)
 
 
 
 ### ii) Add a new statistic
 
-![Statistic source](/Images/Creating_Sheets/add_statistic_choice.png)
+![Statistic source](/StatsStore_WebUI/Images/Creating_Sheets/add_statistic_choice.png)
 
 A user may choose to add an existing Statistic/Event from another sheet or a configure a new stat/event.
 
@@ -70,11 +70,11 @@ A user may choose to add an existing Statistic/Event from another sheet or a con
 
 ### iii) Choosing a statistic/event from an existing sheet
 
-![Statistic Choice](/Images/Creating_Sheets/add_statistic_options.png)
+![Statistic Choice](/StatsStore_WebUI/Images/Creating_Sheets/add_statistic_options.png)
 
 ### iii) Configuring the Statistic/Event
 
-![Statistic Configuration](/Images/Creating_Sheets/statistic_checkout.png)
+![Statistic Configuration](/StatsStore_WebUI/Images/Creating_Sheets/statistic_checkout.png)
 
 
 
@@ -82,7 +82,7 @@ A user may choose to add an existing Statistic/Event from another sheet or a con
 
 Following the above steps, we can eventually create our own custom sheet with most frequently used statistic. Such level of customization, enables users to quickly adapt to change as well as design for scale.
 
-![Output](/Images/Creating_Sheets/new_sheet.png)
+![Output](/StatsStore_WebUI/Images/Creating_Sheets/new_sheet.png)
 
 
 
