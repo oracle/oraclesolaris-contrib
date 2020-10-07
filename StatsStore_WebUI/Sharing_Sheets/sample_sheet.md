@@ -2,9 +2,9 @@
 
 The StatsStore (`sstore`) contains a list of important statistics and parameters and the sample sheet attached below focusses on some basic stats from the list below.
 
-Link: [Sample Sheet](/StatsStore/Sharing_Sheets/sample-sheet.json)
+Link: [Sample Sheet]/StatsStore_WebUI/Sharing_Sheets/sample-sheet.json)
 
-![Sample Sheet with basic statistics](/Images/Sharing_Sheets/sample-sheet.png)
+![Sample Sheet with basic statistics](/StatsStore_WebUI/Images/Sharing_Sheets/sample-sheet.png)
 
 | Class Name | Description | Corresponding Stats                                          | Statistic                                                    |
 | ---------- | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |

@@ -72,9 +72,9 @@ root@:/usr/lib/webui/analytics/sheets/site# svcs -a | grep webui
 
 Once the above service has been restarted successfully, you can login to the web interface to view the sheet on your personal dashboard.
 
-Find a sample sheet [here](/StatsStore/Sharing_Sheets/sample-sheet.json).
+Find a sample sheet [here](/StatsStore_WebUI/Sharing_Sheets/sample-sheet.json).
 
-For a more in detailed sheet covering major statistics from the StatsStore, [click here](/StatsStore/Sharing_Sheets/solaris-contrib.json).
+For a more in detailed sheet covering major statistics from the StatsStore, [click here](/StatsStore_WebUI/Sharing_Sheets/solaris-contrib.json).
 
 
 

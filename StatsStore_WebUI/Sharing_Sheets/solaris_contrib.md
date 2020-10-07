@@ -2,9 +2,9 @@
 
 The StatsStore (`sstore`) contains a list of important statistics and parameters and the sample sheet attached below focusses on some detailed stats from the list below.
 
-Link: [Sample Sheet](/StatsStore/Sharing_Sheets/solaris-contrib.json)
+Link: [Sample Sheet](/StatsStore_WebUI/Sharing_Sheets/solaris-contrib.json)
 
-![Sample Sheet with basic statistics](/Images/Sharing_Sheets/solaris-contrib.png)
+![Sample Sheet with basic statistics](/StatsStore_WebUI/Images/Sharing_Sheets/solaris-contrib.png)
 
 To further understand the types of statistics available , we have classified them as follows:
 
