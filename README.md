@@ -11,9 +11,9 @@ Additionally, this repository also includes demos to augment the Oracle Solaris 
 This repository aims to provide users with examples and steps on the following: 
 
 - [StatsStore_WebUI](/StatsStore_WebUI)
-- [Working with the Command Line Interface](/StatsStore_WebUI/Command_Line_Interface)
+  - [Working with the Command Line Interface](/StatsStore_WebUI/Command_Line_Interface)
   - [Creating and Sharing Sheets](/StatsStore_WebUI/StatsStore)
-  
+
 - [REST](/REST)
 
 - [Blog Supplements](/Blog_Supplemets)
