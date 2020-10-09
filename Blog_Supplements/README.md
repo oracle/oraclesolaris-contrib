@@ -2,7 +2,7 @@
 
 ## What is the directory about?		
 
-The Blog Supplements directory consists of how-to documents and demonstrations augmenting some specific topics from the Oracle Solaris blog. This directory enables users to directly adopt these demos and provides an opportunity to explore the various capabilites and features Oracle Solaris 11.4 has to offer.
+The Blog Supplements directory consists of how-to documents and demonstrations augmenting some specific topics from the [Oracle Solaris blog](https://blogs.oracle.com/solaris/). This directory enables users to directly adopt these demos and provides an opportunity to explore the various capabilities and features Oracle Solaris 11.4 has to offer.
 
 ## Contents:
 
@@ -11,7 +11,7 @@ The Blog Supplements directory consists of how-to documents and demonstrations a
 
 
 
-
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
 
 
 
