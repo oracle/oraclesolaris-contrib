@@ -14,7 +14,8 @@ Note that every Oracle Solaris Zone and Logical Domain has its own RAD/REST inte
 
 Resources on getting started:
 
-- [Jupyter notebook for accessing the Compliance Framework](Compliance_Framework/rad_rest_compliance.ipynb).
+- [Jupyter notebook for accessing the Compliance Framework](Compliance_Framework).
+- [Jupyter notebook for doing basic tasks with SMF](Service_Management_Facility).
 - [How to install Jupyter](https://jupyter.org/install) and for those that want to run it on Oracle Solaris [how to install Jupyter on Oracle Solaris](installing_jupyter_on_oracle_solaris.md), also showing how to remotely connect to a running notebook server.
 - [How to turn remote connection on](../../setting_up_the_connection.md)
 
