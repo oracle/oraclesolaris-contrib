@@ -1,23 +1,23 @@
-# Oracle Solaris Contributions (Needs to be reworked to fit new structure!)
+# Oracle Solaris Contributions 
 
 ## Summary:
 
-The Oracle Solaris 11.4 Operating System brought with it the Solaris Analytics Dashboard, a WebUI interface to provide a visual means to observe data from the StatsStore. This repo contains information on the StatsStore, ways to access it, building custom sheets from the StatsStore data, capturing and retrieving this data for use with 3rd party applications and using the REST interface to interact with the Oracle Solaris OS.
+The Oracle Solaris 11.4 Operating System brought with it the Solaris Analytics Dashboard, a WebUI interface and additional capabilities to observe and interact with the operating system. This repo contains information on the StatsStore, ways to access it, building custom sheets from the StatsStore data, capturing and retrieving this data for use with 3rd party applications and using the REST interface to interact with the Oracle Solaris OS.
 
-In addition to markdowns specific to creating custom templates, this repo also contains some important collateral documents, links to blogs as well as a collection of all the resources where you can deep dive into the various features of the Oracle Solaris 11.4 OS and the analytics dashboard.
+Additionally, this repository also includes demos to augment the Oracle Solaris blog while giving an in-depth walkthrough about the features Oracle SPARC and Oracle Solaris has to offer like Database in Memory on SPARC and Deploying FOSS packages on demand. Along with these directories, there are markdowns specific to creating custom templates, important collateral documents, links to blogs as well as a collection of all the resources where you can deep dive into the various features of the Oracle Solaris 11.4 OS and the analytics dashboard.
 
 ## What is the repository about?
 
 This repository aims to provide users with examples and steps on the following: 
 
-- [Working with the Command Line Interface](Command_Line_Interface)
-- [Creating and Sharing Sheets](StatsStore)
-- [Managing Oracle Solaris through REST](REST) 
+- ### StatsStore_WebUI
 
+  - [Working with the Command Line Interface](/StatsStore_WebUI/Command_Line_Interface)
+  - [Creating and Sharing Sheets](/StatsStore_WebUI/StatsStore)
 
-## Examples
+- ### [REST](/REST)
 
-Here is where you can see Oracle Solaris 11.4 in action: [Dashboard](/StatsStore/Sharing_Sheets/solaris-contrib.json)
+- ### [Blog Supplements](/Blog_Supplemets)
 
 ## Documentation
 
