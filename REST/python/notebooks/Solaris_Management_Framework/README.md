@@ -1,0 +1,9 @@
+## Service Management Facility (SMF) Framework
+
+The Oracle Solaris Service Management Facility (SMF) framework manages system and application services. SMF manages critical system services essential to the working operation of the system and manages application services such as a database or Web server. SMF improves the availability of a system by ensuring that essential system and application services run continuously even in the event of hardware or software failures.
+
+SMF replaces the use of configuration files for managing services and is the recommended mechanism to use to start applications. SMF replaces the `init` scripting start-up mechanism, `inetd.conf` configurations, and most `rc?.d` scripts. SMF preserves compatibility with existing administrative practices wherever possible. For example, most customer and ISV-supplied `rc` scripts still work the same way they worked without SMF.
+
+This Jupyter Notebook is aimed at showing how you can use the REST interface in Oracle Solaris to work with the Solaris Management Framework (SMF). The REST API is layered on top of the [Oracle Solaris Remote Administration Deamon (RAD)](https://docs.oracle.com/cd/E37838_01/html/E68270/gpzxz.html#scrolltoc), and gives access to all the RAD modules through REST. This notebook is using Python to run all the tasks. In this notebook we'll show how to connect to the REST interface and how to perform the various tasks you can do through REST.
+
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
