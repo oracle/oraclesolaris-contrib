@@ -181,3 +181,4 @@ alter table ssb.part inmemory memcompress for query high priority critical;
 
 You should see a huge difference in throughput and execution time between execution using the inmemory option and running it in the old fashioned way. In parallel you will notice a large load on the storage infrastructure when executing without the inmemory option
 
+Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
