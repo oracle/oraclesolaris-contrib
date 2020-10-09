@@ -4,7 +4,7 @@ The Oracle Solaris Analytics dashboard enables users to create custom sheets for
 
 Here is where you can see Oracle Solaris 11.4 in action: 
 
-![Oracle Solaris 11.4 WebUI](/StatsStore_WebUI/Images/WebUI.gif)
+<center>![Oracle Solaris 11.4 WebUI](/StatsStore_WebUI/Images/WebUI.gif)</center>
 
 ## Examples
 
