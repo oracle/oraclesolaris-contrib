@@ -41,7 +41,7 @@ Browsing to `https://<hostname>:10000` should result in a screen like this:
 
 ![IPS Screenshot](/Blog_Supplements/Solaris_IPS_On_Steroids/screenshot.png)
 
-![screenshot](./screenshot.png)
+
 ## Building `libzmq` as an Example FOSS
 
 This article was triggered by Solaris product management investigating Jupyter notebooks, and we discovered that there was a critical dependency to be resolved before the Jupyter python packages could be installed. While `pip` is able to handle most of (python-) related dependencies it cannot automatically install the libzmq (or 0mq for short) message queuing software required by the Jupyter framework.
