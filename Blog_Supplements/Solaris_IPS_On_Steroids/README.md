@@ -8,8 +8,7 @@ In this article I do want to walk you through
 * What the basic files involved in creating an IPS package should look like
 * How you can distribute and execute a script leveraging IPS
 * How to put everything together into a  "free open source software" (FOSS for short) package that builds the binary in place (with all dependencies handled via IPS)
-
-- #Appendix: Cleanup After Running Experiment)
+* Appendix: Cleanup After Running Experiment
 
 ## Table of Contents
 
