@@ -4,14 +4,24 @@ The Solaris Image Packaging system ("IPS") is the software distribution and life
 
 In this article I do want to walk you through 
 
-* how to set up a very minimal package repository server to serve as a sandbox for experiments
-* what the basic files involved in creating an IPS package should look like
-* how you can distrbute and execute a script leveraging IPS
-* finally we will putting it all together and put together a "free open source software" (FOSS for short) package that builds the binary in place (with all dependencies handled via IPS)
+* How to set up a very minimal package repository server to serve as a sandbox for experiments
+* What the basic files involved in creating an IPS package should look like
+* How you can distribute and execute a script leveraging IPS
+* How to put everything together into a  "free open source software" (FOSS for short) package that builds the binary in place (with all dependencies handled via IPS)
+
+Table:
+
+- [A Minimal IPS Repo Server](A Minimal IPS Repo Server)
+- [Building `libzmq` as an Example FOSS](Building `libzmq` as an Example FOSS)
+- [Designing the IPS Package](Designing the IPS Package)
+- [The `SMF` Service Definition](The `SMF` Service Definition)
+- [Finalizing the Package's Manifest File](Finalizing the Package's Manifest File)
+- [Publishing the Package and an Example Run/Install](Publishing the Package and an Example Run/Install)
+- [Cleanup After Running Experiment](Appendix: Cleanup After Running Experiment)
 
 ## A Minimal IPS Repo Server
 
-The repo server is an integral part of any IPS setup, it is the place whre packages are stored and from where these packages are distributed to install clients. Clients request package installations through the well known `pkg install` command, the client system maintains a list of repo servers to query for the package. This list is maintained through the `pkg publisher` command and its siblings.
+The repo server is an integral part of any IPS setup, it is the place where packages are stored and from where these packages are distributed to install clients. Clients request package installations through the well known `pkg install` command, the client system maintains a list of repo servers to query for the package. This list is maintained through the `pkg publisher` command and its siblings.
 
 The minimal server will be able to serve network based install requests, but e. g. not be able to answer `pkg search -r` requests. We will work with the repo admin commands to list the contents of this server. Its only purpose is to provide a playground to create the package this article is about. It can of course also be used for all kinds of experiments with IPS because it is easy to set up and has just a minimal footprint.
 
@@ -34,8 +44,7 @@ $ svcadm enable pkg/server
 
 Browsing to `https://<hostname>:10000` should result in a screen like this:
 
-<<<<<<< HEAD:Blog_Supplements/Solaris_IPS_On_Steroids/building_FOSS_through_IPS.md
-![IPS Screenshot](/Blog_Supplements/Images/IPS.png)
+![IPS Screenshot](/Blog_Supplements/Solaris_IPS_On_Steroids/screenshot.png)
 =======
 ![screenshot](./screenshot.png)
 >>>>>>> origin/martinm:Blog_Supplements/Solaris_IPS_On_Steroids/README.md
@@ -146,7 +155,7 @@ Next are the "interesting" definitions that actually describe what should be exe
 ...
 ```
 
-The `start` method has the timeout set to zero which means allow it to run forever, and never mark it failed because timing out. The `stop` method is only an empty stub which is always successful and does nothing. Two properties are set as well, one tells SMF that this service will not leave a process behind that needs to be monitored and kept alive, the other property is specfic to this service and records if it has been run. Right after installing this service this property must be false as nothing has been run so far. That needs to be done in the manifest which is run when the service mis imported into  `SMF`. The script which runs when the service is started needs to flip that to `true`and make sure that once the service has run it does not run again. The actual implementation is taken 1:1 from the [`SMF` documentation][https://docs.oracle.com/cd/E37838_01/html/E61051/glycw.html]. The following lines need to be addded to the build script we want to execute when the service comesup: 
+The `start` method has the timeout set to zero which means allow it to run forever, and never mark it failed because timing out. The `stop` method is only an empty stub which is always successful and does nothing. Two properties are set as well, one tells SMF that this service will not leave a process behind that needs to be monitored and kept alive, the other property is specific to this service and records if it has been run. Right after installing this service this property must be false as nothing has been run so far. That needs to be done in the manifest which is run when the service mis imported into  `SMF`. The script which runs when the service is started needs to flip that to `true`and make sure that once the service has run it does not run again. The actual implementation is taken 1:1 from the [`SMF` documentation][https://docs.oracle.com/cd/E37838_01/html/E61051/glycw.html]. The following lines need to be added to the build script we want to execute when the service comes up: 
 
 ```fixed
 # Load SMF shell support definitions
@@ -173,7 +182,7 @@ The SMF manifest closes with some descriptive information what the service does,
 
 ### Finalizing the Package's Manifest File
 
-The packages manifest file closes with putting the actual build script we intend to run in its final destination, due diligence mandates that the script requires an environment where scripts can be run, i.e. there's a Oracle Solaris 11.4 core OS and shell scripting is possible:
+The packages manifest file closes with putting the actual build script we intend to run in its final destination, due diligence mandates that the script requires an environment where scripts can be run, i.e. There's a Oracle Solaris 11.4 core OS and shell scripting is possible:
 
 ```bash
 file lib/svc/method/libzmq-build.sh \
@@ -281,7 +290,7 @@ gmake[1]: Entering directory '/scratch-4327/libzmq'
 root@pkg-test:~/oow-hol# 
 ```
 
-Once the build has finished the library could be found in a top-level directory named `/scratch-<number>` with the number neing the PID of the shell that executed the build script during install. If you want to actually install libzmq library to your system you can run `gmake install` from that build directory. The library would then install into `/usr/local` which happens to be the default install target directory for most of the FOSS packages that are built from source. (Can of course be changed as with most packages `--prefix=<target directory>` changes the install target directory for `libzmq`)
+Once the build has finished the library could be found in a top-level directory named `/scratch-<number>` with the number being the PID of the shell that executed the build script during install. If you want to actually install libzmq library to your system you can run `gmake install` from that build directory. The library would then install into `/usr/local` which happens to be the default install target directory for most of the FOSS packages that are built from source. (Can of course be changed as with most packages `--prefix=<target directory>` changes the install target directory for `libzmq`)
 
 ## Appendix: Cleanup After Running Experiment
 
