@@ -9,17 +9,13 @@ In this article I do want to walk you through
 * How you can distribute and execute a script leveraging IPS
 * How to put everything together into a  "free open source software" (FOSS for short) package that builds the binary in place (with all dependencies handled via IPS)
 
-Table:
+- #Appendix: Cleanup After Running Experiment)
 
-- [A Minimal IPS Repo Server](#A Minimal IPS Repo Server)
-- [Building `libzmq` as an Example FOSS](#Building `libzmq` as an Example FOSS)
-- [Designing the IPS Package](#Designing the IPS Package)
-- [The `SMF` Service Definition](#The `SMF` Service Definition)
-- [Finalizing the Package's Manifest File](#Finalizing the Package's Manifest File)
-- [Publishing the Package and an Example Run/Install](#Publishing the Package and an Example Run/Install)
-- [Cleanup After Running Experiment](#Appendix: Cleanup After Running Experiment)
+## Table of Contents
 
-## #A Minimal IPS Repo Server
+[TOC]
+
+## A Minimal IPS Repo Server
 
 The repo server is an integral part of any IPS setup, it is the place where packages are stored and from where these packages are distributed to install clients. Clients request package installations through the well known `pkg install` command, the client system maintains a list of repo servers to query for the package. This list is maintained through the `pkg publisher` command and its siblings.
 
@@ -45,10 +41,8 @@ $ svcadm enable pkg/server
 Browsing to `https://<hostname>:10000` should result in a screen like this:
 
 ![IPS Screenshot](/Blog_Supplements/Solaris_IPS_On_Steroids/screenshot.png)
-=======
-![screenshot](./screenshot.png)
->>>>>>> origin/martinm:Blog_Supplements/Solaris_IPS_On_Steroids/README.md
 
+![screenshot](./screenshot.png)
 ## Building `libzmq` as an Example FOSS
 
 This article was triggered by Solaris product management investigating Jupyter notebooks, and we discovered that there was a critical dependency to be resolved before the Jupyter python packages could be installed. While `pip` is able to handle most of (python-) related dependencies it cannot automatically install the libzmq (or 0mq for short) message queuing software required by the Jupyter framework.
