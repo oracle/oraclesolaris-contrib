@@ -12,12 +12,12 @@ In this article I do want to walk you through
 Table:
 
 - [A Minimal IPS Repo Server](#A Minimal IPS Repo Server)
-- [Building `libzmq` as an Example FOSS](Building `libzmq` as an Example FOSS)
-- [Designing the IPS Package](Designing the IPS Package)
-- [The `SMF` Service Definition](The `SMF` Service Definition)
-- [Finalizing the Package's Manifest File](Finalizing the Package's Manifest File)
-- [Publishing the Package and an Example Run/Install](Publishing the Package and an Example Run/Install)
-- [Cleanup After Running Experiment](Appendix: Cleanup After Running Experiment)
+- [Building `libzmq` as an Example FOSS](#Building `libzmq` as an Example FOSS)
+- [Designing the IPS Package](#Designing the IPS Package)
+- [The `SMF` Service Definition](#The `SMF` Service Definition)
+- [Finalizing the Package's Manifest File](#Finalizing the Package's Manifest File)
+- [Publishing the Package and an Example Run/Install](#Publishing the Package and an Example Run/Install)
+- [Cleanup After Running Experiment](#Appendix: Cleanup After Running Experiment)
 
 ## #A Minimal IPS Repo Server
 
