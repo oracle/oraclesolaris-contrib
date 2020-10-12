@@ -11,7 +11,7 @@ In this article I do want to walk you through
 
 Table:
 
-- [A Minimal IPS Repo Server](A Minimal IPS Repo Server)
+- [A Minimal IPS Repo Server](#A Minimal IPS Repo Server)
 - [Building `libzmq` as an Example FOSS](Building `libzmq` as an Example FOSS)
 - [Designing the IPS Package](Designing the IPS Package)
 - [The `SMF` Service Definition](The `SMF` Service Definition)
@@ -19,7 +19,7 @@ Table:
 - [Publishing the Package and an Example Run/Install](Publishing the Package and an Example Run/Install)
 - [Cleanup After Running Experiment](Appendix: Cleanup After Running Experiment)
 
-## A Minimal IPS Repo Server
+## #A Minimal IPS Repo Server
 
 The repo server is an integral part of any IPS setup, it is the place where packages are stored and from where these packages are distributed to install clients. Clients request package installations through the well known `pkg install` command, the client system maintains a list of repo servers to query for the package. This list is maintained through the `pkg publisher` command and its siblings.
 
