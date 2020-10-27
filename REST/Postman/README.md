@@ -6,11 +6,11 @@ The JSON file contains example REST calls that can be used with the [Postman too
 
 To import the JSON file through either the **Import...** option in the **Edit** menu or by clicking the **Import** button in the top left corner of the tool:
 
-![Import_Button](../../Images/Postman/Postman_image_01.png)
+![Import_Button](/StatsStore_WebUI/Images/Postman/Postman_image_01.png)
 
 Then after expanding the new *Collection* in the left bar it should look something like this:
 
-![Import_Result](../../Images/Postman/Postman_image_02.png)
+![Import_Result](/StatsStore_WebUI/Images/Postman/Postman_image_02.png)
 
 Each folder in the collection holds one or more REST calls.
 
@@ -18,11 +18,11 @@ Each folder in the collection holds one or more REST calls.
 
 Then look for the **...** next to the Collection name, on its righthand side and select **Edit**:
 
-![Import_Button](../../Images/Postman/Postman_image_03.png)
+![Import_Button](/StatsStore_WebUI/Images/Postman/Postman_image_03.png)
 
 This opens the **EDIT COLLECTION** window, then select the **Variables** tab and replace the placeholder values with your own:
 
-![Import_Button](../../Images/Postman/Postman_image_04.png)
+![Import_Button](/StatsStore_WebUI/Images/Postman/Postman_image_04.png)
 
 Then click **Update**.
 
@@ -32,7 +32,7 @@ Then click **Update**.
 
 When you expand the **Authentication** folder, you'll see different authentication options, the first two are using the v1.0 of the Authentication API — One for the regular commands and one for commands specific to a Global Zone — the second two are for the v2.0 of the Authentication API:
 
-![Import_Button](../../Images/Postman/Postman_image_05.png)
+![Import_Button](/StatsStore_WebUI/Images/Postman/Postman_image_05.png)
 
 The difference between v1.0 and v2.0 is that v1.0 puts the *username* and *password* in one **POST** request, where v2.0 uses a **POST** request for sending the *username* and a separate **PUT** request for the *password*. You can use either, the first is simpler to use, the second allows for techniques like 2 factor authentication.
 
