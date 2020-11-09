@@ -9,10 +9,6 @@ In this article I do want to walk you through
 * How you can distribute and execute a script leveraging IPS
 * How to put everything together into a  "free open source software" (FOSS for short) package that builds the binary in place (with all dependencies handled via IPS)
 
-## Table of Contents
-
-[TOC]
-
 ## A Minimal IPS Repo Server
 
 The repo server is an integral part of any IPS setup, it is the place where packages are stored and from where these packages are distributed to install clients. Clients request package installations through the well known `pkg install` command, the client system maintains a list of repo servers to query for the package. This list is maintained through the `pkg publisher` command and its siblings.
