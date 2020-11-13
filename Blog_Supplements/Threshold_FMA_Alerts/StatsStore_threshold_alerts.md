@@ -131,6 +131,48 @@ The Faults, Alerts and Activity monitor on the Oracle Solaris 11.4 Dashboard, sh
 
 
 
+However, Oracle Solaris offers you the option to customize the query intervals for a much faster response and alerting system.
+
+
+
+### Case (2): With check time interval as 60 seconds
+
+For this piece of the simulation, we modify our query time to 60 seconds and update the `zpool-usage.json` file in the `/usr/lib/sstore/metadata/json/thresholds` directory, as discussed above. With the query time interval, now set to 60 seconds, alerts kick-in faster and we can act to resolve the error.
+
+Here is how we create testfile, testfile1 and testfile 2 to simulate a compounding increase in the test zpool storage.
+
+![test-file2](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/testfile2.png)
+
+Since the net storage utilization is of 1860m, it causes the operating capacity of the test-zpool to reach a 93% utilization rate, well beyond the optimal 90%. However, since the query time interval is now of 60 seconds, the first alert to kicks-in faster since the creation of the testfile. In this case though we analyze, for how long after the deletion of the additional file, does the WebUI show a first reduction in the storage utilization. After the testfile2 has been deleted from the test-zpool the stat, the WebUI shows us the first drop in less than 120 seconds (>300 seconds), thus  making sure the alerting system works faster with a 60 second query interval.
+
+![test-file2](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/threshold_alert.png)
+
+## Using the Command Line Interface to observe these changes	
+
+The Oracle Solaris WebUI and the FMA alerting system makes use of the sstore and ssid (stats store identifier) in order to represent the threshold values on the graph. These values can be monitored using the:`//:class.zpool//:res.name/test-zpool//: > capture stat.capacity` which captures the data in the following format:
+
+`2020-11-12T15:19:43 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
+2020-11-12T15:19:44 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
+2020-11-12T15:19:45 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
+2020-11-12T15:19:46 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
+2020-11-12T15:19:47 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
+c2020-11-12T15:19:48 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
+2020-11-12T15:19:49 88 //:class.zpool//:res.name/test-zpool//:stat.capacity`
+
+In order to create more custom threshold limits, please refer to the [ssid-metadata(7)](https://docs.oracle.com/cd/E88353_01/html/E37853/ssid-metadata-7.html) documentation.
+
+Blog about StatsStore threshold alerts, [here](https://blogs.oracle.com/solaris/statsstore-threshold-alerts-v2).
+
+
+
+
+
+
+
+ Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
+
+
+
 
 
 
