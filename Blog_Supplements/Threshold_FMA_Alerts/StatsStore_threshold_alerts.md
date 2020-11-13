@@ -4,7 +4,7 @@ The Oracle Solaris Fault Management feature provides an architecture for buildin
 
 This markdown document simulates an overload in ZFS pool capacity and walks you through the various pieces involved in setting threshold alerts and monitoring the results.
 
-![](Screenshots\FMA.png)
+![](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/FMA.png)
 
 ## Analyzing the threshold alerts for  ZFS Pool Capacity
 
@@ -111,23 +111,29 @@ Now the system returns the percent utilization values at each minute to ensure i
 
 With the default time-interval set to 300 seconds in the `zpool-usage.json` file, the system checks for threshold limits every 300 seconds or 5 minutes. In our case, we have our test-zpool with a storage capacity of 1.98 GB and we create a testfile in this test-zpool of 1900MB.
 
-![TestFile Creation](Screenshot/300sec_interval_testfile.png)
+![TestFile Creation](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/300sec_interval_testfile.png)
 
 
 
 Since this file is of 1900m, it causes the operating capacity of the test-zpool to reach a 93% utilization rate, well beyond the optimal 90%. However, since the query time interval is of 300 seconds, for the first alert to kick-in it takes 300 seconds since the creation of the testfile. In our case the file was created at 2:44:49 pm PST and the first alert showed up at 2:49:47 pm PST, after a 5 min interval.
 
-![First Alert](Screenshot/firstalert.png)
+![First Alert](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/firstalert.png)
 
 
 
 The Faults, Alerts and Activity monitor on the Oracle Solaris 11.4 Dashboard, shows us how the alerting system works.
 
-![FMA_Alert](Screenshot/FMA_Alert.png)
+![FMA_Alert](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/FMA_Alert.png)
 
 
 
-![Alert_List] (Screenshot/alerts_list.png)
+![alert_list](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/alerts_list.png)
+
+
+
+
+
+
 
 
 
