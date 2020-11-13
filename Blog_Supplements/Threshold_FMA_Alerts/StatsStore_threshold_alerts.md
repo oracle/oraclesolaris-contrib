@@ -1,10 +1,16 @@
 # StatsStore Threshold Alerts
 
-The Oracle Solaris Fault Management feature provides an architecture for building resilient error handlers, structured error telemetry, automated diagnostic software, response agents, and structured messaging. Many parts of the software stack participate in Fault Management, including the CPU, memory and I/O subsystems, Oracle Solaris ZFS, an increasing set of device drivers, and other management stacks. The Oracle Solaris Analytics dashboard enables users to monitor these Faults and Alerts both using the WebUI alerting pop-up as well as the graphical representations.
+Oracle Solaris 11.4 allows you to set custom FMA alerts and this document walks you through each component involved in the process. Below is a video summarizing all the steps being followed in this demonstration.
 
-This markdown document simulates an overload in ZFS pool capacity and walks you through the various pieces involved in setting threshold alerts and monitoring the results.
+![](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/FMA2.gif)
+
+
+
+## Oracle Solaris Dashboard with the Faults, Alerts and Activity dropdown
 
 ![](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/FMA.png)
+
+
 
 ## Analyzing the threshold alerts for  ZFS Pool Capacity
 
@@ -30,6 +36,8 @@ The ZFS Pool Capacity (%) helps to understand the percentage of pool space utili
 ```
 
 To learn more about the `zpoolusage.json` and other associated `.json` that can be used to set thresholds limits for the FMA alerts, please refer to [ssid-metadata(7)](https://docs.oracle.com/cd/E88353_01/html/E37853/ssid-metadata-7.html) page.
+
+
 
 ## Modifying the `zpool-usage.json` for custom thresholds and alerts
 
@@ -78,6 +86,8 @@ If required, you can specify `query-interval` which defines the minimum time int
 }
 ```
 
+
+
 ### Modifying the zpool-usage.json file for our simulation
 
 For our simulation, I will be changing the threshold check time interval to 60 seconds, while keeping all other parameters intact to get any changes in threshold values faster.
@@ -103,9 +113,9 @@ For our simulation, I will be changing the threshold check time interval to 60 s
 
 Now the system returns the percent utilization values at each minute to ensure if there are sudden increments, the user knows about them.
 
-
-
 ## Analyzing the threshold limits for a simulated workload increase
+
+
 
 ### Case (1): With check time interval as 300 seconds
 
@@ -147,6 +157,8 @@ Since the net storage utilization is of 1860m, it causes the operating capacity 
 
 ![test-file2](/Blog_Supplements/Threshold_FMA_Alerts/Screenshots/threshold_alert.png)
 
+
+
 ## Using the Command Line Interface to observe these changes	
 
 The Oracle Solaris WebUI and the FMA alerting system makes use of the sstore and ssid (stats store identifier) in order to represent the threshold values on the graph. These values can be monitored using the:`//:class.zpool//:res.name/test-zpool//: > capture stat.capacity` which captures the data in the following format:
@@ -160,6 +172,8 @@ The Oracle Solaris WebUI and the FMA alerting system makes use of the sstore and
 c2020-11-12T15:19:48 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
 2020-11-12T15:19:49 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
 ```
+
+
 
 In order to create more custom threshold limits, please refer to the [ssid-metadata(7)](https://docs.oracle.com/cd/E88353_01/html/E37853/ssid-metadata-7.html) documentation.
 
