@@ -151,13 +151,15 @@ Since the net storage utilization is of 1860m, it causes the operating capacity 
 
 The Oracle Solaris WebUI and the FMA alerting system makes use of the sstore and ssid (stats store identifier) in order to represent the threshold values on the graph. These values can be monitored using the:`//:class.zpool//:res.name/test-zpool//: > capture stat.capacity` which captures the data in the following format:
 
-`2020-11-12T15:19:43 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
+```
+2020-11-12T15:19:43 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
 2020-11-12T15:19:44 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
 2020-11-12T15:19:45 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
 2020-11-12T15:19:46 93 //:class.zpool//:res.name/test-zpool//:stat.capacity
 2020-11-12T15:19:47 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
 c2020-11-12T15:19:48 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
-2020-11-12T15:19:49 88 //:class.zpool//:res.name/test-zpool//:stat.capacity`
+2020-11-12T15:19:49 88 //:class.zpool//:res.name/test-zpool//:stat.capacity
+```
 
 In order to create more custom threshold limits, please refer to the [ssid-metadata(7)](https://docs.oracle.com/cd/E88353_01/html/E37853/ssid-metadata-7.html) documentation.
 
