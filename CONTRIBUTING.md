@@ -1,23 +1,16 @@
-## Contributing to Oracle Solaris Discover
+# Contributing
+
+We welcome your contributions! There are multiple ways to contribute.
 
 ## Issues
 
-If you hit an issue or have an enhancement request then file a GitHub issue.
-When filing an issue remember that the better written the description is, the more likely it is
-to be fixed. Please include:
+For bugs or enhancement requests, please file a GitHub issue unless it's security related. When filing a bug remember that the better written the bug is, the more likely it is to be fixed. If you think you've found a security vulnerability, do not raise a GitHub issue and follow the instructions on our [Security Policy]().
 
-1. Specific folder of the repository
-2. Whether an issue with the Code/Reproducing the sheet
-3. Attach a screenshot of the issue
+## Contributing Code
 
-## Code
+We welcome your code contributions. To get started, you will need to sign the [Oracle Contributor Agreement](https://www.oracle.com/technetwork/community/oca-486395.html) (OCA).
 
-Pull requests can be made under [The Oracle Contributor Agreement](https://www.oracle.com/technetwork/community/oca-486395.html) (OCA).
-
-This repo is in early and active development. While we welcome contributions from the community, we may defer merging new functionality until the codebase stabilises. We have a list of great things we want to implement.  If you have ideas get in touch directly or via the Oracle Technology Network OKIT discussion forum, so we don't duplicate efforts.
-
-For pull requests to be accepted, the bottom of your commit message must have the following line using your name and e-mail address as it appears in the
-OCA Signatories list.
+For pull requests to be accepted, the bottom of your commit message must have the following line using the name and e-mail address you used for the OCA.
 
 ```
 Signed-off-by: Your Name <you@example.org>
@@ -26,20 +19,20 @@ Signed-off-by: Your Name <you@example.org>
 This can be automatically added to pull requests by committing with:
 
 ```
-  git commit --signoff
+git commit --signoff
 ```
 
-Only pull requests from committers that can be verified as having
-signed the OCA can be accepted.
+Only pull requests from committers that can be verified as having signed the OCA can be accepted.
 
 ### Pull request process
 
-1. Sign the [OCA](https://www.oracle.com/technetwork/community/oca-486395.html)
-2. Fork this repository
-3. Create a branch in your fork to implement the changes. We recommend using the issue number as part of your branch name, e.g. `<username>/1234-fixes`
-4. Ensure that any documentation is updated with the changes that are required by your fix.
-5. Ensure that any samples are updated if the base image has been changed. 
-6. Submit the pull request. *Do not leave the pull request blank*. 
-   Explain exactly what your changes are meant to do and provide simple steps on how to validate your changes. 
-   Ensure that you reference the issue you created as well. 
-   We will assign the pull request to 2-3 people for review before it is merged.
+1. Fork this repository
+2. Create a branch in your fork to implement the changes. We recommend using the issue number as part of your branch name, e.g. `1234-fixes`
+3. Ensure that any documentation is updated with the changes that are required by your fix.
+4. Ensure that any samples are updated if the base image has been changed.
+5. Submit the pull request. *Do not leave the pull request blank*. Explain exactly what your changes are meant to do and provide simple steps on how to validate your changes. Ensure that you reference the issue you created as well.
+6. We will assign the pull request to 2-3 people for review before it is merged.
+
+## Code of Conduct
+
+Follow the [Golden Rule](https://en.wikipedia.org/wiki/Golden_Rule). If you'd like more specific guidelines see the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct/)
