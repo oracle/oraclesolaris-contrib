@@ -26,12 +26,8 @@ The Solaris Zones RAD/REST module allows you to connect to the system hosting So
 
   - Initiate both live and cold migration
   - Detach and and attach zones
-  - Initiate zones evacuationList Reports
+  - Initiate zones evacuation
 
-- - Get basic data on reports
-  - Download full reports
-  
-  
 
 The [Jupyter notebook](rad_rest_zones_basic.ipynb) will show how to connect to the hosting system and do the basic steps of investigating the zones on the system and how to do basic lifecycle tasks like creating/installing/booting/halting/uninstalling/deleting zones on the system.
 
