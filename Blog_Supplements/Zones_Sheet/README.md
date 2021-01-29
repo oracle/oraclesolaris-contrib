@@ -11,6 +11,6 @@ With [SRU27](https://blogs.oracle.com/solaris/announcing-oracle-solaris-114-sru2
 - Zone Filesystems
   - File Systems Usage Per Zone
 
-The zones_sheet.md offers you a detailed walkthrough of how the Zones Sheet benefits users to keep track of their zones.
+The [zones_sheet.md](zone_sheet.md) offers you a detailed walkthrough of how the Zones Sheet benefits users to keep track of their zones.
 
 Copyright (c) 2021, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.

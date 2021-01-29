@@ -58,3 +58,13 @@ For our use case, we have created a zone "titan", to analyze the impact on the s
 
 ![Filesystem Stats](Images/filesystem_stats_titan.png)
 
+------
+
+The Zone Statistics sheet forms a part of the Oracle Solaris Continuous Delivery model and we will continue sharing new   innovations happening in this space
+
+
+
+
+
+Copyright (c) 2021, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/.
+
