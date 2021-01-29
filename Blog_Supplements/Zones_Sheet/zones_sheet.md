@@ -52,19 +52,19 @@ For our use case, we have created a zone "titan", to analyze the impact on the s
 
 ### 2. Impact on  the system
 
-- ### Zone State and CPU Utilization
+### - Zone State and CPU Utilization
 
-  ![Zone Stats](Images/zonestats_titan.png)
+![Zone Stats](Images/zonestats_titan.png)
 
-- ### Virtual Memory Utilization
+### - Virtual Memory Utilization
 
 ![Virtmem Stats](Images/virtmem_stats_titan.png)
 
-- ### Network Stats
+### - Network Stats
 
 ![Network Stats](Images/network_stats_titan.png)
 
-- ### Zone Filesystems
+### - Zone Filesystems
 
 ![Filesystem Stats](Images/filesystem_stats_titan.png)
 
