@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Oracle Solaris 11.1 PAM Lab</title>
+<link type="text/css" rel="stylesheet" href="lab.css">
+</head>
+<body>
+<h1><a id="top">Oracle Solaris 11.1 PAM Lab</a></h1>
+
+<h2>Table of Contents</h2>
+
+<p>
+<a href="#S.1">Exercise S.1: Per-service PAM Files</a><br>
+<a href="#S.2">Exercise S.2: Creating $HOME with PAM</a><br>
+<a href="#S.3">Exercise S.3: Creating Encrypted $HOME </a><br>
+<a href="#S.4">Exercise S.4: User Authentication of Roles</a><br>
+<a href="#S.5">Exercise S.5: Caching Role Authentication</a><br>
+</p>
+<h2>Introduction</h2>
+<p>
+This set of exercises is designed to briefly demonstrate some aspects of the PAM policy in Oracle Solaris:<br>
+ </p><li> PAM Service Files</li><li>Creating Encrypted Home Directories</li><li>Per-User PAM Polices</li><p></p> 
+ <p>PAM stands for Pluggable Authentication Modules. It is an extensible framework for authentication, role assumption, credential management and session management.</p>
+   <p>
+  The exercises are just introductions - you are referred to
+    the <a href="http://docs.oracle.com/cd/E26502_01/html/E29015/pam-32.html">
+Oracle Solaris Administration: PAM Configuration</a> 
+for further information. In addition, the following man pages will be useful:
+    <a href="http://docs.oracle.com/cd/E26502_01/html/E29043/pam-user-policy-5.html#scrolltoc">pam_user_policy(5)</a>,
+    <a href="http://docs.oracle.com/cd/E26502_01/html/E29043/pam-tty-tickets-5.html">pam_tty_tickets(5)</a>, 
+    and <a href="http://docs.oracle.com/cd/E19963-01/html/821-1456/rbactask-4.html#rbactask-36">How to Enable a User to Use Own Password to Assume a Role</a>.
+</p>
+<p>
+Passwords:
+User:lab Password:l1admin<br>
+Role:root Password:l1admin<br>
+Some of the exercises require the <b>root</b> role.
+</p>
+
+<h2><a id="S.1">Exercise S.1: Per-service PAM Files </a></h2>
+<p><strong>Task:</strong> Become familiar with per-service PAM policy files.
+</p><p><strong>Lab:</strong> Examine the contents of the <code>/etc/pam.d</code> directory.</p>
+
+<pre>oow@solaris:~$<kbd> cat /etc/pam.conf</kbd>
+# PAM configuration
+#
+# This file is now delivered with no entries.  The preferred mechanism
+# for PAM configuration is now using per-service files in /etc/pam.d.
+# Any modifications to this file will be preserved on system update and
+# will be referenced before the per-service files in /etc/pam.d.
+#
+# The libpam(3LIB) library searches for PAM entries in the following order:
+#
+#       /etc/pam.conf for <service> entries
+#       /etc/pam.d/<service>
+#       /etc/pam.conf for "other" entries
+#       /etc/pam.d/other
+#
+# See pam.conf(4) for more details.
+...
+
+
+oow@solaris:~$ <kbd>ls /etc/pam.d</kbd>
+cron            gdm             other           ppp
+cups            gdm-autologin   other.orig      tsoljds-stripe
+dtpasswd        login           passwd          xscreensaver
+</pre>
+
+
+
+<p>Each of these files corresponds to a specific PAM service name. Note that the name of the service is implicit in each record.</p>
+ 
+
+<p><a href="#top">Back to top</a></p><h2><a id="S.2">Exercise S.2: Creating $HOME with PAM</a></h2>
+<p><strong>Task:</strong>Use the <code>useradd</code> command to create a new user.</p>
+<p><strong>Lab:</strong>In this exercise, you will use the <code>useradd</code> command to create a default user <b>foo</b>,
+whose home directory is NOT specified using <code>useradd -md /export/home/foo</code>.</p>
+
+</p><pre>oow@solaris:~$<kbd> useradd foo</kbd>
+</pre>
+
+<p>The <code>User Security</code> rights profile is explicitly assigned to <b>oow</b>. Normally this would require assuming the <b>root</b> role.</p>
+<pre>oow@solaris:~#<kbd> passwd foo</kbd>
+New Password: 
+Re-enter new Password:
+passwd: password successfully changed for foo
+</pre><p>
+Now use <code>su</code> to switch to <b>foo</b>. Since there is no explicit PAM service file for <code>su</code>, the <code>other</code> file is used. This file was modified for this lab. Use the <code>diff</code> command to see how it what changed:
+</p>
+
+<pre>oow@solaris:~$<kbd> cd /etc/pam.d</kbd>
+oow@solaris:~$<kbd> diff other.orig other</kbd>
+67a68,72
+> # Add pam_zfs_key to auto-create an encrypted home directory
+> #
+> auth required		pam_zfs_key.so.1 create encryption=off
+> 
+> #
+oow@solaris:~$<kbd> su - foo</kbd>
+su - foo
+Password: 
+Creating home directory with encryption=off.
+Your login password will be used as the wrapping key.
+Oracle Corporation	SunOS 5.11	11.1	August 2012
+
+oow@solaris:~$<kbd>id</kbd>
+uid=102(foo) gid=10(staff)
+</kbd>
+-bash-4.1$<kbd> exit</kbd>
+logout
+</pre><p>Notice that the home directory is still mounted.<p>
+<pre>oow@solaris:~$<kbd>mount -p|grep ~foo</kbd>
+rpool/export/home/foo - /export/home/foo zfs - no rw,devices,setuid,nonbmand,exec,rstchown,xattr,atime
+</pre><p>Delete the user and verify that the home directory is deleted.<p>
+<pre>oow@solaris:~$<kbd>userdel -r foo</kbd>
+oow@solaris:~$<kbd>zfs list|grep foo<kbd>
+</pre>
+
+<p><a href="#top">Back to top</a></p>
+<h2><a id="Z.3">Exercise S.3: Creating Encrypted $HOME</a></h2>
+<p><strong>Task:</strong> Learn how some PAM policies can be qualified to apply to specific users.</p>.
+<p><strong>Lab:</strong> Create a user whose PAM policy specifies that the home directory is automatically encrypted.
+</p><p>
+Custom PAM policies can assigned using the <code>pam_policy</code> keyword via <code>useradd</code>. By convention these custom files are maintained in <code>/etc/security/pam_policy. A customized file, <code>unix-encrypt</code>  was created for this lab. It is a slightly modified version of the existing unix file in the same directory. Use <code>diff</code> to compare them.
+</p>
+
+<pre>oow@solaris:~$<kbd> cd /etc/security/pam_policy</kbd>
+oow@solaris:~$<kbd> diff unix unix-encrypt</kbd>
+67a68,72
+> # Add pam_zfs_key to auto-create an encrypted home directory
+> #
+> other	auth required		pam_zfs_key.so.1 create
+> 
+> #
+</pre><p>Now recreate the <b>foo</b> user, specifying this PAM policy.<p>
+
+
+<pre>oow@solaris:~$<kbd> useradd -K pam_policy=unix-encrypt foo</kbd>
+</pre>
+
+<p>The <code>User Security</code> rights profile is explicitly assigned to <code>oow</code>. Normally this would require assuming the <code>root</code> role.</p>
+<pre>oow@solaris:~#<kbd> passwd foo</kbd>
+New Password: 
+Re-enter new Password:
+passwd: password successfully changed for foo
+
+oow@solaris:~$<kbd> su - foo</kbd>
+su - foo
+Password: 
+Creating home directory with encryption=on.
+Your login password will be used as the wrapping key.
+Oracle Corporation	SunOS 5.11	11.1	August 2012
+
+oow@solaris:~$<kbd>id</kbd>
+uid=102(foo) gid=10(staff)
+</kbd>
+-bash-4.1$<kbd> exit</kbd>
+logout
+</pre><p>Verify that the new home directory is an encrypted filesystem.<p>
+<pre>oow@solaris:~$<kbd>mount -p|grep ~foo</kbd>
+rpool/export/home/foo - /export/home/foo zfs - no rw,devices,setuid,nonbmand,exec,rstchown,xattr,atime
+oow@solaris:~$<kbd>zfs get encryption,keysource rpool/export/home/foo</kbd>
+NAME                   PROPERTY    VALUE              SOURCE
+rpool/export/home/foo  encryption  on                 local
+rpool/export/home/foo  keysource   passphrase,prompt  local
+</pre>
+<p><a href="#top">Back to top</a></p>
+<h2><a id="S.4">Exercise S.4: User Authentication of Roles</a></h2>
+<p><strong>Task:</strong> This exercise demonstrates how to customize the authentication policy for a role.
+</b>.</p>
+<p><strong>Lab:</strong> By default, role assumption is done via <code>su</code> using the role's password. Alternatively, the authentication policy can be changed to require the user's password.</p>
+
+<pre>oow@solaris:~$<kbd>rolemod -K roleauth=user root</kbd>
+oow@solaris:~$<kbd>userattr roleauth root</kbd>
+user
+</pre>
+<p>Verify that the root role can now be assumed using </b>oow</b> password.</p>
+
+
+<p><a href="#top">Back to top</a></p>
+
+<h2><a id="S.5">Exercise S.5: Caching Role Authentication</a></h2>
+
+<p><strong>Task:</strong> </p>This exercise demonstrates how to use <code>pam_policy</code> to enable credential caching for role assumption.<p>
+<p><strong>Lab:</strong> Apply a customized PAM policy file to the <b>root</b> role so that credentials of users who assume the <b>root</b> role can be cached for a few minutes.</p>
+<p>The authentication credential used for assuming the <b>root</b> role can be cached. The PAM module <code>pam_tty_tickets</code> performs this function. Use a customized version of the <code>unix</code> policy file which includes this module.</p>.
+<pre>oow@solaris:~$<kbd>cd /etc/security/pam_policy</kbd>
+oow@solaris:~$<kbd> diff unix unix-cache</kbd>
+62a63,68
+> other	auth required		pam_unix_cred.so.1
+> #
+> # Included pam_tty_tickets so that authentication token is cached
+> # using a 4 minute timeout
+> #
+> other	auth sufficient		pam_tty_tickets.so.1 timeout=4
+66d71
+< other	auth required		pam_unix_cred.so.1
+</pre>
+<p>Note that the cache timeout can be set explicitly. The default value is 5 minutes.</p>
+<p>Now assign the policy file to the <b>root</b> role.
+<pre>oow@solaris:~$<kbd>rolemod -K pam_policy=unix-cache root</kbd>
+oow@solaris:~$<kbd>userattr pam_policy root</kbd>
+unix-cache
+</pre>
+<p>Verify that caching works by assuming the <b>root</b> role, exiting the role, and then assuming it again.</p>
+
+<p><a href="#top">Back to top</a></p>
+
+
+<p>That concludes this lab session.</p>
+
+
+</body></html>

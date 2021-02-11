@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Oracle Solaris 11.1 SMF Lab</title>
+<link type="text/css" rel="stylesheet" href="lab.css">
+</head>
+<body>
+<h1><a id="top">Oracle Solaris 11.1 SMF Lab</a></h1>
+
+<h2>Table of Contents</h2>
+
+<p>
+<a href="#S.1">Exercise S.1: View SMF Authorizations</a><br>
+<a href="#S.2">Exercise S.2: Examine Syslog Service</a><br>
+<a href="#S.3">Exercise S.3: Customize the Syslog Service </a><br>
+<a href="#S.4">Exercise S.4: Customize the Syslog Config File</a><br>
+
+</p>
+<h2>Introduction</h2>
+<p>
+This set of exercises is designed to briefly demonstrate some aspects of the SMF Authorization policy in Oracle Solaris.<br>
+ 
+<p>
+Passwords:
+User:lab Password:l1admin<br>
+Role:root Password:l1admin<br>
+Some of the exercises require the <b>root</b> role.
+</p>
+<h2><a id="S.1">Exercise S.1: View SMF Authorizations </a></h2>
+<p><strong>Task:</strong> Become familiar with SMF authorizaitons.
+</p><p><strong>Lab:</strong> List some authorizations for SMF</p>
+
+<pre>oow@solaris:~$<kbd> oow@solaris:~$ auths list|grep smf</kbd>
+    solaris.smf.manage
+    solaris.smf.manage.autofs
+    solaris.smf.manage.bind
+    solaris.smf.manage.coreadm
+    solaris.smf.manage.cron
+    solaris.smf.manage.extended-accounting.flow
+    solaris.smf.manage.extended-accounting.net
+    solaris.smf.manage.extended-accounting.process
+    solaris.smf.manage.extended-accounting.task
+    solaris.smf.manage.group
+    solaris.smf.manage.hotplug
+    solaris.smf.manage.ilb
+    solaris.smf.manage.ipmp
+    solaris.smf.manage.mdns
+    solaris.smf.manage.name-service.*
+    solaris.smf.manage.ndmp
+    solaris.smf.manage.netphys
+    solaris.smf.manage.rad
+    solaris.smf.manage.rds
+    solaris.smf.manage.routing
+    solaris.smf.manage.sendmail
+    solaris.smf.manage.shares
+    solaris.smf.manage.smb
+    solaris.smf.manage.smbfs
+    solaris.smf.manage.system-log
+...
+
+oow@solaris:~$<kbd> oow@solaris:~$auths info -v solaris.smf.manage.system-log</kbd>
+    solaris.smf.manage.system-log
+        Manage Syslog Service States
+</pre>
+<p><a href="#top">Back to top</a></p>
+<h2><a id="S.2">Exercise S.2: Examine Syslog Service</a></h2>
+<p><strong>Task:</strong>Look at the configuration of an SMF service.</p>
+<p><strong>Lab:</strong>In this exercise, you will use svcs and svccfg to examine the syslog service.</p>
+
+</p><pre>oow@solaris:~$<kbd> oow@solaris:~$ svcs -l system-log</kbd>
+fmri         svc:/system/system-log:default
+name         system log
+enabled      true
+state        online
+next_state   none
+state_time   Wed Nov 07 12:23:31 2012
+logfile      /var/svc/log/system-system-log:default.log
+restarter    svc:/system/svc/restarter:default
+contract_id  160 
+manifest     /etc/svc/profile/generic.xml
+manifest     /lib/svc/manifest/system/system-log.xml
+dependency   require_all/none svc:/milestone/self-assembly-complete (online)
+dependency   require_all/none svc:/system/filesystem/local (online)
+dependency   optional_all/none svc:/system/filesystem/autofs (online)
+dependency   require_all/none svc:/milestone/name-services (online)
+
+oow@solaris:~$ <kbd>svccfg -s system-log</kbd>
+svc:/system/system-log> listprop general
+general                       framework          
+general/action_authorization astring     solaris.smf.manage.system-log
+general/entity_stability     astring     Unstable
+general/single_instance      boolean     true
+general/value_authorization  astring     solaris.smf.manage.system-log
+
+svc:/system/system-log> listprop config
+config                      application        
+config/log_from_remote     boolean     false
+config/value_authorization astring     solaris.smf.value.system-log
+</pre>
+
+
+<p><a href="#top">Back to top</a></p>
+<h2><a id="Z.3">Exercise S.3: Customize the Syslog Service</a></h2>
+<p><strong>Task:</strong> Learn how to edit SMF properies.</p>.
+<p><strong>Lab:</strong> Use the editprop subcommand to modify a property.
+</p><p>
+Custom PAM policies can assigned using the <code>pam_policy</code> keyword via <code>useradd</code>. By convention these custom files are maintained in <code>/etc/security/pam_policy.
+</p>
+<pre>svc:/system/system-log> ]<kbd>editprop</kbd>
+</pre>
+Change the remote boolean boolean from false to true. Then remove the comment characters from thee beginning of this line and the refresh entry. Save and exit.
+</p>
+<pre>
+svc:/system/system-log> listprop config
+svc:/system/system-log> listprop config
+config                      application        
+config/log_from_remote     boolean     true
+config/value_authorization astring     solaris.smf.value.system-log
+</pre>
+<p>
+Now set it back to false, and exit.
+</p>
+<pre>
+svc:/system/system-log> <kbd>exit</kbd>
+</pre>
+<p><a href="#top">Back to top</a></p>
+<h2><a id="S.4">Exercise S.4: Customize the Syslog Config File</a></h2>
+<p><strong>Task:</strong> This exercise demonstrates how to customize the traditional syslog.conf file.
+</b>.</p>
+<p><strong>Lab:</strong> We will use the privileged editor, pfedit, to add PAM debugging to the syslog configuration.</p>
+
+<pre>oow@solaris:~$<kbd> auths list |grep syslog </kbd>
+    solaris.admin.edit/etc/syslog.conf
+
+oow@solaris:~$<kbd> pfedit /etc/syslog.conf</kbd>
+</pre>
+
+<p>The lines for PAM debgging are already at the end of the file. Just add a comment, save, and exit. Then refresh the system service.</p>
+
+<pre>oow@solaris:~$<kbd> svcadm restart system-log </kbd></pre>
+
+
+<p><a href="#top">Back to top</a></p>
+
+
+<p>That concludes this lab session.</p>
+
+
+</body></html>
