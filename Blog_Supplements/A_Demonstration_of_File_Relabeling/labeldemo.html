@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Relabeling Demonstration</title>
+<link rel="stylesheet" type="text/css" href="shell-syntax.css" />
+</head>
+<body>
+<pre>
+<span class="s-lno">  1</span> <span class="s-cmt">#!/bin/ksh</span>
+<span class="s-lno">  2</span> <span class="s-cmt">#</span>
+<span class="s-lno">  3</span> <span class="s-cmt"># Copyright (c) 2013, Oracle and/or its affiliates. All rights reserved.</span>
+<span class="s-lno">  4</span> <span class="s-cmt">#</span>
+<span class="s-lno">  5</span> 
+<span class="s-lno">  6</span> <span class="s-cmt"># This script provides a simple GUI for labeling files and directories.</span>
+<span class="s-lno">  7</span> <span class="s-cmt"># The optional argument is the pathname of the file or directory.</span>
+<span class="s-lno">  8</span> 
+<span class="s-lno">  9</span> <span class="s-cmt"># It can be run in any zone, but the user must have the Object Label</span>
+<span class="s-lno"> 10</span> <span class="s-cmt"># Management rights profile, and the zone must have the extra privleges</span>
+<span class="s-lno"> 11</span> <span class="s-cmt"># file_downgrade_sl and file_downgrade_sl added to its limitpriv</span>
+<span class="s-lno"> 12</span> <span class="s-cmt"># resource. For example:</span>
+<span class="s-lno"> 13</span> 
+<span class="s-lno"> 14</span> <span class="s-cmt"># usermod -P "+Object Label Management" myname</span>
+<span class="s-lno"> 15</span> <span class="s-cmt"># zonecfg -z myzone set limitpriv=default,file_downgrade_sl,file_upgrade_sl</span>
+<span class="s-lno"> 16</span> 
+<span class="s-lno"> 17</span> <span class="s-avr">PATH</span>=<span class="s-val">/usr/bin:/usr/sbin:/usr/lib</span> <span class="s-blt">export</span> PATH
+<span class="s-lno"> 18</span> <span class="s-avr">myname</span>=<span class="s-val">$</span><span class="s-mta">(</span>basename <span class="s-var">$0</span><span class="s-mta">)</span>
+<span class="s-lno"> 19</span> <span class="s-avr">plabel</span>=<span class="s-val">"$(plabel $$)"</span>
+<span class="s-lno"> 20</span> <span class="s-avr">title</span>=<span class="s-val">"File Labeler"</span>
+<span class="s-lno"> 21</span> <span class="s-avr">default</span>=<span class="s-val">"/multi/public"</span>
+<span class="s-lno"> 22</span> 
+<span class="s-lno"> 23</span> <span class="s-key">while</span> [ -n <span class="s-var">$pathname</span> ]<span class="s-mta">;</span> <span class="s-key">do</span>
+<span class="s-lno"> 24</span>     <span class="s-key">if</span> [[ -z <span class="s-var">$1</span> ]]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 25</span>         <span class="s-avr">pathname</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity  --file-selection \
+<span class="s-lno"> 26</span>             <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 27</span>             <span class="s-avr">--filename</span>=<span class="s-val">$default</span> <span class="s-mta">)</span>
+<span class="s-lno"> 28</span>         <span class="s-key">if</span> [[ -z <span class="s-var">$pathname</span> ]]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 29</span>             <span class="s-blt">exit</span>
+<span class="s-lno"> 30</span>         <span class="s-key">fi</span>
+<span class="s-lno"> 31</span>     <span class="s-key">else</span>
+<span class="s-lno"> 32</span>         <span class="s-avr">pathname</span>=<span class="s-val">$1</span>
+<span class="s-lno"> 33</span>     <span class="s-key">fi</span>
+<span class="s-lno"> 34</span>     <span class="s-key">while</span> [ -n <span class="s-var">$pathname</span> ]<span class="s-mta">;</span> <span class="s-key">do</span>
+<span class="s-lno"> 35</span>         <span class="s-avr">lbl</span>=<span class="s-val">$</span><span class="s-mta">(</span>getlabel <span class="s-var">$pathname</span> 2<span class="s-mta">></span><span class="s-mta">&</span>1<span class="s-mta">)</span>
+<span class="s-lno"> 36</span>         <span class="s-key">if</span> [ <span class="s-var">$?</span> <span class="s-avr">!</span>=<span class="s-val"></span> 0 ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 37</span>             <span class="s-avr">x</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity --warning \
+<span class="s-lno"> 38</span>                 <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 39</span>                 <span class="s-avr">--text</span>=<span class="s-val">"$lbl \n\nRelabeling is not possible because\n\
+<span class="s-lno"> 40</span> Pathname label must be dominated by zone label."</span><span class="s-mta">)</span>
+<span class="s-lno"> 41</span>             <span class="s-blt">break</span>
+<span class="s-lno"> 42</span>         <span class="s-key">else</span>
+<span class="s-lno"> 43</span>             <span class="s-avr">flabel</span>=<span class="s-val">"$(echo $lbl|cut -d"</span> <span class="s-quo">"</span><span class="s-val"> -f2-99)</span><span class="s-quo">"</span>
+<span class="s-lno"> 44</span>         <span class="s-key">fi</span>
+<span class="s-lno"> 45</span>         <span class="s-avr">dirname</span>=<span class="s-val">$</span><span class="s-mta">(</span>dirname <span class="s-var">$pathname</span><span class="s-mta">)</span>
+<span class="s-lno"> 46</span>         <span class="s-avr">dirlbl</span>=<span class="s-val">$</span><span class="s-mta">(</span>getlabel <span class="s-var">$dirname</span> 2<span class="s-mta">></span><span class="s-mta">&</span>1<span class="s-mta">)</span>
+<span class="s-lno"> 47</span>         <span class="s-avr">minlabel</span>=<span class="s-val">"$(echo $dirlbl|cut -d"</span> <span class="s-quo">"</span><span class="s-val"> -f2-99)</span><span class="s-quo">"</span>
+<span class="s-lno"> 48</span>         <span class="s-avr">upgrading</span>=<span class="s-val">1</span>
+<span class="s-lno"> 49</span>         <span class="s-key">if</span> [ <span class="s-quo">"</span><span class="s-val">$flabel</span><span class="s-quo">"</span> <span class="s-avr"></span>=<span class="s-val">=</span> <span class="s-quo">"</span><span class="s-val">$plabel</span><span class="s-quo">"</span> ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 50</span>             <span class="s-avr">upgrading</span>=<span class="s-val">0</span>
+<span class="s-lno"> 51</span>             <span class="s-avr">x</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity --warning \
+<span class="s-lno"> 52</span>                 <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 53</span>                 <span class="s-avr">--text</span>=<span class="s-val">"$lbl \n\nCannot upgrade this pathname\n\
+<span class="s-lno"> 54</span> higher than the zone label."</span><span class="s-mta">)</span>
+<span class="s-lno"> 55</span>         <span class="s-key">fi</span>
+<span class="s-lno"> 56</span>         <span class="s-key">if</span> [ <span class="s-quo">"</span><span class="s-val">$flabel</span><span class="s-quo">"</span> <span class="s-avr"></span>=<span class="s-val">=</span> <span class="s-quo">"</span><span class="s-val">$minlabel</span><span class="s-quo">"</span> ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 57</span>             <span class="s-avr">x</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity --question \
+<span class="s-lno"> 58</span>                 <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 59</span>                 <span class="s-avr">--text</span>=<span class="s-val">"$lbl \n\n\
+<span class="s-lno"> 60</span> Cannot downgrade in place because the pathname\n\
+<span class="s-lno"> 61</span> is constrained by its parent label.\n\n\
+<span class="s-lno"> 62</span> Do you want to select a directory to which the file will be moved?"</span><span class="s-mta">)</span>
+<span class="s-lno"> 63</span>             <span class="s-key">if</span> [ <span class="s-var">$?</span> <span class="s-avr"></span>=<span class="s-val">=</span> 0 ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 64</span>                 <span class="s-avr">dirname</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity  --file-selection \
+<span class="s-lno"> 65</span>                     <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 66</span>                     --directory \
+<span class="s-lno"> 67</span>                     <span class="s-avr">--filename</span>=<span class="s-val">$default</span> <span class="s-mta">)</span>
+<span class="s-lno"> 68</span>                 <span class="s-key">if</span> [[ -z <span class="s-var">$dirname</span> ]]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 69</span>                     <span class="s-key">if</span> [ upgrading <span class="s-avr"></span>=<span class="s-val">=</span> 0 ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 70</span>                         <span class="s-blt">break</span>
+<span class="s-lno"> 71</span>                     <span class="s-key">fi</span>
+<span class="s-lno"> 72</span>                 <span class="s-key">else</span>
+<span class="s-lno"> 73</span>                     <span class="s-avr">err</span>=<span class="s-val">$</span><span class="s-mta">(</span>mv <span class="s-var">$pathname</span> <span class="s-var">$dirname</span> 2<span class="s-mta">></span><span class="s-mta">&</span>1<span class="s-mta">)</span>
+<span class="s-lno"> 74</span>                     <span class="s-key">if</span> [ <span class="s-var">$?</span> <span class="s-avr">!</span>=<span class="s-val"></span> 0 ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 75</span>                         <span class="s-avr">x</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity --warning \
+<span class="s-lno"> 76</span>                             <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 77</span>                             <span class="s-avr">--text</span>=<span class="s-val">"$lbl \n\n\
+<span class="s-lno"> 78</span> The file label must dominate the directory label."</span><span class="s-mta">)</span>
+<span class="s-lno"> 79</span>                         <span class="s-blt">break</span>
+<span class="s-lno"> 80</span>                     <span class="s-key">fi</span>
+<span class="s-lno"> 81</span>                     <span class="s-avr">filename</span>=<span class="s-val">$</span><span class="s-mta">(</span>basename <span class="s-var">$pathname</span><span class="s-mta">)</span>
+<span class="s-lno"> 82</span>                     <span class="s-avr">pathname</span>=<span class="s-val">$dirname/$filename</span>
+<span class="s-lno"> 83</span>                     <span class="s-avr">lbl</span>=<span class="s-val">$</span><span class="s-mta">(</span>getlabel <span class="s-var">$pathname</span> 2<span class="s-mta">></span><span class="s-mta">&</span>1<span class="s-mta">)</span>
+<span class="s-lno"> 84</span>                     <span class="s-key">if</span> [ <span class="s-var">$?</span> <span class="s-avr">!</span>=<span class="s-val"></span> 0 ]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno"> 85</span>                         <span class="s-blt">break</span>
+<span class="s-lno"> 86</span>                     <span class="s-key">else</span>
+<span class="s-lno"> 87</span>                         <span class="s-avr">flabel</span>=<span class="s-val">"$(echo $lbl|cut -d"</span> <span class="s-quo">"</span><span class="s-val"> -f2-99)</span><span class="s-quo">"</span>
+<span class="s-lno"> 88</span>                     <span class="s-key">fi</span>
+<span class="s-lno"> 89</span>                 <span class="s-key">fi</span>
+<span class="s-lno"> 90</span>             <span class="s-key">fi</span>
+<span class="s-lno"> 91</span>         <span class="s-key">fi</span>
+<span class="s-lno"> 92</span>         <span class="s-avr">hexlabel</span>=<span class="s-val">$</span><span class="s-mta">(</span>tgnome-selectlabel \
+<span class="s-lno"> 93</span>             <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno"> 94</span>             <span class="s-avr">--text</span>=<span class="s-val">"Pathname:     $pathname
+<span class="s-lno"> 95</span>         Existing label: $flabel"</span> \
+<span class="s-lno"> 96</span>             <span class="s-avr">--min</span>=<span class="s-val">"admin_low"</span> \
+<span class="s-lno"> 97</span>             <span class="s-avr">--default</span>=<span class="s-val">"$flabel"</span>  \
+<span class="s-lno"> 98</span>             <span class="s-avr">--max</span>=<span class="s-val">"$plabel"</span> \
+<span class="s-lno"> 99</span>             <span class="s-avr">--accredcheck</span>=<span class="s-val">no</span> \
+<span class="s-lno">100</span>             <span class="s-avr">--mode</span>=<span class="s-val">sensitivity</span> \
+<span class="s-lno">101</span>             <span class="s-avr">--format</span>=<span class="s-val">internal</span> \
+<span class="s-lno">102</span>             2<span class="s-mta">></span>/dev/null<span class="s-mta">)</span>
+<span class="s-lno">103</span>         <span class="s-key">if</span> [ <span class="s-var">$?</span> <span class="s-avr"></span>=<span class="s-val"></span> 0 ] <span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno">104</span>             <span class="s-key">if</span> [ <span class="s-var">$?</span> -ne 0 ] <span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno">105</span>                 <span class="s-blt">exit</span> 1
+<span class="s-lno">106</span>             <span class="s-key">fi</span>
+<span class="s-lno">107</span>         <span class="s-key">fi</span>    
+<span class="s-lno">108</span> 
+<span class="s-lno">109</span>         <span class="s-key">if</span> [[ -n <span class="s-var">$hexlabel</span> ]]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno">110</span>             <span class="s-avr">flabel</span>=<span class="s-val">"$(hextoalabel $hexlabel)"</span>
+<span class="s-lno">111</span>             <span class="s-avr">err</span>=<span class="s-val">$</span><span class="s-mta">(</span>setlabel <span class="s-var">$hexlabel</span> <span class="s-var">$pathname</span> 2<span class="s-mta">></span><span class="s-mta">&</span>1<span class="s-mta">)</span>
+<span class="s-lno">112</span>             <span class="s-key">if</span> [ <span class="s-var">$?</span> <span class="s-avr">!</span>=<span class="s-val"></span> 0 ] <span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno">113</span>                 <span class="s-avr">x</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity --warning \
+<span class="s-lno">114</span>                     <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno">115</span>                     <span class="s-avr">--text</span>=<span class="s-val">"$err \n\nCannot set label of
+<span class="s-lno">116</span> $pathname to \n\
+<span class="s-lno">117</span> $flabel\nbecause it does not dominate the label of $dirname"</span><span class="s-mta">)</span>
+<span class="s-lno">118</span>             <span class="s-key">else</span>
+<span class="s-lno">119</span>                 <span class="s-avr">x</span>=<span class="s-val">$</span><span class="s-mta">(</span>zenity --info \
+<span class="s-lno">120</span>                     <span class="s-avr">--title</span>=<span class="s-val">"$title"</span> \
+<span class="s-lno">121</span>                     <span class="s-avr">--text</span>=<span class="s-val">"The label of $pathname is now \n$flabel"</span><span class="s-mta">)</span>
+<span class="s-lno">122</span>             <span class="s-key">fi</span>
+<span class="s-lno">123</span>         <span class="s-key">else</span>
+<span class="s-lno">124</span>             <span class="s-key">if</span> [[ -z <span class="s-var">$1</span> ]]<span class="s-mta">;</span> <span class="s-key">then</span>
+<span class="s-lno">125</span>                 <span class="s-avr">default</span>=<span class="s-val">$pathname</span>
+<span class="s-lno">126</span>                 <span class="s-blt">break</span>
+<span class="s-lno">127</span>             <span class="s-key">else</span>
+<span class="s-lno">128</span>                 <span class="s-blt">exit</span>
+<span class="s-lno">129</span>             <span class="s-key">fi</span>
+<span class="s-lno">130</span>         <span class="s-key">fi</span>
+<span class="s-lno">131</span>     <span class="s-key">done</span>
+<span class="s-lno">132</span> <span class="s-key">done</span>
+</pre>
+</body>
+</html>
