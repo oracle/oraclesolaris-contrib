@@ -2,13 +2,13 @@
 
 ------
 
-<img src="Images/OCI_solaris_on_cloud.png" style="zoom:50%;" />
+![](Images/OCI_solaris_on_cloud.png)
 
 Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technologies/solaris11-overview.html) images have been available for download from the [Oracle Cloud Infrastructure(OCI)](https://www.oracle.com/cloud/) Marketplace. With Solaris now in the cloud, customers can benefit from Solaris instances running on x86 architecture. Here is walkthrough of launching an Oracle Solaris instance on OCI and the configuration options available:
 
 ## Step(1): Accessing the OCI Marketplace
 
-<img src="Images/OCI_marketplace.png" style="zoom:50%;" />
+![](Images/OCI_marketplace.png)
 
 
 
@@ -16,7 +16,7 @@ After logging in to the OCI console, you can find the OCI Marketplace by clickin
 
 
 
-<img src="Images/OCI_solaris.png" style="zoom:50%;" />
+![](Images/OCI_solaris.png)
 
 
 
@@ -30,7 +30,7 @@ Once you choose your preferred version of the Oracle Solaris image in your compa
 
 
 
-<img src="Images/OCI_solaris_launchinstance.png" style="zoom:50%;" />
+![](Images/OCI_solaris_launchinstance.png)
 
 
 
@@ -44,7 +44,7 @@ Once you click Launch Instance, you are directed to the Create Instance page whe
 
 
 
-<img src="Images/OCI_available_shapes.png" style="zoom: 67%;" />
+![](Images/OCI_available_shapes.png)
 
 
 
@@ -52,7 +52,7 @@ For our demonstration, we are using an INTEL Skylake VM.Standard2.2 with 2 core 
 
 
 
-<img src="Images/OCI_keys.png" style="zoom:67%;" />
+![](Images/OCI_keys.png)
 
 
 
@@ -64,7 +64,7 @@ Once you click Create, OCI will provision and your instance will be up and runni
 
 
 
-<img src="Images/OCI_activeconsole.png" style="zoom:67%;" />
+![](Images/OCI_activeconsole.png)
 
 
 
