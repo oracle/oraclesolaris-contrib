@@ -6,15 +6,17 @@
 
 Oracle Solaris Zones is a virtualization technology that enables you to consolidate multiple physical machines and services on a single system. Virtualization reduces costs through the sharing of hardware, infrastructure, and administration. Referring to Dave Miner's blog on using [Oracle Solaris Zones on OCI](https://blogs.oracle.com/solaris/using-solaris-zones-on-oracle-cloud-infrastructure-v2), we need to review a couple of terminology bits.
 
+![](Images/solaris_zones.jpg)
+
 The original zones introduced in Solaris 10 are known as *non-global zones*, which share a kernel with the global zone but otherwise appear to applications as a separate instance of Solaris. More recently, we introduced *kernel zones* in Solaris 11.2. These run a separate kernel, with specialized network and I/O paths that behave more like a paravirtualized virtual machine. There are also *Solaris 10 branded zones*, which emulate a Solaris 10 environment on a Solaris 11 kernel. All of the *brands* of zones provide a Solaris-native virtualization environment with minimal overhead that can help you get more out of your OCI compute resources. The image at the start of this post from the Solaris 11.4 documentation shows a complex zones environment that might be built anywhere, including in OCI, but this post provides a basic how-to for getting started with non-global and kernel zones in the OCI environment.
 
-In this document we are going to discuss how to install a non-global zone on a virtual machine.
+In this document we are going to discuss how to install a non-global zone on a virtual machine and briefly on Bare Metal.
 
 
 
 ## Setup
 
-After you create and have a VM [instance setup and running](/OracleSolaris_OCI/Launch Instance/OracleSolaris11.4_OCI_Installation.md), a thing to keep in mind is to configure the boot volume size to more than the default 50GB. This helps to accommodate for the additional storage required by Oracle Solaris Zones. After the instance is booted, you'll need to ssh in as the opc user and toggle the root pool's auto-expand property to allow ZFS to see the extra space beyond 50 GB (this is a workaround for an issue with autoexpand on the root pool):
+After you create and have a VM [instance setup and running](Releasev8_OCI/Launch Instance/OracleSolaris11.4_OCI_Installation.md), a thing to keep in mind is to configure the boot volume size to more than the default 50GB. This helps to accommodate for the additional storage required by Oracle Solaris Zones. After the instance is booted, you'll need to ssh in as the opc user and toggle the root pool's auto-expand property to allow ZFS to see the extra space beyond 50 GB (this is a workaround for an issue with autoexpand on the root pool):
 
 ```
 # zpool set autoexpand=off rpool;sleep 15;zpool set autoexpand=on rpool
