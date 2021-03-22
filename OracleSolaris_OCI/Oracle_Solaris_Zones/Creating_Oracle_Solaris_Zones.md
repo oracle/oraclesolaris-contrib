@@ -14,7 +14,7 @@ In this document we are going to discuss how to install a non-global zone on a v
 
 ## Setup
 
-After you create and have a VM [instance setup and running](/Launch Instance/OracleSolaris11.4_OCI_Installation.md), a thing to keep in mind is to configure the boot volume size to more than the default 50GB. This helps to accommodate for the additional storage required by Oracle Solaris Zones. After the instance is booted, you'll need to ssh in as the opc user and toggle the root pool's auto-expand property to allow ZFS to see the extra space beyond 50 GB (this is a workaround for an issue with autoexpand on the root pool):
+After you create and have a VM [instance setup and running](/OracleSolaris_OCI/Launch Instance/OracleSolaris11.4_OCI_Installation.md), a thing to keep in mind is to configure the boot volume size to more than the default 50GB. This helps to accommodate for the additional storage required by Oracle Solaris Zones. After the instance is booted, you'll need to ssh in as the opc user and toggle the root pool's auto-expand property to allow ZFS to see the extra space beyond 50 GB (this is a workaround for an issue with autoexpand on the root pool):
 
 ```
 # zpool set autoexpand=off rpool;sleep 15;zpool set autoexpand=on rpool
