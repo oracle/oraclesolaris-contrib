@@ -6,19 +6,19 @@ Once you have successfully [launched an Oracle Solaris](OracleSolaris_OCI/Launch
 
 
 
-## Step (1): Adding a block storage to your compartment 
+## Step 1: Adding a block storage to your compartment 
 
 In order to attach a block volume to your instance you need to first have a block storage created in your compartment. If you already have a block storage attached to your compartment, you can skip this step.
 
 
 
-#### a) Navigate to the Block Storage list by clicking on the hamburger icon on the left and click on Block Volumes
+#### 1.1 Navigate to the Block Storage list by clicking on the hamburger icon on the left and click on Block Volumes
 
 ![](Images/OCI_attach_block_storage.png)
 
 
 
-#### b) Creating your block volume in the specified compartment
+#### 1.2 Creating your block volume in the specified compartment
 
 
 
@@ -26,7 +26,7 @@ In order to attach a block volume to your instance you need to first have a bloc
 
 
 
-#### c)Configure your block volume in your preferred compartment and define the appropriate volume size and backup policies
+#### 1.3 Configure your block volume in your preferred compartment and define the appropriate volume size and backup policies
 
 
 
@@ -34,7 +34,7 @@ In order to attach a block volume to your instance you need to first have a bloc
 
 
 
-#### c) Once you have created the Block Volume you can then navigate to your instance to attach the Block Volume to your instance
+#### 1.4 Once you have created the Block Volume you can then navigate to your instance to attach the Block Volume to your instance
 
 
 
@@ -44,19 +44,19 @@ In order to attach a block volume to your instance you need to first have a bloc
 
 
 
-## Step (2): Attaching a Block Volume to your running instance
+## Step 2: Attaching a Block Volume to your running instance
 
 Once you have created a Block Volume in your compartment, you can then attach it to your running instance to start utilizing OCI storage resources.
 
 Here is how to attach a Block Volume to your instance.
 
-#### a) Navigate to your instance and scroll down to find Resources
+#### 2.1 Navigate to your instance and scroll down to find Resources
 
 ![](Images/OCI_attach_block_volume.png)
 
 
 
-#### b) Select Attach Block Volume and define parameters
+#### 2.2 Select Attach Block Volume and define parameters
 
 Note: For Solaris instances, only iSCSI and emulated attachments are supported.
 
@@ -78,7 +78,7 @@ Once you've created a block volume and attached it to your Solaris guest in the 
 
 
 
-## Step (3): Enabling Solaris guest to recognize the attached block volume
+## Step 3: Enabling Solaris guest to recognize the attached block volume
 
 
 
@@ -97,13 +97,13 @@ Specify disk (enter its number):
 
 In order to create a new zpool, we need to attach an iSCSI disk to the Solaris instance. 
 
-#### a) Navigate to the iSCI commands for your attached disk
+#### 3.1 Navigate to the iSCI commands for your attached disk
 
 ![](Images/OCI_block_volume_iSCSICommands.png)
 
 
 
-#### b) Run the Volume specific iSCSI commands in your console
+#### 3.2 Run the Volume specific iSCSI commands in your console
 
 The OCI Console will display the Linux iSCSI commands, you just need to translate them to the Solaris equivalents. Here's an example of the Linux commands:
 
@@ -128,7 +128,7 @@ sudo iscsiadm modify discovery --static enable
 
 
 
-#### c) Verify that the Solaris has discovered the attached disk
+#### 3.3 Verify that the Solaris has discovered the attached disk
 
 ![](Images/OCI_attach_disk.png)
 
