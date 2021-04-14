@@ -12,8 +12,6 @@ Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technol
 
 ## ![](Images/OCI_solaris_on_cloud.png)
 
-Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technologies/solaris11-overview.html) images have been available for download from the [Oracle Cloud Infrastructure(OCI)](https://www.oracle.com/cloud/) Marketplace. With Solaris now in the cloud, customers can benefit from Solaris instances running on x86 architecture. Here is walkthrough of launching an Oracle Solaris instance on OCI and the configuration options available:
-
 
 
 ## Step 1: Accessing the OCI Marketplace
