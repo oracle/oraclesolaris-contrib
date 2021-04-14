@@ -2,9 +2,9 @@
 
 Oracle Solaris has been trusted with running business-critical applications on your on-premise architecture. Since August 2019, Oracle Solaris images are available on the Oracle Cloud Infrastructure(OCI) Marketplace for deployment as a Bare Metal image or as Virtual Machines on OCI. This directory provides you with step-by step instructions on the following:
 
-- [Launching an Oracle Solaris Instance](Launch_Instance)
-- [Utilizing OCI Storage Resources](Block_Storage)
-- [Installing and Launching Oracle Solaris Zones](Oracle_Solaris_Zones)
+- [Launching an Oracle Solaris Instance](01_Launch_Instance)
+- [Utilizing OCI Storage Resources](02_Block_Storage)
+- [Installing and Launching Oracle Solaris Zones](03_Oracle_Solaris_Zones)
 
 You could also refer to [Dave Miner's blog](https://blogs.oracle.com/author/dave-miner) for more resources on working with Oracle Solaris on the Oracle Cloud Infrastructure. 
 
