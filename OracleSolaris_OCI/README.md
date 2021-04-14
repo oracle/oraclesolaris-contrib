@@ -1,8 +1,6 @@
 # Oracle Solaris on the Oracle Cloud Infrastructure (OCI)
 
-Oracle Solaris is the trusted business platform that you depend on. The [Oracle Solaris 11](https://www.oracle.com/solaris/solaris11/) Operating System (OS) gives you consistent compatibility, is simple to use and is designed to always be secure. 
-
-Since August 2019, Oracle Solaris images are available on the Oracle Cloud Infrastructure(OCI) Marketplace for deployment as a Bare Metal image or as Virtual Machines on OCI. This directory provides you with step-by step instructions on the following:
+Oracle Solaris has been trusted with running business-critical applications on your on-premise architecture. Since August 2019, Oracle Solaris images are available on the Oracle Cloud Infrastructure(OCI) Marketplace for deployment as a Bare Metal image or as Virtual Machines on OCI. This directory provides you with step-by step instructions on the following:
 
 - [Launching an Oracle Solaris Instance](Launch_Instance)
 - [Utilizing OCI Storage Resources](Block_Storage)
