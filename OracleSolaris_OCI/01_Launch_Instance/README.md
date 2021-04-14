@@ -2,7 +2,7 @@
 
 Oracle Cloud Infrastructure Compute lets you provision and manage compute hosts, known as **instances** . You can launch instances as needed to meet your compute and application requirements. After you launch an instance, you can access it securely from your computer, restart it, attach and detach volumes, and terminate it when you're done with it. Any changes made to the instance's local drives are lost when you terminate it. Any saved changes to volumes attached to the instance are retained.
 
-This [document](OracleSolaris11.4_OCI_Installation.md) walks you through how you can launch your own Oracle Solaris instance in OCI to get started with using Oracle Solaris in the cloud.
+Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technologies/solaris11-overview.html) images have been available for download from the [Oracle Cloud Infrastructure(OCI)](https://www.oracle.com/cloud/) Marketplace. With Solaris now in the cloud, customers can benefit from Solaris instances running on x86 architecture. Here is walkthrough of launching an Oracle Solaris instance on OCI and the configuration options available:
 
 
 
