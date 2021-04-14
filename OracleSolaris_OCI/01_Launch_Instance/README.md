@@ -10,7 +10,7 @@ This [document](OracleSolaris11.4_OCI_Installation.md) walks you through how you
 
 ------
 
-## ![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_solaris_on_cloud.png)
+## ![](Images/OCI_solaris_on_cloud.png)
 
 Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technologies/solaris11-overview.html) images have been available for download from the [Oracle Cloud Infrastructure(OCI)](https://www.oracle.com/cloud/) Marketplace. With Solaris now in the cloud, customers can benefit from Solaris instances running on x86 architecture. Here is walkthrough of launching an Oracle Solaris instance on OCI and the configuration options available:
 
@@ -20,7 +20,7 @@ Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technol
 
 
 
-![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_marketplace.png)
+![](Images/OCI_marketplace.png)
 
 
 
@@ -28,7 +28,7 @@ After logging in to the OCI console, you can find the OCI Marketplace by clickin
 
 
 
-![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_solaris.png)
+![](Images/OCI_solaris.png)
 
 
 
@@ -42,7 +42,7 @@ Once you choose your preferred version of the Oracle Solaris image in your compa
 
 
 
-![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_solaris_launchinstance.png)
+![](Images/OCI_solaris_launchinstance.png)
 
 
 
@@ -56,7 +56,7 @@ Once you click Launch Instance, you are directed to the Create Instance page whe
 
 
 
-![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_available_shapes.png)
+![](Images/OCI_available_shapes.png)
 
 
 
@@ -64,7 +64,7 @@ For our demonstration, we are using an INTEL Skylake VM.Standard2.2 with 2 core 
 
 
 
-![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_keys.png)
+![](Images/OCI_keys.png)
 
 
 
@@ -76,7 +76,7 @@ Once you click Create, OCI will provision and your instance will be up and runni
 
 
 
-![](C:/Users/tdhuri/Desktop/GitHub Branch - Main/solarisdiscover/OracleSolaris_OCI/01_Launch_Instance/Images/OCI_activeconsole.png)
+![](Images/OCI_activeconsole.png)
 
 
 
