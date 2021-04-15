@@ -1,0 +1,17 @@
+set name=pkg.fmri value=pkg://odev/security/pf-firewall-webui@1.0
+set name=pkg.summary value="PF FIREWALL conf /etc/firewall/pf.webui (build with st_085)"
+set name=pkg.description value="This package contains the webui configuration for the pf firewall and the corresponding service."
+set name=variant.arch value=sparc value=i386
+<transform dir path=etc$ -> drop>
+<transform dir path=etc/svc$ -> drop>
+<transform dir path=etc/svc/profile$ -> drop>
+<transform dir path=etc/svc/profile/site$ -> drop>
+<transform file path=etc/svc/profile/site/firewall-webui-profile.xml$ -> set owner root>
+<transform file path=etc/svc/profile/site/firewall-webui-profile.xml$ -> set group sys>
+<transform file path=etc/svc/profile/site/firewall-webui-profile.xml$ -> set mode 0444>
+<transform file path=etc/svc/profile/site/firewall-webui-profile.xml$ -> default restart_fmri svc:/system/manifest-import:default>
+<transform dir path=etc/firewall$ -> drop>
+<transform file path=etc/firewall/pf.webui$ -> set owner root>
+<transform file path=etc/firewall/pf.webui$ -> set group sys>
+<transform file path=etc/firewall/pf.webui$ -> set mode 0644>
+<transform file path=etc/firewall/pf.webui$ -> default refresh_fmri svc:/network/firewall:default>

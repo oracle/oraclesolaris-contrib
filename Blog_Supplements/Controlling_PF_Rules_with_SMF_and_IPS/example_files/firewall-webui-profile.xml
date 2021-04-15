@@ -1,0 +1,7 @@
+<service_bundle type='profile' name='network/firewall'>
+        <service name='network/firewall' type='service' version='1'>
+                <property_group name='include' type='framework'>
+                        <propval name='webui' type='astring' value='/etc/firewall/pf.webui'/>
+                </property_group>
+        </service>
+</service_bundle>

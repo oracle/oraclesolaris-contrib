@@ -1,0 +1,4 @@
+K muehle@wacken % cat PF_FIREWALL_RAD/PROTO.PF_FIREWALL_RAD/etc/firewall/pf.rad                                                                                                                                                                /data/build 0
+## accept connections for oracle solaris rad:remote
+pass in proto tcp from any to any port = 12302
+pass in proto tcp from any to any port = 8102

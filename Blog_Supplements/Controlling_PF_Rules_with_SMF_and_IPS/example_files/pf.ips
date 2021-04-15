@@ -1,0 +1,3 @@
+## accept connections for Solaris IPS repository
+pass in proto tcp from any to any port = 8113
+pass in proto tcp from any to any port = 8114
