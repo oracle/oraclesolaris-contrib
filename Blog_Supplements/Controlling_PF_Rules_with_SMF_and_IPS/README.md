@@ -17,7 +17,7 @@ But in order to add and remove changes to the service I will us SMF profiles, wh
 In addition to the use of SMF stencil I will use IPS packages in order to easily add or remove files and there for PF configurations.
 
 So this is what we will need:
-1. files with pf rules in it
+1. PF rule files
 2. SMF profile
 3. SMF stencil
 4. IPS package
