@@ -12,6 +12,8 @@ The original zones introduced in Solaris 10 are known as *non-global zones*, whi
 
 In this document we are going to discuss how to install a non-global zone on a virtual machine and briefly on Bare Metal.
 
+Note: *Images in the markdown have been captured on 4th March 2021.*
+
 ------
 
 ## Setup

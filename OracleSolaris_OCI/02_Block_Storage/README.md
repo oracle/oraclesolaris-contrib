@@ -2,6 +2,8 @@
 
 Once you have successfully [launched an Oracle Solaris](OracleSolaris_OCI/Launch_Instance) instance, you would likely want to use other Oracle Cloud Storage resources to run your applications or deploy zones in Oracle Solaris. This document provides a demonstration on how you can create and attach Block Volumes to your Oracle Solaris instance. For more information on types of storage resources available, please refer to the [OCI documentation](https://docs.oracle.com/en-us/iaas/Content/home.htm).
 
+Note: *Images in the markdown have been captured on 4th March 2021.*
+
 ------
 
 

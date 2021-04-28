@@ -4,7 +4,7 @@ Oracle Cloud Infrastructure Compute lets you provision and manage compute hosts,
 
 Since October 2019, [Oracle Solaris 11.4](https://www.oracle.com/solaris/technologies/solaris11-overview.html) images have been available for download from the [Oracle Cloud Infrastructure(OCI)](https://www.oracle.com/cloud/) Marketplace. With Solaris now in the cloud, customers can benefit from Solaris instances running on x86 architecture. Here is walkthrough of launching an Oracle Solaris instance on OCI and the configuration options available:
 
-
+Note: *Images in the markdown have been captured on 4th March 2021.*
 
 ## Oracle Solaris 11.4 on OCI: Installation
 
