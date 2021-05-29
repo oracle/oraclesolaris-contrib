@@ -3,18 +3,18 @@
 With the replacement of IP Filter (IPF) with the Oracle Solaris implementation Packet Filter (PF) customers were faced with a few minor and major changes depending on how one used IPF in the past.
 In the following I want to show how one of the changes that came with PF helps to easily manage configurations.
 
-One great thing about how PF configuration works, besides using the pfctl command, is that by default you PF allows includes in the pf.conf file. This itself is not a fantastic new feature but is much easier to maintain different files each for a certain purpose than one large file only. Especially when we not talking about only a few servers but rather hundreds or even thousands.
-Since most servers will most likely not run the same applications or in the same subnets or even networks it was important for me to come up of a way to neither have multiple config files with the same entries and differences in just one line or so.
+One great thing about how PF configuration works, besides using the pfctl command, is that by default PF allows includes in the pf.conf file. This itself is not a fantastic new feature but is much easier to maintain different files each for a certain purpose than one large file only. Especially when we not talking about only a few servers but rather hundreds or even thousands.
+Since most servers will most likely not run the same applications or in the same subnets or even networks it was important for me to come up with a way to neither have multiple config files with the same entries and differences in just one line or so.
 Whether you are using ansible, puppet, chef, cfengine or which ever configuration tool the way of configuring the firewall should stay same too. Not a big fan of relying on certain tools.
-Additionally if you are already using PF with a different BSD derivat you should be able to the same files. Unless you are using OS specifics in it. But the majority should.
-In order to not just talk about how to create rules and anchors and such in PF I will stay with a simple PF rules in this case. It really doesn't matter what you use inside of the config files.
+Additionally if you are already using PF with a different BSD derivat you should be able to use the same files. Unless you are using OS specifics in it. But the majority should.
+In order to not just talk about how to create rules and anchors and such in PF I will stay with simple PF rules in this case. It really doesn't matter what you use inside of the config files.
 
-So, one of the big differences to other PF implementations is Solaris SMF and two of it's great features - stencil and profiles. As most probably know SMF has been replacing the old/traditional way of configuring the OS. For example if you want to persistently change the nameserver you cannot do that by editing /etc/resolv.conf but by changing the desired value of the service svc:/network/dns/client:default. SMF takes care of changing updating the files. My guess I because of compatibility reasons. Which is nice if you depend on third party software or your own old software and have no time to update it. ;-)
-Since not every software is not SMF aware stencils were implemented. Best example to me for this is puppet that comes with the Oracle Solaris repository. There is no need to edit the puppet.conf but instead change the service's property. Thanks to this, by just adding host configuration part of the the puppet:agent SMF service to your sc_profile.xml when installing a new server (zone, ldom, bare metal, ...) will configure your puppet agent without you doing anything.
+So, one of the big differences to other PF implementations is Solaris SMF and two of it's great features - stencils and profiles. As most probably know SMF has been replacing the old/traditional way of configuring the OS. For example if you want to persistently change the nameserver you cannot do that by editing /etc/resolv.conf but by changing the desired value of the service svc:/network/dns/client:default. SMF takes care of changing updating the files. My guess is because of compatibility reasons. Which is nice if you depend on third party software or your own old software and have no time to update it. ;-)
+Since not every software is not SMF aware stencils were implemented. Best example to me for this is puppet that comes with the Oracle Solaris repository. There is no need to edit the puppet.conf but instead change the service's property. Thanks to this, by just adding the host configuration part of the the puppet:agent SMF service to your sc_profile.xml when installing a new server (zone, ldom, bare metal, ...) it will configure your puppet agent without you doing anything.
 In this case I use a stencil file to add include entries to the pf.conf file.
-But in order to add and remove changes to the service I will us SMF profiles, which are nothing less than SMF xml snippets with the modification I want for a certain service. In this case add the awareness to the service of a new config file to be used with the SMF stencil.
+But in order to add and remove changes to the service I will us SMF profiles, which are nothing more than SMF xml snippets with the modification I want for a certain service. In this case it adds the awareness to the service of a new config file to be used with the SMF stencil.
 
-In addition to the use of SMF stencil I will use IPS packages in order to easily add or remove files and there for PF configurations.
+In addition to the use of SMF stencils I will use IPS packages in order to easily add or remove files and there for PF configurations.
 
 So this is what we will need:
 1. PF rule files
@@ -23,7 +23,7 @@ So this is what we will need:
 4. IPS package
 
 ## PF rules
-The easiest part is to create a file for each rule or each set of rules that you want to be able to control apart from other rules.
+The easiest part is to create a file for each rule or each set of rules that you want to be able to control seperately from other rules.
 Let's just pick a few for the purpose of this post.
 
 - ssh
@@ -62,8 +62,7 @@ pf.webui
 pass in proto tcp from any to any port = 6787
 ```
 
-In order to later on create ips packages with these I would recommend to just directly create all the files in the preferred proto directory.
-
+In order to later on create ips packages with these files I would recommend to just directly create all the files in the preferred proto directory.
 
 It pretty much doesn't matter where you will store the files later on as long as you will pass on the right path to the according SMF profile in the next step.
 
@@ -71,9 +70,9 @@ You can also directly create the files in /etc/firewall. IPS is just so much eas
 
 ## SMF profiles
 As mentioned earlier SMF profiles contain only the part of a service that needs to be changed or added. The default path for custom profiles is /etc/svc/profile/site.
-So far we have a file (pf.webui) that includes the trivial rule to pass connections from anywhere to port 6787. In my case, I will have all pf files in the `/etc/firewall` directory. In order for our stencil to later on be able to find these files we have to add their path to the firewall service. This is done by creating a property group for all includes (pf.webui, pf.rad, ...) and a property entry for the path itself. The SMF service xml file that we create will be automatically picked up and configured by `svc:/system/manifest-import:default` from the site directory.
+So far we have a file (pf.webui) that includes the trivial rule to pass connections from anywhere to port 6787. In my case, I have all pf files in the `/etc/firewall` directory. In order for our stencil to later on be able to find these files we have to add their path to the firewall service. This is done by creating a property group for all includes (pf.webui, pf.rad, ...) and a property entry for the path itself. The SMF service xml file that we create will be automatically picked up and configured by `svc:/system/manifest-import:default` from the site directory.
 
-Let's use the webui as an example right quick.
+Let's just use the webui as a quick example.
 firewall-webui-profile.xml
 ```xml
 <service_bundle type='profile' name='network/firewall'>
@@ -85,7 +84,7 @@ firewall-webui-profile.xml
 </service_bundle>
 ```
 
-When this is put into place and manifest-import was restarted, the service property should look like this.
+When this is put into place (/etc/svc/profile/site) and manifest-import was restarted, the service property of the firewall service should look like this.
 ```bash
 K muehle@wacken % svcprop -p include/webui firewall
 include/webui astring /etc/firewall/pf.webui
@@ -133,9 +132,9 @@ include/rad astring /etc/firewall/pf.rad
 include/webui astring /etc/firewall/pf.webui
 ```
 
-So far we have pf files which include the pf rules and will be created in /etc/firewall and the SMF profile files, which contain information about the path of the pf files for the firewall service.
+So far we have pf files which include the pf rules that will be created in /etc/firewall and the SMF profile files, which contain information about the path of the pf files for the firewall service.
 
-Since we will use SMF stencil the service needs to be aware of it too. And the best way to modify a service is by using SMF profiles. So let's create one for this case too.
+Since we will use SMF stencils the service needs to be aware of it too. And the best way to modify a service is by using SMF profiles. So let's create one for this case too.
 
 firewall-stencil-profile.xml
 ```xml
@@ -158,10 +157,12 @@ The thing missing now is how exactly PF itself will know about the pf files and 
 
 
 ## SMF stencil (firewall.stencil)
-As we know the default PF config file (pf.conf) can be found under /etc/firewall. This is the one config file that PF itself uses by default. The stencil that we will create is going to replace this file. We can either use the default pf.conf as basis to start our stencil or just create our own. Both works the same since the only thing that matters are the rules or other configurations used inside.
-Because of the whole Copyright stuff in the default one I will here start from scratch and create a small stencil that enables us to add as many configs as we want.
+As we know the default PF config file (pf.conf) can be found under /etc/firewall. This is the one config file that PF itself uses by default. The stencil that we will create is going to replace this file. We can either use the default pf.conf as basis to start our stencil or just create our own. Both work the same since the only thing that matters are the rules or other configurations used inside.
+Because of the whole Copyright stuff in the default file I start from scratch and create a small stencil that enables us to add as many configs as we want.
+Because of the whole Copyright stuff in the default file I start from scratch here and create a small stencil that enables us to add as many configs as we want.
 
-This is what my stencil file looks like for this purpose.
+This is what my stencil file looks like for this purpose. 
+Please be aware, these rules are just radomly picked for this example. Depending on the requirements your rules need to be adjusted and will most probably be quiet different.
 
 ```bash
 # /etc/firewall/pf.conf
@@ -196,7 +197,7 @@ $%/(svc:/$%s:(.*)/:properties)/{$%/$%1/include/(.*)/{include "$%{$%1/include/$%3
 pass out
 ```
 
-As you can see it is just basic stuff. I like to have certain rules in place on every system like the earlier mentioned ssh and rsyslog that I wanted to use as example how to directly add configurations or rules to the pf.conf. Downside to this is, you would have to replace the whole stencil file if you want to change or remove the rule.
+As you can see it is just basic stuff. I like to have certain rules in place on every system, like the earlier mentioned ssh and rsyslog, that I wanted to use as example how to directly add configurations or rules to the pf.conf. Downside to this is, you would have to replace the whole stencil file if you want to change or remove the rule.
 The stencil file could as well be blank and only have the "includes" part in it.
 
 The `ìncludes` section tells SMF to look for the `include` property group in every instance of the service (in this case svc:/network/firewall:default) and add the value to the by firewall-stencil-profile.xml configured file/path. In this case /etc/firewall/pf.conf we used the default so we would not have to reconfigure PF itself.
@@ -367,4 +368,3 @@ Long story short, create the following:
 The purpose of the post was not to show how exactly each of the features that we used work in detail but rather how easy it is to combine these given possibilities to create something really helpful for automation and getting rid of some administrative overhead.
 
 Hopefully this might be a bit of a help to someone.
-
