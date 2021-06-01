@@ -1,0 +1,9 @@
+<service_bundle type='profile' name='network/firewall'>
+        <service name='network/firewall' type='service' version='1'>
+                <property_group name="firewall_stencil" type="configfile">
+                        <propval name="path" type="astring" value="/etc/firewall/pf.conf"/>
+                        <propval name="stencil" type="astring" value="firewall.stencil"/>
+                        <propval name="mode" type="astring" value="0644"/>
+                </property_group>
+        </service>
+</service_bundle>

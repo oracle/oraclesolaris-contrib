@@ -1,0 +1,3 @@
+PF_FIREWALL_WEBUI/PROTO.PF_FIREWALL_WEBUI/etc/firewall/pf.webui                                                                                                                                                          /data/build 0
+## accept connections for oracle solaris webui dashboard
+pass in proto tcp from any to any port = 6787

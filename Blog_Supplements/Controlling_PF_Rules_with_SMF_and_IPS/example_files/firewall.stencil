@@ -1,0 +1,56 @@
+#
+# Copyright (c) 2015, 2017, Oracle and/or its affiliates. All rights reserved.
+#
+#
+# /etc/firewall/pf.conf
+#
+#
+# This is a sample PF firewall configuration file. Solaris currently ships with
+# PF firewall alternate to current IPF. PF is meant to replace IPF in future
+# Solaris releases. We encourage customers with customized IPF configuration to
+# try to migrate their firewall rules to PF. See our release notes/documentation
+# for hints how to migrate your custom configuration.
+#
+# There is no action for you if you are using default IPF configuration (a.k.a.
+# host based firewall). See svc.ipfd(1M) to find out how to check if you are
+# affected.
+#
+
+#
+# PF does IP reassembly by default. We also use 'no-df' option on Solaris
+# to ensure IP reassembly working with broken stacks which can send packets
+# with invalid flag combination 'MF|DF'.
+#
+set reassemble yes no-df
+
+#
+# We don't want PF to filter on loopback traffic by default.
+#
+# Filtering on loopback can interfere with zone installation and other
+# operations due to Solaris loopback optimizations. See the pf.conf(5)
+# manpage for guidance on how to enable it for your application.
+set skip on lo0
+
+## block everything unless told otherwise
+## and send TCP-RST/ICMP unreachable
+## for every packet which gets blocked
+block return log
+
+## accept incoming icmp pkts e.g. ping
+pass in proto icmp from any to any
+
+## accept incoming SSH connections
+pass in proto tcp to any port 22 flags any keep state (sloppy)
+
+## accept connections for rsyslog
+pass in proto tcp from any to any port = 6514
+
+## includes
+; walk each instance and extract all properties from the config PG
+;$%/(svc:/$%s:(.*)/:properties)/{
+$%/(svc:/$%s:(.*)/:properties)/{$%/$%1/include/(.*)/{include "$%{$%1/include/$%3}"
+}}
+
+## allow all connections initiated from this system,
+## including DHCP requests
+pass out

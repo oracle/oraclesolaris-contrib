@@ -1,0 +1,2 @@
+## accept connections for oracle puppet
+pass in proto tcp from any to any port = 8140
