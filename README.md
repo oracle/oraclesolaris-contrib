@@ -10,10 +10,10 @@ Additionally, this repository also includes demos to augment the Oracle Solaris 
 
 This repository aims to provide users with examples and steps on the following: 
 
-- [Oracle_Solaris_On_OCI]([OracleSolaris_OCI](https://alm.oraclecorp.com/sandbox/#projects/oraclesolaris-contrib/scm/solarisdiscover.git/tree/OracleSolaris_OCI?revision=release_v8))
+- [Oracle_Solaris_On_OCI](/OracleSolaris_OCI)
 - [StatsStore_WebUI](/StatsStore_WebUI)
 - [REST](/REST)
-- [Blog Supplements](/Blog_Supplemets)
+- [Blog Supplements](/Blog_Supplements)
 
 ## Documentation
 
