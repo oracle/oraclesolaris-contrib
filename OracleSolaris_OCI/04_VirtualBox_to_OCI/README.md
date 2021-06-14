@@ -20,7 +20,7 @@ In case you need to access the Oracle Solaris console through OCI Cloud Shell, y
 
 *Note: You need to have root user privileges' to change/set eeprom parameters.
 
-![](Images\VBox_eeprom.png)
+![](Images/VBox_eeprom.png)
 
 
 
@@ -70,7 +70,7 @@ The OCI VCN is a virtual, private network that can be set up in OCI. It closely 
 
 ------
 
-![](Images\OCI_VCN.png)
+![](Images/OCI_VCN.png)
 
 The execution of this operation includes the creation of: 
 
@@ -117,7 +117,7 @@ To collect this information, click on the “OCI Main Menu” =>“Governance & 
 
 In the “Tenancy Information” window, click on “Copy” to copy your Tenancy OCID to the clipboard.
 
-![](Images\OCI_tenancy.png)
+![](Images/OCI_tenancy.png)
 
 
 
@@ -129,7 +129,7 @@ A compartment is a collection of related resources (such as cloud networks, comp
 
 In the “Compartments” window, click on the Compartment OCID and then on the “Copy” button to copy your Compartment OCID to the clipboard.
 
-![](Images\OCI_compartment.png)
+![](Images/OCI_compartment.png)
 
 
 
@@ -150,7 +150,7 @@ Once you have all the required information as mentioned in Step 3, you can launc
 - In the Properties tab, add all the values captured in Step 3
 - Click Apply
 
-![](Images\VBox_cloudprofilemanager.png)
+![](Images/VBox_cloudprofilemanager.png)
 
 ------
 
@@ -175,7 +175,7 @@ Once all the above steps are successfully complete, your instance will be availa
 
 
 
-![](Images\OCI_export.png)
+![](Images/OCI_export.png)
 
 
 
