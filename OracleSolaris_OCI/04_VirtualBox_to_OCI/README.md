@@ -129,7 +129,9 @@ A compartment is a collection of related resources (such as cloud networks, comp
 
 In the “Compartments” window, click on the Compartment OCID and then on the “Copy” button to copy your Compartment OCID to the clipboard.
 
-### ![](Images\OCI_compartment.png)
+![](Images\OCI_compartment.png)
+
+
 
 ### 3.4 Key File and Fingerprint 
 
