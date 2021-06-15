@@ -179,5 +179,9 @@ Once all the above steps are successfully complete, your instance will be availa
 
 
 
+
+
+Note: Images in this markdown have been captured on 06/11/2021.
+
 Copyright (c) 2021, Oracle and/or its affiliates.
 Licensed under the Universal Permissive License v 1.0 as shown at [https://oss.oracle.com/licenses/upl/](https://oss.oracle.com/licenses/upl/).
