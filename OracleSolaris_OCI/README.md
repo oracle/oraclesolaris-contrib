@@ -5,6 +5,7 @@ Oracle Solaris has been trusted with running business-critical applications on y
 - [Launching an Oracle Solaris Instance](01_Launch_Instance)
 - [Utilizing OCI Storage Resources](02_Block_Storage)
 - [Installing and Launching Oracle Solaris Zones](03_Oracle_Solaris_Zones)
+- [Migrating VM's from VirtualBox 6 to OCI](04_VirtualBox_to_OCI)
 
 You could also refer to [Dave Miner's blog](https://blogs.oracle.com/author/dave-miner) for more resources on working with Oracle Solaris on the Oracle Cloud Infrastructure. 
 
