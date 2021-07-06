@@ -12,37 +12,37 @@ If the output doesn't show 3.7, you can try installing it with **pkg install run
 
 ### 11.4 SRU Instructions
 
-1. Ensure developer components are installed: **pkg change-facet facet.devel=true**
+Step(1): Ensure developer components are installed: **pkg change-facet facet.devel=true**
 
-2.  Install the compiler, system headers, pkg-config tool: **pkg install gcc system/header developer/build/pkg-config**
+Step(2): Install the compiler, system headers, pkg-config tool: **pkg install gcc system/header developer/build/pkg-config**
 
-3.  Set the correct pkgconfig path in your environment: **export PKG_CONFIG_PATH=/usr/openssl/1.1/pkgconfig/64/:/usr/lib/64/pkgconfig**
+Step(3): Set the correct pkgconfig path in your environment: **export PKG_CONFIG_PATH=/usr/openssl/1.1/pkgconfig/64/:/usr/lib/64/pkgconfig**
 
-4.  Set the correct include path in your environment: **export CFLAGS="$(pkg-config --cflags libffi --libs libcrypto libssl)"**
+Step(4): Set the correct include path in your environment: **export CFLAGS="$(pkg-config --cflags libffi --libs libcrypto libssl)"**
 
-5.  Instruct the installer not to build rust: **export CRYPTOGRAPHY_DONT_BUILD_RUST=1**
+Step(5): Instruct the installer not to build rust: **export CRYPTOGRAPHY_DONT_BUILD_RUST=1**
 
-6.  Now follow the installation instructions from the [OCI CLI documentation](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm)
+Step(6): Now follow the installation instructions from the [OCI CLI documentation](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm)
 
 
 ### 11.4 GA Instructions
 
-1. Install[ Oracle Developer Studio](https://www.oracle.com/technetwork/server-storage/developerstudio/overview/index.html)'s C compiler - any recent version should do, I've tested 12.4, 12.5 and 12.6. Once you've obtained credentials for the package repository and configured the solarisstudio publisher, the command is simply **pkg install --accept developer/developerstudio-126/cc**
+Step(1): Install[ Oracle Developer Studio](https://www.oracle.com/technetwork/server-storage/developerstudio/overview/index.html)'s C compiler - any recent version should do, I've tested 12.4, 12.5 and 12.6. Once you've obtained credentials for the package repository and configured the solarisstudio publisher, the command is simply **pkg install --accept developer/developerstudio-126/cc**
 
-2. Ensure the C compiler command is in your path: **PATH=$PATH:/opt/developerstudio12.6/bin**
+Step(2): Ensure the C compiler command is in your path: **PATH=$PATH:/opt/developerstudio12.6/bin**
 
-3. Install the system headers and pkg-config tool. **pkg install system/header developer/build/pkg-config**
+Step(3): Install the system headers and pkg-config tool. **pkg install system/header developer/build/pkg-config**
 
-4. Set the correct include path in your environment: **export CFLAGS=$(pkg-config --cflags libffi)**
+Step(4): Set the correct include path in your environment: **export CFLAGS=$(pkg-config --cflags libffi)**
 
-5. Export the config path for OCI to recognize the package
+Step(5): Export the config path for OCI to recognize the package
 
-   ```
-   export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig:/usr/openssl/1.1/pkgconfig/64/
-   export CFLAGS="$(pkg-config --cflags libffi --libs libcrypto libssl)"
-   ```
+```
+export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig:/usr/openssl/1.1/pkgconfig/64/
+export CFLAGS="$(pkg-config --cflags libffi --libs libcrypto libssl)"
+```
 
-6. Now follow the installation instructions from the [OCI CLI documentation](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm)
+Step(6): Now follow the installation instructions from the [OCI CLI documentation](https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm)
 
 Once you download and execute the basic install script, you'll have to answer several prompts regarding the installation locations for the OCI CLI components, after that it will download a series of dependencies, build and install them to the specified location, this takes just a couple of minutes. I've included a transcript of a session below so you can see what a successful run of the OCI install script looks like. 
 
