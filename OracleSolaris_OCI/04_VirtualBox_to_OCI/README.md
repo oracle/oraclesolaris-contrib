@@ -50,7 +50,7 @@ After you have completed Step 1, you need to login to your OCI Instance and ensu
 
 ### 2.1 Creating a bucket in your compartment
 
-A Bucket, part of the Oracle Cloud Infrastructure Object Storage service, is a container for storing objects in a compartment within an Object Storage namespace. A ==B==ucket is associated with a single compartment. A Bucket is used by Oracle VM VirtualBox to upload and save the Virtual Machine Image on Oracle Cloud Infrastructure.
+A Bucket, part of the Oracle Cloud Infrastructure Object Storage service, is a container for storing objects in a compartment within an Object Storage namespace. A Bucket is associated with a single compartment. A Bucket is used by Oracle VM VirtualBox to upload and save the Virtual Machine Image on Oracle Cloud Infrastructure.
 
 - On the OCI Main Menu, click on "Storage==> Buckets"
 - Click "Create Bucket"
@@ -72,13 +72,18 @@ The OCI VCN is a virtual, private network that can be set up in OCI. It closely 
 
 ![](Images/OCI_VCN.png)
 
-The execution of this operation includes the creation of: 
 
-- 3 different Subnet(s) – 1 for each Availability Domain 
-- 1 Default Route Table for the OCI Compartment 
-- 1 Internet Gateway for the OCI Compartment 
-- 1 Default Security List for the OCI Compartment 
-- 1 Default DHCP Service for the OCI Compartment
+
+### 2.2 Creating a Subnet within your Virtual Cloud Network (VCN)*
+
+*if you already have a subnet defined within your VCN, you can continue using it to migrate from VirtualBox to OCI else you can follow the steps below.
+
+- Once your new VCN has been provisioned, click on "Create Subnet"
+- Choose your preferred name for the subnet
+- [Define a CIDR block](https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/managingVCNs_topic-Overview_of_VCNs_and_Subnets.htm#Overview) 
+- Click "Create Subnet"
+
+![](Images/OCI_subnet.png)
 
 ------
 
