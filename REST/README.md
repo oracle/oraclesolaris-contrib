@@ -1,6 +1,6 @@
 # Managing Oracle Solaris through REST
 
-Oracle Solaris has a built-in framework to remotely manage its features called the [Remote Administration Daemon (RAD)](https://docs.oracle.com/cd/E37838_01/html/E68270/gmfhf.html#scrolltoc). This is done through [RAD modules](https://docs.oracle.com/cd/E37838_01/html/E68270/gsdwb.html) for each faeture. Oracle Solaris 11.4 offers a REST API that is layered on top of the RAD framework, refered to as the RAD/REST API, or just the REST API.
+Oracle Solaris has a built-in framework to remotely manage its features called the [Remote Administration Daemon (RAD)](https://docs.oracle.com/cd/E37838_01/html/E68270/gmfhf.html#scrolltoc). This is done through [RAD modules](https://docs.oracle.com/cd/E37838_01/html/E68270/gsdwb.html) for each feature. Oracle Solaris 11.4 offers a REST API that is layered on top of the RAD framework, refered to as the RAD/REST API, or just the REST API.
 
 You can use this RAD/REST API to connect to the Oracle Solaris system with any tool that can speak REST, giving a lot of freedom to connect in your favourite monitoring or management tool.
 
