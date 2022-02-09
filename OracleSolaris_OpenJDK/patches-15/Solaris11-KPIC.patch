@@ -1,0 +1,22 @@
+--- jdk15u-jdk-15.0.1-12/make/common/modules/LauncherCommon.gmk.orig	2021-11-19 17:36:23.771421602 +0000
++++ jdk15u-jdk-15.0.1-12/make/common/modules/LauncherCommon.gmk	2021-11-19 17:36:35.224958538 +0000
+@@ -155,7 +155,7 @@
+           -DLAUNCHER_NAME='"$$(LAUNCHER_NAME)"' \
+           -DPROGNAME='"$1"' \
+           $$($1_CFLAGS), \
+-      CFLAGS_solaris := -KPIC, \
++      CFLAGS_solaris := -fPIC, \
+       CFLAGS_windows := $$($1_CFLAGS_windows), \
+       DISABLED_WARNINGS_gcc := unused-function, \
+       LDFLAGS := $$(LDFLAGS_JDKEXE) \
+--- jdk15u-jdk-15.0.1-12/make/modules/java.base/Launcher.gmk.orig	2021-11-19 17:37:40.219166430 +0000
++++ jdk15u-jdk-15.0.1-12/make/modules/java.base/Launcher.gmk	2021-11-19 17:37:52.116813441 +0000
+@@ -65,7 +65,7 @@
+       CFLAGS := $(CFLAGS_JDKEXE) \
+           -I$(TOPDIR)/src/$(MODULE)/share/native/libjli, \
+       CFLAGS_linux := -fPIC, \
+-      CFLAGS_solaris := -KPIC, \
++      CFLAGS_solaris := -fPIC, \
+       LDFLAGS := $(LDFLAGS_JDKEXE), \
+       OUTPUT_DIR := $(SUPPORT_OUTPUTDIR)/modules_libs/$(MODULE), \
+   ))

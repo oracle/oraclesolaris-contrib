@@ -1,0 +1,11 @@
+--- openjdk14/src/hotspot/os/solaris/os_solaris.cpp.orig	2021-08-30 09:47:00.387082887 +0000
++++ openjdk14/src/hotspot/os/solaris/os_solaris.cpp	2021-08-30 09:48:20.965475955 +0000
+@@ -1438,7 +1438,7 @@
+ 
+   static const arch_t arch_array[]={
+     {EM_386,         EM_386,     ELFCLASS32, ELFDATA2LSB, (char*)"IA 32"},
+-    {EM_486,         EM_386,     ELFCLASS32, ELFDATA2LSB, (char*)"IA 32"},
++    {EM_IAMCU,       EM_386,     ELFCLASS32, ELFDATA2LSB, (char*)"IA 32"},
+     {EM_IA_64,       EM_IA_64,   ELFCLASS64, ELFDATA2LSB, (char*)"IA 64"},
+     {EM_X86_64,      EM_X86_64,  ELFCLASS64, ELFDATA2LSB, (char*)"AMD 64"},
+     {EM_SPARC,       EM_SPARC,   ELFCLASS32, ELFDATA2MSB, (char*)"Sparc 32"},

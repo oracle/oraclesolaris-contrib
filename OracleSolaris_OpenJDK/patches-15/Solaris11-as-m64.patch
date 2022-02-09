@@ -1,0 +1,13 @@
+Avoids usage of -m64 for gas.
+
+--- jdk15u/make/hotspot/lib/CompileJvm.gmk.orig	2021-09-13 14:00:47.850736907 +0000
++++ jdk15u/make/hotspot/lib/CompileJvm.gmk	2021-09-13 14:01:55.178050276 +0000
+@@ -159,7 +159,7 @@
+     DISABLED_WARNINGS_clang := $(DISABLED_WARNINGS_clang), \
+     DISABLED_WARNINGS_xlc := $(DISABLED_WARNINGS_xlc), \
+     DISABLED_WARNINGS_microsoft := $(DISABLED_WARNINGS_microsoft), \
+-    ASFLAGS := $(JVM_ASFLAGS), \
++    ASFLAGS := , \
+     LDFLAGS := $(JVM_LDFLAGS), \
+     LIBS := $(JVM_LIBS), \
+     OPTIMIZATION := $(JVM_OPTIMIZATION), \

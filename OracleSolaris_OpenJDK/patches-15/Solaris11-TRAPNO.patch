@@ -1,0 +1,11 @@
+--- openjdk14/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp.orig	2021-08-30 09:50:25.617131295 +0000
++++ openjdk14/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp	2021-08-30 09:54:16.121332502 +0000
+@@ -618,7 +618,7 @@
+   // Furthermore, a false-positive should be harmless.
+   if (UnguardOnExecutionViolation > 0 &&
+       (sig == SIGSEGV || sig == SIGBUS) &&
+-      uc->uc_mcontext.gregs[TRAPNO] == T_PGFLT) {  // page fault
++      uc->uc_mcontext.gregs[REG32_TRAPNO] == T_PGFLT) {  // page fault
+     int page_size = os::vm_page_size();
+     address addr = (address) info->si_addr;
+     address pc = (address) uc->uc_mcontext.gregs[REG_PC];

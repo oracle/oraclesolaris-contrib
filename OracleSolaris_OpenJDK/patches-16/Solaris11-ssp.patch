@@ -1,0 +1,84 @@
+Undefined                       first referenced
+ symbol                             in file
+__stack_chk_fail                    /tmp/build_psumbera/openjdk-15/jdk15u-jdk-15.0.1-12-build/hotspot/variant-server/libjvm/objs/abstractInterpreter.o
+__stack_chk_guard                   /tmp/build_psumbera/openjdk-15/jdk15u-jdk-15.0.1-12-build/hotspot/variant-server/libjvm/objs/abstractInterpreter.o
+ld: fatal: symbol referencing errors
+collect2: error: ld returned 1 exit status
+gmake[3]: *** [lib/CompileJvm.gmk:176: /tmp/build_psumbera/openjdk-15/jdk15u-jdk-15.0.1-12-build/support/modules_libs/java.base/server/libjvm.so] Error 1
+..
+
+--- jdk16u-jdk-16.0.0-0/make/autoconf/spec.gmk.in
++++ jdk16u-jdk-16.0.0-0/make/autoconf/spec.gmk.in
+@@ -530,7 +530,7 @@
+ SDKROOT:=@SDKROOT@
+ 
+ # LDFLAGS used to link the jdk native libraries (C-code)
+-LDFLAGS_JDKLIB:=@LDFLAGS_JDKLIB@
++LDFLAGS_JDKLIB:=-lssp @LDFLAGS_JDKLIB@
+ JDKLIB_LIBS:=@JDKLIB_LIBS@
+ GLOBAL_LIBS:=@GLOBAL_LIBS@
+ 
+--- jdk16u-jdk-16.0.0-0/make/autoconf/libraries.m4
++++ jdk16u-jdk-16.0.0-0/make/autoconf/libraries.m4
+@@ -147,7 +147,7 @@
+ 
+   if test "x$OPENJDK_TARGET_OS" = xsolaris; then
+     BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lsocket -lsched -ldoor -lnsl \
+-        -lrt -lkstat"
++        -lrt -lkstat -lssp"
+     BASIC_JVM_LIBS="$BASIC_JVM_LIBS $LIBCXX_JVM"
+   fi
+ 
+--- jdk16u-jdk-16.0.0-0/make/test/JtregNativeHotspot.gmk
++++ jdk16u-jdk-16.0.0-0/make/test/JtregNativeHotspot.gmk
+@@ -867,11 +867,12 @@
+     BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exeFPRegs := -ldl
+     BUILD_HOTSPOT_JTREG_LIBRARIES_LIBS_libAsyncGetCallTraceTest := -ldl
+ else
++    BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exeFPRegs := -lssp
+   BUILD_HOTSPOT_JTREG_EXCLUDE += libtest-rw.c libtest-rwx.c libTestJNI.c \
+       exeinvoke.c exestack-gap.c exestack-tls.c libAsyncGetCallTraceTest.cpp
+ endif
+ 
+-BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exesigtest := -ljvm
++BUILD_HOTSPOT_JTREG_EXECUTABLES_LIBS_exesigtest := -ljvm -lssp
+ 
+ ifeq ($(call isTargetOs, solaris), true)
+     BUILD_HOTSPOT_JTREG_EXCLUDE += libterminatedThread.c
+--- jdk16u-jdk-16.0.0-0/make/test/JtregNativeLibTest.gmk
++++ jdk16u-jdk-16.0.0-0/make/test/JtregNativeLibTest.gmk
+@@ -51,7 +51,7 @@
+ ifeq ($(call isTargetOs, windows), true)
+     BUILD_LIBTEST_JTREG_EXECUTABLES_LIBS_exejvm-test-launcher := jvm.lib
+ else
+-    BUILD_LIBTEST_JTREG_EXECUTABLES_LIBS_exejvm-test-launcher := -ljvm
++    BUILD_LIBTEST_JTREG_EXECUTABLES_LIBS_exejvm-test-launcher := -ljvm -lssp
+ endif
+ 
+ # This evaluation is expensive and should only be done if this target was
+--- jdk16u-jdk-16.0.0-0/make/modules/java.base/Launcher.gmk
++++ jdk16u-jdk-16.0.0-0/make/modules/java.base/Launcher.gmk
+@@ -81,7 +81,7 @@
+       OPTIMIZATION := LOW, \
+       CFLAGS := $(CFLAGS_JDKEXE) -I$(TOPDIR)/src/$(MODULE)/unix/native/libjava, \
+       EXTRA_OBJECT_FILES := $(SUPPORT_OUTPUTDIR)/native/$(MODULE)/libjava/childproc.o, \
+-      LDFLAGS := $(LDFLAGS_JDKEXE), \
++      LDFLAGS := -lssp $(LDFLAGS_JDKEXE), \
+       OUTPUT_DIR := $(SUPPORT_OUTPUTDIR)/modules_libs/$(MODULE), \
+   ))
+ 
+--- jdk16u-jdk-16.0.0-0/make/test/JtregNativeJdk.gmk
++++ jdk16u-jdk-16.0.0-0/make/test/JtregNativeJdk.gmk
+@@ -72,10 +72,10 @@
+     BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -ldl
+   else ifeq ($(call isTargetOs, solaris), true)
+     BUILD_JDK_JTREG_LIBRARIES_LIBS_libInheritedChannel := -ljava -lsocket -lnsl
+-    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lthread -ldl
++    BUILD_JDK_JTREG_EXECUTABLES_LIBS_exelauncher := -lthread -ldl -lssp
+   endif
+   BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeJliLaunchTest := -ljli
+-  BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeCallerAccessTest := -ljvm
++  BUILD_JDK_JTREG_EXECUTABLES_LIBS_exeCallerAccessTest := -ljvm -lssp
+ endif
+ 
+ ifeq ($(call isTargetOs, macosx), true)

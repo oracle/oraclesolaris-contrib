@@ -1,0 +1,17 @@
+--- make/autoconf/flags-ldflags.m4~	Mon Apr 13 13:55:05 2020
++++ make/autoconf/flags-ldflags.m4	Mon Apr 13 14:10:29 2020
+@@ -70,8 +70,12 @@
+     fi
+ 
+     # Add -z defs, to forbid undefined symbols in object files.
+-    # add relro (mark relocations read only) for all libs
+-    BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,-z,defs -Wl,-z,relro"
++    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
++      BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,-z,defs"
++    else
++      # add relro (mark relocations read only) for all libs
++      BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,-z,defs -Wl,-z,relro"
++    fi
+     # s390x : remove unused code+data in link step
+     if test "x$OPENJDK_TARGET_CPU" = xs390x; then
+       BASIC_LDFLAGS="$BASIC_LDFLAGS -Wl,--gc-sections -Wl,--print-gc-sections"
