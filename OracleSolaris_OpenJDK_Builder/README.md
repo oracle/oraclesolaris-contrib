@@ -1,6 +1,9 @@
-# OracleSolaris OpenJDK
+# Oracle Solaris OpenJDK Builder
 
 This project builds all OpenJDK versions from 9 till latest 17 for Solaris 11.4.
+
+Note that this was done based on great job of Peter Tribble:
+https://ptribble.blogspot.com/2021/12/keeping-java-alive-on-illumos.html
 
 At this time only amd64 platform is expected to work (not SPARC).
 
@@ -20,8 +23,9 @@ You will need both.
 
 Example:
 
+```
 git clone https://github.com/oracle/oraclesolaris-contrib.git
-cd oraclesolaris-contrib/OracleSolaris_OpenJDK/
+cd oraclesolaris-contrib/OracleSolaris_OpenJDK_Builder/
 ./build-all.sh
 Building Openjdk 9...
 Building Openjdk 10...
@@ -31,7 +35,7 @@ Building Openjdk 13...
 Building Openjdk 14...
 Building Openjdk 16...
 Building Openjdk 17...
-Building Openjdk 18...
+```
 
 --
 
