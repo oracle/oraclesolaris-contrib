@@ -1,6 +1,6 @@
 --- make/autoconf/flags-ldflags.m4~	Mon Apr 13 13:55:05 2020
 +++ make/autoconf/flags-ldflags.m4	Mon Apr 13 14:10:29 2020
-@@ -64,9 +64,13 @@
+@@ -58,9 +58,13 @@
    # Setup basic LDFLAGS
    if test "x$TOOLCHAIN_TYPE" = xgcc; then
      # Add -z,defs, to forbid undefined symbols in object files.

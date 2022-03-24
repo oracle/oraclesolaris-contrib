@@ -1,6 +1,6 @@
 --- src/hotspot/os/solaris/attachListener_solaris.cpp~	Tue Nov 26 00:55:54 2019
 +++ src/hotspot/os/solaris/attachListener_solaris.cpp	Wed Apr  8 20:07:56 2020
-@@ -432,7 +432,7 @@
+@@ -427,7 +427,7 @@
      if (::rename(initial_path, door_path) == -1) {
          ::close(dd);
          ::fdetach(initial_path);

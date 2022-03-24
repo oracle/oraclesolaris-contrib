@@ -5,7 +5,7 @@ diff --git a/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp b/src/hotspot/os_
 index 3986d57e818..befe4df4755 100644
 --- a/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
 +++ b/src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
-@@ -463,6 +463,15 @@ JVM_handle_solaris_signal(int sig, siginfo_t* info, void* ucVoid,
+@@ -356,6 +356,15 @@ JVM_handle_solaris_signal(int sig, siginfo_t* info, void* ucVoid,
      assert(sig == info->si_signo, "bad siginfo");
    }
 
@@ -21,7 +21,7 @@ index 3986d57e818..befe4df4755 100644
    // decide if this trap can be handled by a stub
    address stub = NULL;
 
-@@ -473,11 +482,6 @@ JVM_handle_solaris_signal(int sig, siginfo_t* info, void* ucVoid,
+@@ -366,11 +375,6 @@ JVM_handle_solaris_signal(int sig, siginfo_t* info, void* ucVoid,
      // factor me: getPCfromContext
      pc = (address) uc->uc_mcontext.gregs[REG_PC];
 

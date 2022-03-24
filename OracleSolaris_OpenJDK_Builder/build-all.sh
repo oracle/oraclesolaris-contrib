@@ -5,7 +5,7 @@ LOG_DIR="$WS/logs"
 rm -rf $LOG_DIR
 mkdir -p $LOG_DIR
 
-for VERSION in {9..17}; do
+for VERSION in {9..18}; do
   echo "Building Openjdk $VERSION..."
   bash $WS/jdk-$VERSION.sh > $LOG_DIR/jdk-$VERSION.log 2>&1
 
