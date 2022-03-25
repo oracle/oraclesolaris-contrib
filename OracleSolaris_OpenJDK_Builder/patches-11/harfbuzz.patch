@@ -1,0 +1,310 @@
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-machinery.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-machinery.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-machinery.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -478,7 +478,7 @@
+   }
+ 
+   template <typename Type>
+-  hb_blob_t *reference_table (const hb_face_t *face, hb_tag_t tableTag = Type::tableTag)
++  hb_blob_t *reference_table (const hb_face_t *face, hb_tag_t tableTag)
+   {
+     if (!num_glyphs_set)
+       set_num_glyphs (hb_face_get_glyph_count (face));
+@@ -899,7 +899,7 @@
+                                                  hb_blob_t>
+ {
+   static hb_blob_t *create (hb_face_t *face)
+-  { return hb_sanitize_context_t ().reference_table<T> (face); }
++  { return hb_sanitize_context_t ().reference_table<T> (face, T::tableTag); }
+   static void destroy (hb_blob_t *p) { hb_blob_destroy (p); }
+ 
+   static const hb_blob_t *get_null ()
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-cff1-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-cff1-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-cff1-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -1002,7 +1002,7 @@
+       fontDicts.init ();
+       privateDicts.init ();
+ 
+-      this->blob = sc.reference_table<cff1> (face);
++      this->blob = sc.reference_table<cff1> (face, cff1::tableTag);
+ 
+       /* setup for run-time santization */
+       sc.init (this->blob);
+@@ -1266,7 +1266,7 @@
+     bool success = true;
+     if (hb_subset_cff1 (plan, &cff_prime)) {
+       success = success && plan->add_table (HB_OT_TAG_cff1, cff_prime);
+-      hb_blob_t *head_blob = hb_sanitize_context_t().reference_table<head> (plan->source);
++      hb_blob_t *head_blob = hb_sanitize_context_t().reference_table<head> (plan->source, head::tableTag);
+       success = success && head_blob && plan->add_table (HB_OT_TAG_head, head_blob);
+       hb_blob_destroy (head_blob);
+     } else {
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-cff2-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-cff2-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-cff2-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -426,7 +426,7 @@
+       fontDicts.init ();
+       privateDicts.init ();
+ 
+-      this->blob = sc.reference_table<cff2> (face);
++      this->blob = sc.reference_table<cff2> (face, cff2::tableTag);
+ 
+       /* setup for run-time santization */
+       sc.init (this->blob);
+@@ -540,7 +540,7 @@
+     bool success = true;
+     if (hb_subset_cff2 (plan, &cff2_prime)) {
+       success = success && plan->add_table (HB_OT_TAG_cff2, cff2_prime);
+-      hb_blob_t *head_blob = hb_sanitize_context_t().reference_table<head> (plan->source);
++      hb_blob_t *head_blob = hb_sanitize_context_t().reference_table<head> (plan->source, head::tableTag);
+       success = success && head_blob && plan->add_table (HB_OT_TAG_head, head_blob);
+       hb_blob_destroy (head_blob);
+     } else {
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-cmap-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-cmap-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-cmap-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -996,7 +996,7 @@
+   {
+     void init (hb_face_t *face)
+     {
+-      this->table = hb_sanitize_context_t ().reference_table<cmap> (face);
++      this->table = hb_sanitize_context_t ().reference_table<cmap> (face, cmap::tableTag);
+       bool symbol;
+       this->subtable = table->find_best_subtable (&symbol);
+       this->subtable_uvs = &Null (CmapSubtableFormat14);
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-color-cbdt-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-color-cbdt-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-color-cbdt-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -384,8 +384,8 @@
+   {
+     void init (hb_face_t *face)
+     {
+-      cblc = hb_sanitize_context_t().reference_table<CBLC> (face);
+-      cbdt = hb_sanitize_context_t().reference_table<CBDT> (face);
++      cblc = hb_sanitize_context_t().reference_table<CBLC> (face, CBLC::tableTag);
++      cbdt = hb_sanitize_context_t().reference_table<CBDT> (face, CBDT::tableTag);
+ 
+       upem = hb_face_get_upem (face);
+     }
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-color-sbix-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-color-sbix-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-color-sbix-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -140,7 +140,7 @@
+   {
+     void init (hb_face_t *face)
+     {
+-      table = hb_sanitize_context_t().reference_table<sbix> (face);
++      table = hb_sanitize_context_t().reference_table<sbix> (face, sbix::tableTag);
+       num_glyphs = face->get_num_glyphs ();
+     }
+     void fini () { table.destroy (); }
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-color-svg-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-color-svg-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-color-svg-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -80,7 +80,7 @@
+   struct accelerator_t
+   {
+     void init (hb_face_t *face)
+-    { table = hb_sanitize_context_t().reference_table<SVG> (face); }
++    { table = hb_sanitize_context_t().reference_table<SVG> (face, SVG::tableTag); }
+     void fini () { table.destroy (); }
+ 
+     hb_blob_t *reference_blob_for_glyph (hb_codepoint_t glyph_id) const
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-glyf-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-glyf-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-glyf-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -104,7 +104,7 @@
+   static bool
+   _add_head_and_set_loca_version (hb_subset_plan_t *plan, bool use_short_loca)
+   {
+-    hb_blob_t *head_blob = hb_sanitize_context_t ().reference_table<head> (plan->source);
++    hb_blob_t *head_blob = hb_sanitize_context_t ().reference_table<head> (plan->source, head::tableTag);
+     hb_blob_t *head_prime_blob = hb_blob_copy_writable_or_fail (head_blob);
+     hb_blob_destroy (head_blob);
+ 
+@@ -238,8 +238,8 @@
+         return;
+       short_offset = 0 == head.indexToLocFormat;
+ 
+-      loca_table = hb_sanitize_context_t ().reference_table<loca> (face);
+-      glyf_table = hb_sanitize_context_t ().reference_table<glyf> (face);
++      loca_table = hb_sanitize_context_t ().reference_table<loca> (face, loca::tableTag);
++      glyf_table = hb_sanitize_context_t ().reference_table<glyf> (face, glyf::tableTag);
+ 
+       num_glyphs = MAX (1u, loca_table.get_length () / (short_offset ? 2 : 4)) - 1;
+     }
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-hmtx-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-hmtx-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-hmtx-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -200,7 +200,7 @@
+         got_font_extents = (ascender | descender) != 0;
+       }
+ 
+-      hb_blob_t *_hea_blob = hb_sanitize_context_t().reference_table<H> (face);
++      hb_blob_t *_hea_blob = hb_sanitize_context_t().reference_table<H> (face, H::tableTag);
+       const H *_hea_table = _hea_blob->as<H> ();
+       num_advances = _hea_table->numberOfLongMetrics;
+       if (!got_font_extents)
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-layout-gdef-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-layout-gdef-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-layout-gdef-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -416,7 +416,7 @@
+   {
+     void init (hb_face_t *face)
+     {
+-      this->table = hb_sanitize_context_t().reference_table<GDEF> (face);
++      this->table = hb_sanitize_context_t().reference_table<GDEF> (face, GDEF::tableTag);
+       if (unlikely (this->table->is_blacklisted (this->table.get_blob (), face)))
+       {
+         hb_blob_destroy (this->table.get_blob ());
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-layout-gsubgpos.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-layout-gsubgpos.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-layout-gsubgpos.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -2724,7 +2724,7 @@
+   {
+     void init (hb_face_t *face)
+     {
+-      this->table = hb_sanitize_context_t().reference_table<T> (face);
++      this->table = hb_sanitize_context_t().reference_table<T> (face, T::tableTag);
+       if (unlikely (this->table->is_blacklisted (this->table.get_blob (), face)))
+       {
+         hb_blob_destroy (this->table.get_blob ());
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-maxp-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-maxp-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-maxp-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -96,7 +96,7 @@
+ 
+   bool subset (hb_subset_plan_t *plan) const
+   {
+-    hb_blob_t *maxp_blob = hb_sanitize_context_t().reference_table<maxp> (plan->source);
++    hb_blob_t *maxp_blob = hb_sanitize_context_t().reference_table<maxp> (plan->source, maxp::tableTag);
+     hb_blob_t *maxp_prime_blob = hb_blob_copy_writable_or_fail (maxp_blob);
+     hb_blob_destroy (maxp_blob);
+ 
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-name-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-name-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-name-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -180,7 +180,7 @@
+   {
+     void init (hb_face_t *face)
+     {
+-      this->table = hb_sanitize_context_t().reference_table<name> (face);
++      this->table = hb_sanitize_context_t().reference_table<name> (face, name::tableTag);
+       assert (this->table.get_length () >= this->table->stringOffset);
+       this->pool = (const char *) (const void *) (this->table+this->table->stringOffset);
+       this->pool_len = this->table.get_length () - this->table->stringOffset;
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-os2-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-os2-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-os2-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -147,7 +147,7 @@
+ 
+   bool subset (hb_subset_plan_t *plan) const
+   {
+-    hb_blob_t *os2_blob = hb_sanitize_context_t ().reference_table<OS2> (plan->source);
++    hb_blob_t *os2_blob = hb_sanitize_context_t ().reference_table<OS2> (plan->source, OS2::tableTag);
+     hb_blob_t *os2_prime_blob = hb_blob_create_sub_blob (os2_blob, 0, -1);
+     // TODO(grieger): move to hb_blob_copy_writable_or_fail
+     hb_blob_destroy (os2_blob);
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-post-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-post-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-post-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -76,7 +76,7 @@
+   bool subset (hb_subset_plan_t *plan) const
+   {
+     unsigned int post_prime_length;
+-    hb_blob_t *post_blob = hb_sanitize_context_t ().reference_table<post>(plan->source);
++    hb_blob_t *post_blob = hb_sanitize_context_t ().reference_table<post>(plan->source, post::tableTag);
+     hb_blob_t *post_prime_blob = hb_blob_create_sub_blob (post_blob, 0, post::min_size);
+     post *post_prime = (post *) hb_blob_get_data_writable (post_prime_blob, &post_prime_length);
+     hb_blob_destroy (post_blob);
+@@ -101,7 +101,7 @@
+     {
+       index_to_offset.init ();
+ 
+-      table = hb_sanitize_context_t ().reference_table<post> (face);
++      table = hb_sanitize_context_t ().reference_table<post> (face, post::tableTag);
+       unsigned int table_length = table.get_length ();
+ 
+       version = table->version.to_int ();
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-ot-vorg-table.hh
+--- a/src/java.desktop/share/native/libharfbuzz/hb-ot-vorg-table.hh	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-ot-vorg-table.hh	Tue Jun 23 02:06:40 2020 -0500
+@@ -104,7 +104,7 @@
+ 
+   bool subset (hb_subset_plan_t *plan) const
+   {
+-    hb_blob_t *vorg_blob = hb_sanitize_context_t().reference_table<VORG> (plan->source);
++    hb_blob_t *vorg_blob = hb_sanitize_context_t().reference_table<VORG> (plan->source, VORG::tableTag);
+     const VORG *vorg_table = vorg_blob->as<VORG> ();
+ 
+     /* count the number of glyphs to be included in the subset table */
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-static.cc
+--- a/src/java.desktop/share/native/libharfbuzz/hb-static.cc	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-static.cc	Tue Jun 23 02:06:40 2020 -0500
+@@ -55,7 +55,7 @@
+ {
+   hb_sanitize_context_t c = hb_sanitize_context_t ();
+   c.set_num_glyphs (0); /* So we don't recurse ad infinitum. */
+-  hb_blob_t *maxp_blob = c.reference_table<OT::maxp> (this);
++  hb_blob_t *maxp_blob = c.reference_table<OT::maxp> (this, OT::maxp::tableTag);
+   const OT::maxp *maxp_table = maxp_blob->as<OT::maxp> ();
+ 
+   unsigned int ret = maxp_table->get_num_glyphs ();
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-subset-cff1.cc
+--- a/src/java.desktop/share/native/libharfbuzz/hb-subset-cff1.cc	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-subset-cff1.cc	Tue Jun 23 02:06:40 2020 -0500
+@@ -1089,7 +1089,7 @@
+ hb_subset_cff1 (hb_subset_plan_t *plan,
+                 hb_blob_t       **prime /* OUT */)
+ {
+-  hb_blob_t *cff_blob = hb_sanitize_context_t().reference_table<CFF::cff1> (plan->source);
++  hb_blob_t *cff_blob = hb_sanitize_context_t().reference_table<CFF::cff1> (plan->source, CFF::cff1::tableTag);
+   const char *data = hb_blob_get_data(cff_blob, nullptr);
+ 
+   OT::cff1::accelerator_subset_t acc;
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-subset-cff2.cc
+--- a/src/java.desktop/share/native/libharfbuzz/hb-subset-cff2.cc	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-subset-cff2.cc	Tue Jun 23 02:06:40 2020 -0500
+@@ -609,7 +609,7 @@
+ hb_subset_cff2 (hb_subset_plan_t *plan,
+                 hb_blob_t       **prime /* OUT */)
+ {
+-  hb_blob_t *cff2_blob = hb_sanitize_context_t().reference_table<CFF::cff2> (plan->source);
++  hb_blob_t *cff2_blob = hb_sanitize_context_t().reference_table<CFF::cff2> (plan->source, CFF::cff2::tableTag);
+   const char *data = hb_blob_get_data(cff2_blob, nullptr);
+ 
+   OT::cff2::accelerator_subset_t acc;
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-subset-glyf.cc
+--- a/src/java.desktop/share/native/libharfbuzz/hb-subset-glyf.cc	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-subset-glyf.cc	Tue Jun 23 02:06:40 2020 -0500
+@@ -291,7 +291,7 @@
+                          hb_blob_t       **glyf_prime, /* OUT */
+                          hb_blob_t       **loca_prime /* OUT */)
+ {
+-  hb_blob_t *glyf_blob = hb_sanitize_context_t ().reference_table<OT::glyf> (plan->source);
++  hb_blob_t *glyf_blob = hb_sanitize_context_t ().reference_table<OT::glyf> (plan->source, OT::glyf::tableTag);
+   const char *glyf_data = hb_blob_get_data (glyf_blob, nullptr);
+ 
+   OT::glyf::accelerator_t glyf;
+diff -r 40b646e9d8fb src/java.desktop/share/native/libharfbuzz/hb-subset.cc
+--- a/src/java.desktop/share/native/libharfbuzz/hb-subset.cc	Fri Jun 12 02:34:44 2020 +0000
++++ b/src/java.desktop/share/native/libharfbuzz/hb-subset.cc	Tue Jun 23 02:06:40 2020 -0500
+@@ -64,7 +64,7 @@
+ static bool
+ _subset2 (hb_subset_plan_t *plan)
+ {
+-  hb_blob_t *source_blob = hb_sanitize_context_t ().reference_table<TableType> (plan->source);
++  hb_blob_t *source_blob = hb_sanitize_context_t ().reference_table<TableType> (plan->source, TableType::tableTag);
+   const TableType *table = source_blob->as<TableType> ();
+ 
+   hb_tag_t tag = TableType::tableTag;
+@@ -119,7 +119,7 @@
+ static bool
+ _subset (hb_subset_plan_t *plan)
+ {
+-  hb_blob_t *source_blob = hb_sanitize_context_t ().reference_table<TableType> (plan->source);
++  hb_blob_t *source_blob = hb_sanitize_context_t ().reference_table<TableType> (plan->source, TableType::tableTag);
+   const TableType *table = source_blob->as<TableType> ();
+ 
+   hb_tag_t tag = TableType::tableTag;
