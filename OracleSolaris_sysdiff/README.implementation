@@ -1,0 +1,53 @@
+The sysdiff script is intended to create a IPS pkg from non-OS files found in a
+solaris10 branded zone.
+
+The script by default excludes some directories deemed unlikely to contain 3rd
+party content. The list of directories is read from 'excludeDirs' file in the
+script directory. This file is common for both architectures, and can be edited
+according to needs.
+
+The SVR4 package database is the foundation against which the zone directory
+tree is matched. When the database is ingested, it's checked for 3rd party
+packages. This is achieved by matching the encountered packages against the
+platform-specific lists of packages provided via the pkglist.{i86pc,sun4v}
+files in the script directory. These lists were established based on S10u8 and
+S10u11 full+OEM deployment.
+
+Files scanned by the script are sorted into four categories:
+- matched files - matching exactly the entries in SVR4 database in the zone
+- modified files - files found in the SVR4 database, but not matched exactly
+- modified volatile files - as 'modified', but expected to differ - config or
+  log files etc. (type e or v in SVR4 manifest)
+- new files - not found in the SVR4 database
+
+There are some 'new' and 'modified' files appearing in fresh Solaris 10 branded
+zone deployments, known to not have been modified after installation from the
+distribution media. These files were gathered in platform-specific
+known_mod_files/known_new_files.{i86pc,sun4v} files in the script directory,
+and are omitted from the generated output. This functionality can be disabled
+by either removal of these files, or passing the '-f' option to the 'diff'
+subcommand.
+
+The script attempts to guess which files should have the 'preserve' attribute
+in the IPS manifest. It's set for the 'volatile' and 'editable' files found in
+'contents', and all files modified less than 'preserve age' days ago. By
+default 'preserve age' is set to 5 days, but it can be changed by passing the
+'--preserve-age' argument to the script.
+
+For the purpose of matching SVR4 owner:group entries it is necessary to convert
+the numeric uid:gid stored by the filesystem. This conversion is based on the
+passwd/group files from the solaris10 branded zone. If the uid or gid is not
+matched against the ingested data, 'getent' in the global zone is run to try
+to pull the necessary data from the naming service.
+
+For the IPS package it is necessary to resolve all hardlinks properly. In the
+filesystem all hardlinks are equal, and there is not concept of the 'original
+file'. Unfortunately a packaging system must distinguish them, so hardliks are
+packaged similarly to symlinks - as path + target. This necessitates hardlink
+detection and heuristics to determine which path will be considered 'primary'.
+The system files are processed first, since there the paths and targets are
+defined explicitly by the SVR4 packaging. New files are processed after the
+diff is complete, and the first encountered path for given hardlink is treated
+as 'file' with all remaining ones being packaged as hardlinks. If this
+selection is not valid, the IPS manifest needs to be adjusted by hand.
+

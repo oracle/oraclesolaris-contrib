@@ -1,0 +1,139 @@
+This file presents an example of the sysdiff execution against a solaris 10
+branded zone.
+
+# zoneadm list -civ
+...
+  - s10clean-CPU-mc installed   /system/zones/s10clean-CPU-mc solaris10  excl 
+...
+# sysdiff.py -q diff s10clean-CPU-mc
+IPS package manifest generated:
+/var/tmp/s10clean-CPU-mc-20210319142906/s10clean-CPU-mc.p5m
+
+Please review and adjust it as needed before running the next step.
+
+Please provide the following directory as results-dir for the next steps:
+
+/var/tmp/s10clean-CPU-mc-20210319142906
+
+The next step should be 'sysdiff depresolve'
+# sysdiff.py -q depresolve /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff depresolve' successful, next step is 'sysdiff lint'
+# sysdiff.py -q lint --s11.4-repo <URI of the Solaris 11.4 support repo> /var/tmp/s10clean-CPU-mc-20210319142906
+command
+ pkglint -c /var/tmp/s10clean-CPU-mc-20210319142906.cache -r <URI of the Solaris 11.4 support repo> /var/tmp/s10clean-CPU-mc-20210319142906/s10clean-CPU-mc.p5m.dep.res
+failed
+WARNING pkglint.manifest009.2     pkg.description matches pkg.summary in pkg:/s10clean-CPU-mc@1.0,5.11
+ERROR pkglint.dupaction007        dir action for usr/share/locale/he is reference-counted but has different attributes across 3 duplicates: group: other -> package/pkg system/locale group: root -> s10clean-CPU-mc
+! If the 'sysdiff lint' returns an error, it needs to be analyzed and addressed
+! before continuing. In this case the issue is that the directory we're trying
+! to package has different group than on Solaris 11.4 - root instead of other.
+! the issue can be fixed either via removal of the problematic entry from
+! the manifest, or by changing the group entry in the manifest to match the OS.
+! Whenever the package attempts to deliver files to OS-delivered directories,
+! it is recommended to review them carefully to avoid conflicts with OS
+! delivered contents in the future.
+! The warning can be ignored, or addressed by providing extended description
+! for the package.
+! Once the manifest is adjusted, the process needs to be restarted from the
+! 'sysdiff depresolve' in case the change affected the dependencies of the
+! package we're trying to generate.
+# sysdiff.py -q depresolve /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff depresolve' successful, next step is 'sysdiff lint'
+# sysdiff.py -q lint --s11.4-repo <URI of the Solaris 11.4 support repo> /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff lint' successful, next step is 'sysdiff publish'
+
+# zfs create -p rpool/VARSHARE/pkgrepos/sysdiff-repo
+# sysdiff.py -q publish -c --target-repo /var/share/pkgrepos/sysdiff-repo/ --publisher sysdiff-publisher /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff publish' successful, the package can be converted to an archive using 'sysdiff archive'
+
+# pkgrepo list -s /var/share/pkgrepos/sysdiff-repo/
+PUBLISHER         NAME                                          O VERSION
+sysdiff-publisher s10clean-CPU-mc                                 1.0:20210319T135133Z
+
+Archive creation is an optional step:
+
+# sysdiff.py -q archive --source-repo /var/share/pkgrepos/sysdiff-repo/ /var/tmp/s10clean-CPU-mc-20210319142906
+/var/tmp/s10clean-CPU-mc-20210319142906/s10clean-CPU-mc.p5p created successfully
+
+Installation from the repo:
+# pkg set-publisher -g /var/share/pkgrepos/sysdiff-repo/ sysdiff-publisher
+
+# zlogin targetzone
+# pkg install s10clean-CPU-mc
+           Packages to install:  1
+       Create boot environment: No
+Create backup boot environment: No
+
+DOWNLOAD                                PKGS         FILES    XFER (MB)   SPEED
+Completed                                1/1       152/152      2.2/2.2      --
+
+PHASE                                          ITEMS
+Installing new actions                       265/265
+Updating package state database                 Done 
+Updating package cache                           0/0 
+Updating image state                            Done 
+Creating fast lookup database                   Done 
+Updating package cache                           2/2 
+
+----
+
+If the manifest needs to be adjusted after testing:
+# sysdiff.py -q depresolve /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff depresolve' successful, next step is 'sysdiff lint'
+# sysdiff.py -q lint --s11.4-repo <URI of the Solaris 11.4 support repo> /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff lint' successful, next step is 'sysdiff publish'
+# sysdiff.py -q publish --target-repo /var/share/pkgrepos/sysdiff-repo/ /var/tmp/s10clean-CPU-mc-20210319142906
+'sysdiff publish' successful, the package can be converted to an archive using 'sysdiff archive'
+# pkgrepo list -s /var/share/pkgrepos/sysdiff-repo/
+PUBLISHER         NAME                                          O VERSION
+sysdiff-publisher s10clean-CPU-mc                                 1.0:20210319T135508Z
+sysdiff-publisher s10clean-CPU-mc                                 1.0:20210319T135133Z
+
+In the zone:
+# pkg refresh
+# pkg update s10clean-CPU-mc
+            Packages to update:   1
+       Create boot environment:  No
+Create backup boot environment: Yes
+
+PHASE                                          ITEMS
+Removing old actions                             1/1
+Updating modified actions                        1/1
+Updating package state database                 Done
+Updating package cache                           1/1
+Updating image state                            Done
+Creating fast lookup database                   Done
+Updating package cache                           2/2
+
+----
+
+Once the package is installed in the target zone, it may happen that one of
+the packages it depends on becomes obsolete in the Solaris 11.4, which will
+cause the OS update to fail, e.g.:
+# pkg update --accept --be-name st_103 entire@11.4-11.4.39.0.0.103
+...
+A 'sync-linked' operation failed for child 'zone:targetzone' with an unexpected
+return value of 1 and generated the following output:
+
+pkg sync-linked: Package 's10clean-CPU-mc' must be uninstalled or upgraded if the requested operation is to be performed.
+  Reject:  pkg://sysdiff-publisher/s10clean-CPU-mc@1.0
+  Reason:  All acceptable versions of 'require-any' dependencies on frozenset({'runtime/perl-526@5.26.3-11.4.33.0.0.91.0'}) are obsolete
+
+There are two possible approaches to addressing this issue. In the short term,
+the obsoleted package may be unlocked to allow it to remain installed after the
+update:
+
+# zlogin targetzone
+# pkg change-facet facet.version-lock.runtime/perl-526=false
+
+This approach may lead to further issues/conflicts in the future, and is
+recommended only as a stop-gap solution.
+
+Permanent solution to such an issue is to regenerate the package based on
+the original solaris10 branded zone and the preserved 'results-dir'. The
+package can be regenerated by running the 'depresolve', 'lint', and 'publish'
+steps as during the original creation of the package. Please keep in mind
+that the package is timestamped, so it is not necessary to change the version
+number during the respin, the updated timestamp is sufficient to make the
+package distinct.
+

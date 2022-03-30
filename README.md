@@ -12,6 +12,7 @@ This repository aims to provide users with examples and steps on the following:
 
 - [Oracle_Solaris_On_OCI](/OracleSolaris_OCI)
 - [Oracle_Solaris_OpenJDK_Builder](/OracleSolaris_OpenJDK_Builder)
+- [Oracle_Solaris_sysdiff](/OracleSolaris_sysdiff)
 - [StatsStore_WebUI](/StatsStore_WebUI)
 - [REST](/REST)
 - [Blog Supplements](/Blog_Supplements)
@@ -34,7 +35,4 @@ Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](/CONTRIBUT
 
 ## [License](/LICENSE.md)
 
-Copyright (c) 2020 Oracle and/or its affiliates and released under the [Universal Permissive License (UPL)](https://oss.oracle.com/licenses/upl/), Version 1.0
-
-
-
+Copyright (c) 2022 Oracle and/or its affiliates and released under the [Universal Permissive License (UPL)](https://oss.oracle.com/licenses/upl/), Version 1.0
