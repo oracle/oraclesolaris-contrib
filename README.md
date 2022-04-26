@@ -11,7 +11,6 @@ Additionally, this repository also includes demos to augment the Oracle Solaris 
 This repository aims to provide users with examples and steps on the following: 
 
 - [Oracle_Solaris_On_OCI](/OracleSolaris_OCI)
-- [Oracle_Solaris_OpenJDK_Builder](/OracleSolaris_OpenJDK_Builder)
 - [Oracle_Solaris_sysdiff](/OracleSolaris_sysdiff)
 - [StatsStore_WebUI](/StatsStore_WebUI)
 - [REST](/REST)
