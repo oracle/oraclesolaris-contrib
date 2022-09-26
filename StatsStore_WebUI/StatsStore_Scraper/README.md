@@ -39,24 +39,23 @@ When using the RAD/REST interface the way to communicate data is through JSON da
 Here is a simple example of what the resulting JSON datagram looks like:
 
 ```json
-{'payload': {'formatted_records': None,
-             'records': [{'points': [{'point_range': None,
-                                      'point_type': 'VALUE_POINT',
-                                      'point_value': {'ts': 1638346115174970,
-                                                      'value': {'boolean_val': False,
-                                                                'dictionary': None,
-                                                                'dictionary_array': None,
-                                                                'number': 0,
-                                                                'number_array': None,
-                                                                'real': 299887.0,
-                                                                'real_array': None,
-                                                                'string': None,
-                                                                'string_array': None,
-                                                                'type': 'REAL'}}}],
-                          'ssid': '//:class.cpu//:stat.fpu-usage//:op.rate'}],
-             'warnings': []},
- 'status': 'success'}
-}
+{"payload": {"formatted_records": null,
+             "records": [{"points": [{"point_range": null,
+                                      "point_type": "VALUE_POINT",
+                                      "point_value": {"ts": 1638346115174970,
+                                                      "value": {"boolean_val": false,
+                                                                "dictionary": null,
+                                                                "dictionary_array": null,
+                                                                "number": 0,
+                                                                "number_array": null,
+                                                                "real": 299887.0,
+                                                                "real_array": null,
+                                                                "string": null,
+                                                                "string_array": null,
+                                                                "type": "REAL"}}}],
+                          "ssid": "//:class.cpu//:stat.fpu-usage//:op.rate"}],
+             "warnings": []},
+"status": "success"}
 ```
 
 And this is what you'd want it to look like to easily import it into a regular time-series database:
