@@ -25,11 +25,13 @@ For a more in-depth description see the [How-to article on setting up the connec
 
 To be able to connect over RAD/REST we require you use the secure *https* transport and in order for this to the system you're connecting to must have a valid SSL certificate in place for the client to know it can be trusted. 
 
-Many production systems will have certificate in place issued by either a *public CA* (Certificate Authority) or an *internal CA* managed by the company (we're call these a *managed CA*). However quite often systems you're testing on might not have one of these certificates from a managed CA. For example you might be using a Oracle Solaris running in VirtualBox on your laptop. In this case to still be able to connect to the server you'll need to copy a certificate the host CA created over to the system you're connecting from.
+Many production systems will have certificate in place issued by either a *public CA* (Certificate Authority) or an *internal CA* managed by the company (we're calling these a *managed CA*). However quite often systems you're testing on might not have one of these certificates from a managed CA. For example you might be using a Oracle Solaris running in VirtualBox on your laptop. In this case to still be able to connect to the server you'll need to copy the self-signed certificate the host CA created over to the system you're connecting from.
 
-By default in Oracle Solaris 11.4 the `identity:cert` service will act as the host CA and create the certificates using the hostname and DNS name information it can find after installation. It will create and put them in `/etc/certs/localhost/hoast-ca/` and it's the `hostca.crt` you're looking to copy across (the `host.key` should remain in place). It's important to realize that the names that the certificate was created with should be the same as the name the client sees, if it doesn't match you'll have to create a certificate by hand and then put it in the same location.
+By default in Oracle Solaris 11.4 the `identity:cert` service will act as the host CA and create the certificates using the hostname and DNS name information it can find after installation. It will create and put them in `/etc/certs/localhost/hoast-ca/` and it's the `hostca.crt` you're looking to copy across (the `hostca.key` should remain in place). It's important to realize that the name or IP address that the certificate was created with should be the same as the name or IP address that the client sees, if it doesn't match you'll have to create a certificate by hand and then put it in the same location.
 
 Once you have the certificates created, copied and the SMF service started you can use your favorite client tool and start connecting with the server.
+
+If you're going to be connecting to multiple servers with self-signed certificates, you will probably want to rename the `hostca.crt` you've copied from each server to know which file goes with which server.
 
 ## More Documentation
 
@@ -37,5 +39,5 @@ So now you know how to connect, the next question that tends to rise is where to
 
 
 
-Copyright (c) 2020, Oracle and/or its affiliates.
+Copyright (c) 2022, Oracle and/or its affiliates.
  Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.
