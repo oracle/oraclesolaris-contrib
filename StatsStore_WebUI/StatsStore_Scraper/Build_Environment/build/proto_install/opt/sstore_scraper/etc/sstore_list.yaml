@@ -1,0 +1,91 @@
+# The StatsStore Stats held in each WebUI Sheet
+#
+# Echt section has the list of SSIDs for the WebUI Sheet with the same name.
+# This is not a complete list and some of the SSIds that are commented out 
+# are currently not supported by the script.
+#
+# Copyright (c) 2022, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as 
+# shown at https://oss.oracle.com/licenses/upl/
+
+# CPU - Basic Sheet
+cpu_basic_sheet:
+  - '//:class.cpu//:stat.usage//:part.mode(user,kernel,stolen,intr)//:op.rate//:op.util'
+  - '//:class.cpu//:stat.integer-pipe-usage//:op.rate//:op.util'
+  - '//:class.cpu//:stat.fpu-usage//:op.rate'
+  - '//:class.system//:stat.load-average'
+
+# CPU - Detailed Sheet
+cpu_detailed_sheet:
+  - '//:class.cpu//:stat.usage//:part.mode(user,kernel,stolen,intr)//:op.rate//:op.util'
+  - '//:class.system//:stat.load-average'
+  - '//:class.cpu//:stat.xcalls//:op.rate'
+  - '//:class.cpu//:stat.thread-migrations-core//:op.rate'
+  - '//:class.cpu//:stat.thread-migrations-socket//:op.rate'
+  - '//:class.cpu//:stat.interrupt-time//:op.rate'
+  - '//:class.cpu//:stat.interrupt-count//:op.rate'
+  - '//:class.cpu//:stat.system-calls//:op.rate'
+  - '//:class.cpu//:stat.traps//:op.rate'
+  - '//:class.cpu//:stat.involuntary-context-switches//:op.rate'
+  - '//:class.cpu//:stat.context-switches//:op.rate'
+
+# Memory and Swap Sheet
+memory_and_swap_sheet:
+  - '//:class.system//:stat.physical-memory//:part.usage(zfs,user,unknown,kernelzones,kernel,filedata,executables,cachedfiledata,free)//:op.util'
+  - '//:class.system//:stat.memory-reservation//:part.usage(user,kernel,kernelzones)'
+#   - '//:class.system//:stat.memory-reservation-failures'
+  - '//:class.system//:stat.virtual-memory//:part.usage(reserved,allocated)//:op.util'
+#   - '//:class.system//:stat.virtual-memory-reservation-failures//:part.type'
+  - '//:class.system//:stat.disk-swapspace//:part.usage(reserved,allocated)//:op.util'
+  - '//:class.system//:stat.page-ins//:part.type//:op.rate'
+  - '//:class.system//:stat.page-outs//:part.type//:op.rate'
+
+# Disks Sheet
+disks_sheet:
+#   - '//:class.disk//:stat.run-time//:op.convert(seconds)//:op.rate'
+  - '//:class.disk//:stat.read-ops//:op.rate'
+  - '//:class.disk//:stat.write-ops//:op.rate'
+  - '//:class.disk//:stat.read-bytes//:op.rate'
+  - '//:class.disk//:stat.write-bytes//:op.rate'
+#   - '//:class.disk//:stat.wait-lentime//:op.convert(seconds)//:op.rate'
+#   - '//:class.disk//:stat.run-lentime//:op.convert(seconds)//:op.rate'
+#   - '//:class.disk//:stat.io-completions//:part.latency//:op.rate'
+  - '//:class.disk//:stat.errors//:op.rate'
+
+
+# Network Links Sheet
+network_links_sheets:
+  - '//:class.link/phys//:stat.in-bytes//:op.rate//:op.util'
+  - '//:class.link/phys//:stat.out-bytes//:op.rate//:op.util'
+  - '//:class.link/phys//:stat.in-bytes//:op.rate'
+  - '//:class.link/phys//:stat.out-bytes//:op.rate'
+#   - '//:class.link/phys//:stat.in-drops//:op.rate'
+#   - '//:class.link/phys//:stat.in-errors//:op.rate'
+#   - '//:class.link/phys//:stat.in-discards//:op.rate'
+#   - '//:class.link/phys//:stat.in-unknown-protos//:op.rate'
+#   - '//:class.link/phys//:stat.out-collisions//:op.rate'
+#   - '//:class.link/phys//:stat.out-discards//:op.rate'
+#   - '//:class.link/phys//:stat.out-drops//:op.rate'
+#   - '//:class.link/phys//:stat.out-errors//:op.rate'
+#   - '//:class.link/phys//:stat.out-overflows//:op.rate'
+#   - '//:class.link/phys//:stat.out-underflows//:op.rate'
+#   - '//:class.link/phys//:stat.in-bcast-packets//:op.rate'
+#   - '//:class.link/phys//:stat.out-bcast-packets//:op.rate'
+#   - '//:class.link/phys//:stat.in-mcast-packets//:op.rate'
+#   - '//:class.link/phys//:stat.out-mcast-packets//:op.rate'
+  - '//:class.link//:stat.in-bytes//:op.rate'
+  - '//:class.link//:stat.out-bytes//:op.rate'
+#   - '//:class.link//:stat.in-drops//:op.rate'
+#   - '//:class.link//:stat.out-drops//:op.rate'
+#   - '//:class.link//:stat.out-errors//:op.rate'
+#   - '//:class.link//:stat.in-bcast-packets//:op.rate'
+#   - '//:class.link//:stat.out-bcast-packets//:op.rate'
+#   - '//:class.link//:stat.in-mcast-packets//:op.rate'
+#   - '//:class.link//:stat.out-mcast-packets//:op.rate'
+
+# Other Stats to be added
+#   - 'ssid': '//:class.cpu//:stat.detailed-usage'
+#   - 'ssid': '//:class.cpu//:stat.fpu-capacity'
+#   - 'ssid': '//:class.cpu//:stat.integer-pipe-capacity'
+#   - 'ssid': '//:class.cpu//:stat.runnable-threads'
+#   - 'ssid': '//:class.cpu//:stat.total-time'

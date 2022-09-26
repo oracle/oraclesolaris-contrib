@@ -12,14 +12,6 @@ Here is where you can see Oracle Solaris 11.4 in action:
 
 - [Creating a custom sheet/template](Creating_Sheets)
 - [Sharing sheets on the dashboard](Sharing_Sheets)
+- [Pull data from the StatsStore into other datastores](StatsStore_Scraper)
 
-
-
-
-
-
-
-
-
-Copyright (c) 2020, Oracle and/or its affiliates.
- Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.
+Copyright (c) 2022 Oracle and/or its affiliates and released under the [Universal Permissive License (UPL)](https://oss.oracle.com/licenses/upl/), Version 1.0

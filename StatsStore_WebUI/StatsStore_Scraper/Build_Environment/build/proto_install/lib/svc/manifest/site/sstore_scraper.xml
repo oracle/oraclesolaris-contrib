@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<!DOCTYPE service_bundle
+  SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
+<!--
+    Manifest created by svcbundle (2022-May-25 23:23:37-0700)
+    Copyright (c) 2022, Oracle and/or its affiliates.
+    Licensed under the Universal Permissive License v 1.0 as shown 
+    at https://oss.oracle.com/licenses/upl/
+-->
+<service_bundle name="site/sstore-scraper" type="manifest">
+    <service name="site/sstore-scraper" version="1" type="service">
+        <dependency name="multi_user_dependency" grouping="require_all"
+            restart_on="none" type="service">
+            <service_fmri value="svc:/milestone/multi-user"/>
+        </dependency>
+
+        <exec_method 
+            name="start" 
+            type="method" 
+            timeout_seconds="120"
+            exec="/opt/sstore_scraper/bin/sstore_scraper.py">
+            <method_context>
+                <method_credential
+                  user='daemon' group='sys'/>
+            </method_context>
+        </exec_method> 
+
+        <exec_method
+            name="stop"
+            type="method"
+            timeout_seconds="60"
+            exec=":kill" />
+
+        <exec_method 
+            name="refresh" 
+            type="method" 
+            timeout_seconds="60"
+            exec=":true"/>
+
+        <instance name="default" enabled="false"/>
+        
+        <template>
+            <common_name>
+                <loctext xml:lang="C">
+                        site/sstore-scraper
+                </loctext>
+            </common_name>
+            <description>
+                <loctext xml:lang="C">
+                        The site/sstore-scraper service that can be used 
+                        to pull data from the StatsStore.
+                </loctext>
+            </description>
+        </template>
+    </service>
+</service_bundle>

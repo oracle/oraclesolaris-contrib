@@ -1,0 +1,31 @@
+# Copyright (c) 2022, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as 
+# shown at https://oss.oracle.com/licenses/upl/
+
+servers:
+    localhost:
+        server_port: "local"
+
+agent:
+    interval: 60
+
+destination:
+    splunk:
+        # configure the IP address and port for the Splunk HEC
+        server_endpoint: '<splunk_ip_address>:<splunk_hec_port>'
+        request_type: 'POST'
+        request_transport: 'https://'
+        request_uri: '/services/collector'
+        headers: 
+            # Insert the authorization key
+            Authorization: 'Splunk <splunk_authorization_key>'
+        data_template:
+            event: 'metric'
+            source: 'metrics'
+            sourcetype: 'solaris_statsstore_metrics'
+            fields:
+                os: 'Oracle Solaris'
+                # optional data
+                # datacenter: 'North'
+                # rack: '42'
+                # team: 'Time Bandits'
