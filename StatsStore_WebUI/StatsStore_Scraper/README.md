@@ -56,6 +56,7 @@ Here is a simple example of what the resulting JSON datagram looks like:
                           'ssid': '//:class.cpu//:stat.fpu-usage//:op.rate'}],
              'warnings': []},
  'status': 'success'}
+}
 ```
 
 And this is what you'd want it to look like to easily import it into a regular time-series database:
@@ -86,7 +87,7 @@ Once the data has been pulled from the StatsStore and it is transformed it can n
 
 The first example we're publishing is a version of the StatsStore Scraper that can push data into Splunk by pushing data into the [HTTP Event Collector](https://docs.splunk.com/Documentation/Splunk/9.0.1/Data/UsetheHTTPEventCollector). In this case the StatsStore Scraper runs inside the Oracle Solaris instance where it connects to the StatsStore through the local RAD instance. 
 
-[Insert Picture of Splunk Scraper]
+![Example Sheet](/StatsStore_WebUI/Images/StatsStore_Scraper/Splunk_Screenshot.png)
 
 To connect the the Splunk HEC you'll need to have the correct credentials to push data to it which you can get through the Splunk interface. These credentials are then embedded in the REST header which the StatsStore Scraper uses to talk to the Splunk HEC. The credentials have two functions, the first is to validate that the data should be accepted in by the HEC and second, which metric in Splunk this data should be associated with. The HEC can ingest multiple metrics each with their own credentials. So you could choose to have different server groups push into different metrics.
 
