@@ -14,6 +14,9 @@
 /etc/dfs/dfstab.pre_p2v
 /etc/dhcp/iaid
 /etc/dumpadm.conf
+/etc/firewall
+/etc/firewall/pf.conf
+/etc/firewall/pf.os
 /etc/hostname.net0
 /etc/inet/hosts.saved
 /etc/init.d/init.wbem.119314-43
@@ -554,6 +557,7 @@
 /usr/sbin/if_mpadm.pre_p2v
 /usr/sbin/in.routed.pre_p2v
 /usr/sbin/ndd.pre_p2v
+/usr/sbin/pfctl
 /usr/sbin/rem_drv.pre_p2v
 /usr/sbin/snoop.pre_p2v
 /usr/sbin/umountall.pre_p2v
