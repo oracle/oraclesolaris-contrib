@@ -1,6 +1,6 @@
 ## Setting Up the RAD/REST Service
 
-The README file assume you're using Oracle Solaris 11.4, if you're using Oracle Solaris 11.3 you'll need to create/configure your the `rad:remote` service first, for more details [read the RAD Developer's Guide](https://docs.oracle.com/cd/E53394_01/html/E54825/gpztv.html#scrolltoc).
+The README file assumes you're using Oracle Solaris 11.4, if you're using Oracle Solaris 11.3 you'll need to create/configure your the `rad:remote` service first, for more details [read the RAD Developer's Guide](https://docs.oracle.com/cd/E53394_01/html/E54825/gpztv.html#scrolltoc).
 
 ### Enabling `rad:remote`
 
@@ -28,15 +28,17 @@ Now it's running, you can connect to the system remotely.
 
 ### Copying The Certs
 
-In case where you're system is using a certificate issued by the host CA — like in my case — you'll need to copy that across to your client system first:
+In case where you're system is using a self-signed certificate issued by the host CA — like in my case — you'll need to copy that across to your client system first:
 
-```shell
+```bash
 -bash-4.4$ scp testuser@test_server.example.com:/etc/certs/localhost/host-ca/hostca.crt .
 Password: 
 hostca.crt                                                           100% 1147   666.9KB/s   00:00   
 ```
 
-Now we can use the `hostca.crt` in all our REST conversations that connect to this server.
+Now we can use the `hostca.crt` in all our REST conversations to validate the server in the connections.
+
+A tip, when you copy the self-signed certificate over from the server it is helpful to rename the file to reflect which server it belongs to, especially if you're going to be connecting to multiple servers with self-signed certificates.
 
 ## Testing the Connection
 
@@ -78,9 +80,11 @@ This second authentication method can be found at `/api/authentication/2.0/Sessi
 
 This second method was added to allow for more advanced authentication methods like two-factor authentication for javascript based apps like the Oracle Solaris WebUI. For our purposes the first one works fine. I've put the JSON data in a file called `login.json` and will refer to it in the coming examples. Both will work on Oracle Solaris 11.4.
 
+Oracle Solaris 11.4 SRU33 introduced a third option, using an X.509 Client Certificate. This avoids the need for using a username/password combination—and the risks of exposing them, and instead uses a pre-signed certificate that the connecting application can use to authenticate. An added advantage of this method is that you can use it directly on the REST call you want to use for your control or data request, instead of having to do an authentication call first and then to the control or data call with a second call. For more informaiton on how to use it see [Using the X.509 Client](Using_the_X509_Client.md) doc.
+
 ### Using Curl
 
-On the client, from the directory I put the certificate in I can run:
+As an example of using the first authentication method, on the client—from the directory that holds the `hostca.crt` and `login.json` files—I can run:
 
 ```shell
 -bash-4.4$ curl -c cookie.txt -X POST --cacert hostca.crt --header 'Content-Type:application/json' --data '@login.json' https://test_server.example.com:6788/api/authentication/1.0/Session/
@@ -194,4 +198,4 @@ The return text is: {
 
 You see the same result.
 
-Copyright (c) 2020, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.
+Copyright (c) 2022, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at <https://oss.oracle.com/licenses/upl/>.
