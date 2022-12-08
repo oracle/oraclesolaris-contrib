@@ -1,3 +1,5 @@
+# Launching an Oracle Solaris instance using Terraform
+
 One of the [many methods that you can use to create an Oracle Solaris instance](https://blogs.oracle.com/solaris/post/oracle-solaris-shines-through-the-cloud) in [Oracle Cloud Infrastructure](https://www.oracle.com/a/ocom/docs/cloud/oracle-cloud-infrastructure-platform-overview-wp.pdf) leverages the popular [Terraform](https://www.terraform.io/) "Infrastructure-as-Code" tool. If you have used Terraform to create cloud instances running another operating system, you will find the Terraform code for Oracle Solaris to be very familiar. The explanation in this blog entry assumes that you are familiar with cloud computing, IaaS, Terraform, and OCI concepts including the ones we described in [our earlier entry describing OCI Marketplace automation](https://blogs.oracle.com/solaris/post/oracle-solaris-on-oci-marketplace-components).
 
 The code at [our github site](https://github.com/oracle/oraclesolaris-contrib/tree/master/OracleSolaris_OCI) includes these three simple files with infrastructure code that will look familiar to Terraform users:
@@ -73,3 +75,5 @@ resource "oci_marketplace_accepted_agreement" "solaris_accepted_agreement" {
 ```
 
 Finally, the file outputs.tf reports to you the compartment and subnet where the instance was created, along with other useful information.
+
+Copyright (c) 2022, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/. 
