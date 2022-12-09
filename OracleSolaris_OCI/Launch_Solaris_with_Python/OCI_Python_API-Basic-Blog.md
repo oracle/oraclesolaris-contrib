@@ -21,7 +21,7 @@ We've found that supplying [Jupyter notebooks](https://jupyter.org/) with a full
 
 The advantage of this is that when using a Jupyter notebook yourself, you can edit the config files and run through the actual steps using your own OCI access. You can also alter the Python code in case you want to try something else. This way you can follow along with the steps and better learn what they do.
 
-The basic notebook can be found (here), and the more advanced one (here). This blog will focus on explaining the steps in the basic version.
+The basic notebook can be found [here](oci-python-basic.ipynb), and the more advanced one [here](oci-python-full.ipynb). This blog will focus on explaining the steps in the basic version.
 
 ## Using the Python API endpoints
 
