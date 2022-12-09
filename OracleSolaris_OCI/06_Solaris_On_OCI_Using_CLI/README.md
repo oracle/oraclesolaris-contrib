@@ -12,8 +12,7 @@ Note: These are the commands needed as of Nov 2022.
 
 1) List the shapes that can be used to launch an instance within the specified compartment and select a shape based on your preference. In this article, we are using the “VM.Standard2.1” shape.
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+```
 $ oci compute shape list --compartment-id ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxx 
 {
   "data": [
@@ -92,10 +91,11 @@ $ oci compute shape list --compartment-id ocid1.compartment.oc1..xxxxxxxxxxxxxxx
       "resize-compatible-shapes": null,
       "shape": "BM.Standard.A1.160"
     },
-2) Get the "--listing-id" of the latest Oracle Solaris 11.4 image by executing the following command.
+```
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+2) Get the `--listing-id` of the latest Oracle Solaris 11.4 image by executing the following command.
+
+```
 $ oci marketplace listing list --name "Oracle Solaris"
 {
   "data": [
@@ -170,10 +170,11 @@ $ oci marketplace listing list --name "Oracle Solaris"
     }
   ]
 }
-3) In the previous command, the "--lisitng-id" is displayed as "id": "61750333", we use this "id" to obtain the "package-version" of the image. I sorted the results by TIMERELEASED in the DESC order to get the latest package version.
+```
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+3) In the previous command, the `--lisitng-id` is displayed as `"id": "61750333"`, we use this `"id"` to obtain the `"package-version"` of the image. I sorted the results by `TIMERELEASED` in the `DESC` order to get the latest package version.
+
+```
 $ oci marketplace package list --listing-id "61750333" --sort-by TIMERELEASED --sort-order DESC
 {
   "data": [
@@ -310,10 +311,11 @@ $ oci marketplace package list --listing-id "61750333" --sort-by TIMERELEASED --
     }
   ]
 }
-4) Now, use the listing-id and the package-version to get the “--image-id”.
+```
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+4) Now, use the `listing-id` and the `package-version` to get the `--image-id`.
+
+```
 $ oci marketplace package get --listing-id "61750333" --package-version "11.4.50"
 {
   "data": {
@@ -362,15 +364,14 @@ $ oci marketplace package get --listing-id "61750333" --package-version "11.4.50
   },
   "etag": "6af825bd62cf470bdb2626e42979ea310496af7c66f51ef447bade39fbcc93dd--gzip"
 }
- 
+```
 
 Terms of use agreement
 Note: You can find detailed overview about the 'Marketplace components' and 'Agreements' in this blogpost.
 
-5) Terms of use agreement must be signed before launching an instance with that specific "--package-version". The terms of use agreement is required to be signed only once for a specific “--package-version”. It is not required to sign an addiotional agreement if there is already an agreement in place for that particular "--package-version". We can verify if there is an agreement already in place related to the “--compartment-id”, “--listing-id” and “--package-version”.
+5) Terms of use agreement must be signed before launching an instance with that specific `--package-version`. The terms of use agreement is required to be signed only once for a specific `--package-version`. It is not required to sign an addiotional agreement if there is already an agreement in place for that particular `--package-version`. We can verify if there is an agreement already in place related to the `--compartment-id`, `--listing-id` and `--package-version`.
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+```
 $ oci marketplace accepted-agreement list -c ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --listing-id 61750333
 {
   "data": [
@@ -417,12 +418,13 @@ $ oci marketplace accepted-agreement list -c ocid1.compartment.oc1..xxxxxxxxxxxx
     }
   ]
 }
-In the above image, the command resulted in an agreement that is specific to the package version “11.4.47”. Therefore, the user must accept the terms of use agreement for any other “--package-version” if they want to use it.
+```
 
-6) List the agreement using the following command by passing "--listing-id" and "--package-version".
+In the above image, the command resulted in an agreement that is specific to the package version `“11.4.47”`. Therefore, the user must accept the terms of use agreement for any other `--package-version` if they want to use it.
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+6) List the agreement using the following command by passing `--listing-id` and `--package-version`.
+
+```
 $ oci marketplace agreement list --listing-id 61750333 --package-version 11.4.50
 {
   "data": [
@@ -446,11 +448,11 @@ $ oci marketplace agreement list --listing-id 61750333 --package-version 11.4.50
     }
   ]
 }
+```
           
-7) Get the agreement using the below command by passing "--agreement-id" retrieved form the previous command.
+7) Get the agreement using the below command by passing `--agreement-id` retrieved form the previous command.
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+```
 $ oci marketplace agreement get --agreement-id 58993510 --listing-id 61750333 --package-version 11.4.50{
   "data": {
     "author": "ORACLE",
@@ -471,17 +473,19 @@ $ oci marketplace agreement get --agreement-id 58993510 --listing-id 61750333 --
     "signature": "eyJzaWduYXR1cmVEaWdlc3QiOiIwNjE4NDZlODljZWUyNDg2Y2ZkNDY1YzYzOWVkNDFiYTg5YzQxN2Q1Y2IxMzRiZTkyMzU3MTVlOWM3NDkxYjY1IiwidGltZVJldHJpZXZlZCI6MTY2OTY4NzQ0NDY0MX0="
   }
 }
-8) Accept the agreement by passing the agreement-id and signature retrieved from the above two commands
+```
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+8) Accept the agreement by passing the `agreement-id` and `signature` retrieved from the above two commands
+
+```
 $ oci marketplace accepted-agreement create --agreement-id 58993510 -c ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxx --listing-id 61750333 --package-version 11.4.50 –-signature "eyJzaWduYXR1cmVEaWdlc3QiOiIwNjE4NDZlODljZWUyNDg2Y2ZkNDY1YzYzOWVkNDFiYTg5YzQxN2Q1Y2IxMzRiZTkyMzU3MTVlOWM3NDkxYjY1IiwidGltZVJldHJpZXZlZCI6MTY2OTY4NzQ0NDY0MX0="
 $ oci marketplace accepted-agreement create --agreement-id 58993510 -c ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxx --listing-id 61750333 --package-version 11.4.50 –-signature "eyJzaWduYXR1cmVEaWdlc3QiOiIwNjE4NDZlODljZWUyNDg2Y2ZkNDY1YzYzOWVkNDFiYTg5YzQxN2Q1Y2IxMzRiZTkyMzU3MTVlOWM3NDkxYjY1IiwidGltZVJldHJpZXZlZCI6MTY2OTY4NzQ0NDY0MX0="
 Launching the Instance
+```
+
 9) Launch the instance by executing this command: (for this article we have chosen the AD:” ruWb:PHX-AD-1”)
 
-Copy code snippet
-Copied to ClipboardError: Could not CopyCopied to ClipboardError: Could not Copy
+```
 $ oci compute instance launch --compartment-id ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --availability-domain ruWb:PHX-AD-1 --subnet-id ocid1.subnet.oc1.phx.xxxxxxxxxxxxxxxxxxxxxxx --image-id ocid1.image.oc1..aaaaaaaajejfad6ddenyfbghbyngp4lhhkh7ie262xjglhsjn5u22owwfcbq --shape VM.Standard2.1 –-ssh-authorized-keys-file ‘/path to your public key/’
 {
   "data": {
@@ -632,8 +636,10 @@ $ oci compute instance launch --compartment-id ocid1.compartment.oc1..xxxxxxxxxx
   "etag": "8c7f5881d3f06d9d01817f92cc9c9953d835680f2172ead208c719a4fb8627fb",
   "opc-work-request-id": "ocid1.coreservicesworkrequest.oc1.phx.abyhqljs3mz6h5q765izlo3d6lk6to2fnuqulotvlfsytl4wblhputefu3qa"
 }
+```
+
 Now, verify the new instance in the OCI console
 
-.image1
+![](Images/screenshot_01.png)
 
 Additionally, please visit this Github repository oraclesolaris-contrib  for more content related to Oracle Solaris on OCI.
