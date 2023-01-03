@@ -1,0 +1,10 @@
+--- jdk/src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
++++ jdk/src/java.base/solaris/native/libnio/ch/DevPollArrayWrapper.c
+@@ -36,7 +36,6 @@
+ extern "C" {
+ #endif
+ 
+-typedef uint32_t        caddr32_t;
+ 
+ /* /dev/poll ioctl */
+ #define         DPIOC   (0xD0 << 8)

@@ -1,0 +1,18 @@
+$NetBSD$
+
+Support SunOS/gcc.  XXX: retain solstudio support.
+
+--- make/modules/java.desktop/lib/Awt2dLibraries.gmk.orig	2019-01-08 09:40:28.000000000 +0000
++++ make/modules/java.desktop/lib/Awt2dLibraries.gmk
+@@ -465,7 +465,11 @@ ifneq (, $(findstring $(OPENJDK_TARGET_O
+     HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
+   endif
+   ifeq ($(call isTargetOs, solaris), true)
++   ifeq ($(TOOLCHAIN_TYPE), gcc)
++    HARFBUZZ_CFLAGS += -DHAVE_INTEL_ATOMIC_PRIMITIVES
++   else
+     HARFBUZZ_CFLAGS += -DHAVE_SOLARIS_ATOMIC_OPS
++   endif
+   endif
+   ifeq ($(call isTargetOs, macosx), true)
+     HARFBUZZ_CFLAGS += -DHAVE_CORETEXT

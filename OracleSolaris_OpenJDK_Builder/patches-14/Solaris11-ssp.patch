@@ -1,0 +1,37 @@
+Undefined                       first referenced
+ symbol                             in file
+__stack_chk_fail                    /tmp/build_psumbera/openjdk-15/jdk15u-jdk-15.0.1-12-build/hotspot/variant-server/libjvm/objs/abstractInterpreter.o
+__stack_chk_guard                   /tmp/build_psumbera/openjdk-15/jdk15u-jdk-15.0.1-12-build/hotspot/variant-server/libjvm/objs/abstractInterpreter.o
+ld: fatal: symbol referencing errors
+collect2: error: ld returned 1 exit status
+gmake[3]: *** [lib/CompileJvm.gmk:176: /tmp/build_psumbera/openjdk-15/jdk15u-jdk-15.0.1-12-build/support/modules_libs/java.base/server/libjvm.so] Error 1
+..
+
+--- jdk15u-jdk-15.0.1-12/make/autoconf/spec.gmk.in.orig	2021-11-19 17:16:14.366657024 +0000
++++ jdk15u-jdk-15.0.1-12/make/autoconf/spec.gmk.in	2021-11-19 17:17:19.609953595 +0000
+@@ -521,12 +521,12 @@
+ SDKROOT:=@SDKROOT@
+ 
+ # LDFLAGS used to link the jdk native libraries (C-code)
+-LDFLAGS_JDKLIB:=-Xlinker -R@prefix@/java/openjdk11/lib -Xlinker -R@prefix@/java/openjdk11/lib/jli -Xlinker -R@prefix@/java/openjdk11/lib/server @LDFLAGS_JDKLIB@
++LDFLAGS_JDKLIB:=-lssp -Xlinker -R@prefix@/java/openjdk11/lib -Xlinker -R@prefix@/java/openjdk11/lib/jli -Xlinker -R@prefix@/java/openjdk11/lib/server @LDFLAGS_JDKLIB@
+ JDKLIB_LIBS:=@JDKLIB_LIBS@
+ GLOBAL_LIBS:=@GLOBAL_LIBS@
+ 
+ # LDFLAGS used to link the jdk native launchers (C-code)
+-LDFLAGS_JDKEXE:=-Xlinker -R@prefix@/java/openjdk11/lib/jli @LDFLAGS_JDKEXE@
++LDFLAGS_JDKEXE:=-lssp -Xlinker -R@prefix@/java/openjdk11/lib/jli @LDFLAGS_JDKEXE@
+ JDKEXE_LIBS:=@JDKEXE_LIBS@
+ 
+ # LDFLAGS specific to C++ linking.
+--- jdk15u-jdk-15.0.1-12/make/autoconf/libraries.m4.orig	2021-11-19 17:24:34.335689339 +0000
++++ jdk15u-jdk-15.0.1-12/make/autoconf/libraries.m4	2021-11-19 17:25:11.870922974 +0000
+@@ -131,7 +131,7 @@
+ 
+   if test "x$OPENJDK_TARGET_OS" = xsolaris; then
+     BASIC_JVM_LIBS="$BASIC_JVM_LIBS -lsocket -lsched -ldoor -lnsl \
+-        -lrt -lkstat"
++        -lrt -lkstat -lssp"
+     BASIC_JVM_LIBS="$BASIC_JVM_LIBS $LIBCXX_JVM"
+   fi
+ 
