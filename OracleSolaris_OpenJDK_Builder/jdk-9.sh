@@ -17,7 +17,7 @@ function fix_cups_versioning {
 BOOT_JDK="/usr/jdk/instances/jdk1.8.0"
 PATH="$STUDIO:/usr/bin"
 
-CONFIGURE_OPTIONS+=" --with-boot-jdk=$BOOT_JDK"
+CONFIGURE_OPTIONS+=" --with-boot-jdk=$BOOT_JDK --disable-hotspot-gtest"
 
 hg clone ${JDK_REPO}/$SRC_DIR "$BUILD_DIR"/$SRC_DIR
 cd "$BUILD_DIR"/$SRC_DIR

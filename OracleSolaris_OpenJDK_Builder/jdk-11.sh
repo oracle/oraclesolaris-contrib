@@ -7,7 +7,7 @@ VERSION=11
 BOOT_JDK="$BUILD_DIR/jdk10u/build/solaris-$JDK_PLATFORM-normal-server-release/jdk"
 PATH="$STUDIO:/usr/bin"
 
-CONFIGURE_OPTIONS+=" --with-boot-jdk=$BOOT_JDK"
+CONFIGURE_OPTIONS+=" --with-boot-jdk=$BOOT_JDK --disable-hotspot-gtest"
 
 hg clone ${JDK_REPO}/$SRC_DIR "$BUILD_DIR"/$SRC_DIR
 cd "$BUILD_DIR"/$SRC_DIR

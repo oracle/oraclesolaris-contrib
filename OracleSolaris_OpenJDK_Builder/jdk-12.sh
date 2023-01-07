@@ -13,7 +13,7 @@ CONFIGURE_OPTIONS+=" --with-boot-jdk=$BOOT_JDK"
 # - https://bugs.openjdk.java.net/browse/JDK-8211081
 # - shenandoahgc doesn't build on Solaris i386 (and is not supported on sparc)
 CONFIGURE_OPTIONS+=" --with-jvm-features=-shenandoahgc"
-CONFIGURE_OPTIONS+=" --disable-warnings-as-errors"
+CONFIGURE_OPTIONS+=" --disable-warnings-as-errors --disable-hotspot-gtest"
 
 hg clone ${JDK_REPO}/$SRC_DIR "$BUILD_DIR"/$SRC_DIR
 cd "$BUILD_DIR"/$SRC_DIR
