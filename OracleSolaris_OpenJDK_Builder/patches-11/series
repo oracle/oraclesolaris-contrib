@@ -1,3 +1,4 @@
 Solaris11-EM_486.patch -p0
 Solaris11-TRAPNO.patch -p0
 harfbuzz.patch -p1
+Awt2Libraries_xc99.patch -p0
