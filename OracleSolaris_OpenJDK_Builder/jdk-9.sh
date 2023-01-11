@@ -8,6 +8,8 @@ VERSION=9
 function fix_cups_versioning {
   test `uname -v | cut -d . -f 3` -lt 21 && return
   gsed 's;_CUPS_NONNULL(...);_CUPS_NONNULL();' /usr/include/cups/versioning.h > my-cups-versioning.h
+  gsed -i 's;_CUPS_API_AVAILABLE(...);_CUPS_API_AVAILABLE();' my-cups-versioning.h
+  gsed -i 's;_CUPS_API_DEPRECATED(...);_CUPS_API_DEPRECATED();' my-cups-versioning.h
   FILE=CUPSfuncs.c
   for f in jdk/src/java.desktop/unix/native/common/awt/$FILE src/java.desktop/unix/native/common/awt/$FILE; do
     [ ! -f "$f" ] || gsed -i "/#include <dlfcn.h>/a#include \"`pwd`/my-cups-versioning.h\"" "$f"
