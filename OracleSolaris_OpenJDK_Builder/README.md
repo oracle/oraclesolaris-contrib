@@ -12,7 +12,8 @@ You just need to have:
 - Mercurial
 - Git
 - JDK 8
-- GCC 10
+- GCC 10 (for JDK-13 and above)
+- Oracle Solaris Studio 12.4 (for JDK-9, JDK-10, JDK-11, and JDK-12)
 - Internet access for OpenJDK repositories
 
 Alternatively you can use your OpenJDK repository mirrors and set them via
