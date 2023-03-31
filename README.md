@@ -24,14 +24,17 @@ For a quick overview on Oracle Solaris 11.4, please refer to this [datasheet](ht
 
 Stay updated with Oracle Solaris by following the Oracle Solaris [Blog](https://blogs.oracle.com/solaris/oracle-solaris-11-2).
 
-## [Security](/SECURITY.md)
+## Contributing
 
-See [SECURITY](/SECURITY.md) for details.
+This project welcomes contributions from the community. Before submitting a pull request, please [review our contribution guide](./CONTRIBUTING.md)
 
-## [Contributing](/CONTRIBUTING.md)
+## Security
 
-Oracle Solaris Contrib is an open source project.  See [CONTRIBUTING](/CONTRIBUTING.md) for details.
+Please consult the [security guide](./SECURITY.md) for our responsible security vulnerability disclosure process
 
-## [License](/LICENSE.md)
+## License
 
-Copyright (c) 2022 Oracle and/or its affiliates and released under the [Universal Permissive License (UPL)](https://oss.oracle.com/licenses/upl/), Version 1.0
+Copyright (c) 2020, 2023 Oracle and/or its affiliates.
+
+Released under the Universal Permissive License v1.0 as shown at
+<https://oss.oracle.com/licenses/upl/>.
