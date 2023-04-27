@@ -53,3 +53,30 @@ resource "oci_marketplace_accepted_agreement" "solaris_accepted_agreement" {
   package_version = data.oci_marketplace_listing.solaris_latest.default_package_version
   signature       = oci_marketplace_listing_package_agreement.solaris_list_pkg_agreement.signature
 }
+
+
+# As well for every new Solaris release new subscription needs to be obtained in the Application Catalog
+# (This needs to be done only once and could be done via GUI if needed)
+
+# subscription details
+resource "oci_core_app_catalog_listing_resource_version_agreement" "solaris_latest_catalog_details" {
+  listing_id               = data.oci_core_app_catalog_listing_resource_version.solaris_catalog_listing.listing_id
+  listing_resource_version = data.oci_core_app_catalog_listing_resource_version.solaris_catalog_listing.listing_resource_version
+}
+
+# signing subscription
+resource "oci_core_app_catalog_subscription" "solaris_subscription" {
+  compartment_id           = var.compartment_ocid
+  listing_id               = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.listing_id
+  listing_resource_version = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.listing_resource_version
+  oracle_terms_of_use_link = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.oracle_terms_of_use_link
+  signature                = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.signature
+  time_retrieved           = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.time_retrieved
+  eula_link                = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.eula_link
+
+  // May take long for the subscription to propagate to all regions
+  timeouts {
+    create = "20m"
+  }
+}
+

@@ -3,15 +3,15 @@ variable "region" {
 }
 
 variable "availability_domain" {
-  default = "ruWb:PHX-AD-1"
+  default = "oscS:PHX-AD-3"
 }
 
 variable "compartment_ocid" {  
-  default = "ocid1.compartment.oc1..aaa..."
+#  default = "ocid1.compartment.oc1..aaa..."
 }
 
 variable "subnet_id" {
-  default = "ocid1.subnet.oc1.phx.aa..."
+#  default = "ocid1.subnet.oc1.phx.aa..."
 }
 
 # The next set of variables specify the instance to be created.
@@ -33,6 +33,6 @@ variable "instance_display_name" {
 
 variable "ssh_public_key_path" {
   description = "SSH Public Key Path"
-  default = "/.../.../.ssh/ocisshkey.pub"
+#  default = "/.../.../.ssh/ocisshkey.pub"
 }
 
