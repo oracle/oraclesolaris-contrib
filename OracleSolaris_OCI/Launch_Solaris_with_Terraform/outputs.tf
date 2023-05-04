@@ -5,6 +5,9 @@ output "A01_Compartment-Name" {
 output "A01_Subnet-OCID" {
   value = var.subnet_id
 }
+output "A01_VCN-OCID" {
+  value = data.oci_core_vcn.myvcn.id
+}
 
 output "A02_Shape-of-Instance" {
   value = oci_core_instance.solaris_instance.shape
@@ -84,6 +87,7 @@ output "E4_oci_core_app_catalog_listing_resource_version-resource_version" {
 output "E5_oci_core_app_catalog_listing_resource_version-additional_info" {
   value = "This object also includes lists of available_regions and compatible_shapes"
 }
+
 output "E_END" {
   value = "===================="
 }
@@ -112,10 +116,24 @@ output "G4_solaris_list_pkg_agreement-package_version" {
   value = oci_marketplace_listing_package_agreement.solaris_list_pkg_agreement.package_version
 }
 output "G5_solaris_list_pkg_agreement-signature" {
-  value = oci_marketplace_listing_package_agreement.solaris_list_pkg_agreement.signature
+  value = base64decode(oci_marketplace_listing_package_agreement.solaris_list_pkg_agreement.signature)
 }
 output "G_END" {
   value = "===================="
 }
 
-
+output "L1_oci_core_app_catalog_listing_resource_version_agreement-oracle_terms_of_use_link" {
+  value = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.oracle_terms_of_use_link
+}
+output "L2_oci_core_app_catalog_listing_resource_version_agreement-eula_link" {
+  value = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.eula_link
+}
+output "L3_oci_core_app_catalog_subscription-signature" {
+  value = oci_core_app_catalog_subscription.solaris_subscription.signature
+}
+output "L4_oci_core_app_catalog_subscription-time_retrieved" {
+  value = oci_core_app_catalog_subscription.solaris_subscription.time_retrieved
+}
+output "L_END" {
+  value = "===================="
+}

@@ -6,12 +6,12 @@ resource "oci_core_instance" "solaris_instance" {
   source_details {
       source_type = "image"
       # The image ID is determined in image.tf 
-      source_id = data.oci_core_app_catalog_listing_resource_version.solaris_catalog_listing.listing_resource_id
+      source_id = data.oci_marketplace_listing_package.solaris_list_pkg.image_id
   }
 
   display_name = var.instance_display_name
   create_vnic_details {
-      assign_public_ip = true
+      # assign_public_ip = false
       subnet_id = var.subnet_id
   }
   metadata = {

@@ -74,6 +74,37 @@ resource "oci_marketplace_accepted_agreement" "solaris_accepted_agreement" {
 }
 ```
 
+Optionally you need to subscribe Solaris in Application Catalog, but that only needs to be done once per new release
+and could be done via browser. In terraform, you can do that similarly as accepting the Terms of Services above, 
+first you fetch the licence agreement:
+
+```
+resource "oci_core_app_catalog_listing_resource_version_agreement" "solaris_latest_catalog_details" {
+  listing_id               = data.oci_core_app_catalog_listing_resource_version.solaris_catalog_listing.listing_id
+  listing_resource_version = data.oci_core_app_catalog_listing_resource_version.solaris_catalog_listing.listing_resource_version
+}
+```
+
+Then you use the licence agreement above to fill in the subscription details, including the signature, which
+indicates you agree.
+
+```
+resource "oci_core_app_catalog_subscription" "solaris_subscription" {
+  compartment_id           = var.compartment_ocid
+  listing_id               = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.listing_id
+  listing_resource_version = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.listing_resource_version
+  oracle_terms_of_use_link = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.oracle_terms_of_use_link
+  signature                = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.signature
+  time_retrieved           = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.time_retrieved
+  eula_link                = oci_core_app_catalog_listing_resource_version_agreement.solaris_latest_catalog_details.eula_link
+
+  // May take long for the subscription to propagate to all regions
+  timeouts {
+    create = "20m"
+  }
+}
+```
+
 Finally, the file outputs.tf reports to you the compartment and subnet where the instance was created, along with other useful information.
 
 Copyright (c) 2022, Oracle and/or its affiliates. Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl/. 
