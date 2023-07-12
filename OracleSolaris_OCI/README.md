@@ -5,6 +5,7 @@ Oracle Solaris has been trusted with running business-critical applications on y
 - [Launching an Oracle Solaris instance using the Oracle Cloud Console](01_Launch_Instance)
 - [Launching an Oracle Solaris instance using Terraform](Launch_Solaris_with_Terraform)
 - [Launching an Oracle Solaris instance using the OCI Python API](Launch_Solaris_with_Python)
+- [Creating an Oracle Solaris instance in OCI using OCI Designer Toolkit (OKIT)](08_Create_an_Oracle_Solaris_Instance_in_OCI_using_OKIT)
 - [Utilizing OCI storage resources](02_Block_Storage)
 - [Installing and launching Oracle Solaris Zones](03_Oracle_Solaris_Zones)
 - [Migrating VM's from VirtualBox 6 and 7 to OCI](04_VirtualBox_to_OCI)
