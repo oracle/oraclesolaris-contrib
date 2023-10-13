@@ -1,0 +1,22 @@
+--- make/lib/Awt2dLibraries.gmk  2022-05-26 01:47:23.195874147 +0200
++++ make/lib/Awt2dLibraries.gmk  2022-05-27 02:30:40.983064618 +0200
+@@ -383,7 +383,6 @@
+     OPTIMIZATION := HIGHEST, \
+     CFLAGS := $(LCMS_CFLAGS_JDKLIB) \
+         $(LCMS_CFLAGS), \
+-    CFLAGS_solaris := -xc99=no_lib, \
+     CFLAGS_windows := -DCMS_IS_WINDOWS_, \
+     EXTRA_HEADER_DIRS := \
+         common/awt/debug \
+
+--- make/autoconf/flags-cflags.m4  2022-05-26 01:47:49.652806601 +0200
++++ make/autoconf/flags-cflags.m4  2022-05-28 00:13:09.339724241 +0200
+@@ -560,7 +560,7 @@
+     TOOLCHAIN_CFLAGS="-errshort=tags"
+ 
+     TOOLCHAIN_CFLAGS_JDK="-mt $TOOLCHAIN_FLAGS"
+-    TOOLCHAIN_CFLAGS_JDK_CONLY="-xCC -Xa -W0,-noglobal $TOOLCHAIN_CFLAGS" # C only
++    TOOLCHAIN_CFLAGS_JDK_CONLY="-xCC -W0,-noglobal $TOOLCHAIN_CFLAGS" # C only
+     TOOLCHAIN_CFLAGS_JDK_CXXONLY="-features=no%except -norunpath -xnolib" # CXX only
+     TOOLCHAIN_CFLAGS_JVM="-template=no%extdef -features=no%split_init \
+         -library=stlport4 -mt -features=no%except $TOOLCHAIN_FLAGS"

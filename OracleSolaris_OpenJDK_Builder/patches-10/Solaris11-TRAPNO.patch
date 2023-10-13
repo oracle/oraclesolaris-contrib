@@ -1,0 +1,13 @@
+S11.4.24 renamed TRAPNO to REG32_TRAPNO.
+
+--- src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
++++ src/hotspot/os_cpu/solaris_x86/os_solaris_x86.cpp
+@@ -620,7 +620,7 @@
+   // Furthermore, a false-positive should be harmless.
+   if (UnguardOnExecutionViolation > 0 &&
+       (sig == SIGSEGV || sig == SIGBUS) &&
+-      uc->uc_mcontext.gregs[TRAPNO] == T_PGFLT) {  // page fault
++      uc->uc_mcontext.gregs[REG32_TRAPNO] == T_PGFLT) {  // page fault
+     int page_size = os::vm_page_size();
+     address addr = (address) info->si_addr;
+     address pc = (address) uc->uc_mcontext.gregs[REG_PC];
