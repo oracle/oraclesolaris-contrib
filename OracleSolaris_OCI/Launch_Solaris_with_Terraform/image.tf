@@ -30,11 +30,18 @@ data "oci_core_app_catalog_listing_resource_version" "solaris_catalog_listing" {
 
 # Retrieve any agreements needed, which match the listing found above.
 data "oci_marketplace_listing_package_agreements" "solaris_list_pkg_agreements" {
+
+    depends_on = [ time_rotating.signature_refresh_period ]
+
     listing_id = data.oci_marketplace_listing.solaris_latest.id
     package_version = data.oci_marketplace_listing.solaris_latest.default_package_version
 }
 
-
+# the signatures in the package agreements are time based an will expire,
+# so we need to re-read the package listing once a while to replace the stale values from terraform.tfstate
+resource "time_rotating" "signature_refresh_period" {
+  rotation_days = 7
+}
 
 # Some OCI resources can only be used after you accept the terms and conditions. For the purposes
 # of automation, that acceptance is implemented as an "accepted agreement". Within the Terraform
